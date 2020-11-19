@@ -1,7 +1,3 @@
-//Nama      : Ahmad Saladin
-//NIM       : 13519187
-//Tanggal   : 30 September 2020
-
 #include<stdio.h>
 #include "mesinkata.h"
 

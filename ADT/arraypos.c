@@ -1,8 +1,3 @@
-/*NIM / Nama : 13519187 / Ahmad Saladin*/
-/*Tanggal : 8 September 2020*/
-/*Topik Praktikum : ADT List*/
-/*Deskripsi : Realisasi ADT List*/
-
 #include<stdio.h>
 #include "arraypos.h"
 
@@ -17,14 +12,14 @@ void MakeEmpty (TabInt * T)
 	IdxType i;
 	/*ALGORITMA*/
 	for(i = IdxMin ; i <= IdxMax ; i++){
-		Elmt(*T, i) = ValUndef;
+		ElmtTabTab(*T, i) = ValUndef;
 	}
 
 }
 
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
-int NbElmt (TabInt T)
+int NbElmtTabTab (TabInt T)
 /* Mengirimkan banyaknya elemen efektif tabel */
 /* Mengirimkan nol jika tabel kosong */
 {
@@ -32,7 +27,7 @@ int NbElmt (TabInt T)
 	IdxType i;
 	/*ALGORITMA*/
 	i = IdxMin;
-	while(Elmt(T, i) != ValUndef && i<=IdxMax){
+	while(ElmtTabTab(T, i) != ValUndef && i<=IdxMax){
 		i++;
 	}
 	return i-IdxMin;
@@ -65,7 +60,7 @@ IdxType GetLastIdx (TabInt T)
 	/*KAMUS LOKAL*/
 
 	/*ALGORITMA*/
-	return NbElmt(T)+IdxMin-1;
+	return NbElmtTab(T)+IdxMin-1;
 }
 
 /* ********** Test Indeks yang valid ********** */
@@ -97,7 +92,7 @@ boolean IsEmpty (TabInt T)
 	/*KAMUS LOKAL*/
 
 	/*ALGORITMA*/
-	return Elmt(T, IdxMin) == ValUndef;
+	return ElmtTab(T, IdxMin) == ValUndef;
 	
 }
 /* *** Test tabel penuh *** */
@@ -107,7 +102,7 @@ boolean IsFull (TabInt T)
 	/*KAMUS LOKAL*/
 
 	/*ALGORITMA*/
-	return Elmt(T, IdxMax) != ValUndef;
+	return ElmtTab(T, IdxMax) != ValUndef;
 }
 
 /* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
@@ -124,7 +119,7 @@ void BacaIsi (TabInt * T)
 /*    Jika N = 0; hanya terbentuk T kosong */
 {
 	/*KAMUS LOKAL*/
-	int n, i, elmt;
+	int n, i, ElmtTab;
 	/*ALGORITMA*/
 	do{
 		scanf("%d", &n);
@@ -132,8 +127,8 @@ void BacaIsi (TabInt * T)
 
 	MakeEmpty(T);
 	for(i=0;i<n;i++){
-		scanf("%d", &elmt);
-		Elmt(*T, i) = elmt;
+		scanf("%d", &ElmtTab);
+		ElmtTab(*T, i) = ElmtTab;
 	}
 }
 void TulisIsiTab (TabInt T)
@@ -154,9 +149,9 @@ void TulisIsiTab (TabInt T)
 	else{
 		printf("[");
 		for(i=GetFirstIdx(T); i<GetLastIdx(T); i++){
-			printf("%d,", Elmt(T,i));
+			printf("%d,", ElmtTab(T,i));
 		}
-		printf("%d", Elmt(T,i));
+		printf("%d", ElmtTab(T,i));
 		printf("]");
 	}
 }
@@ -182,12 +177,12 @@ TabInt PlusMinusTab (TabInt T1, TabInt T2, boolean plus)
 		MakeEmpty(&T);
 			if(plus){
 				for(i=GetFirstIdx(T1);i<=GetLastIdx(T1);i++){
-					Elmt(T,i) = Elmt(T1,i) + Elmt(T2,i);
+					ElmtTab(T,i) = ElmtTab(T1,i) + ElmtTab(T2,i);
 				}
 			}
 			else{
 				for(i=GetFirstIdx(T1);i<=GetLastIdx(T1);i++){
-					Elmt(T,i) = Elmt(T1,i) - Elmt(T2,i);
+					ElmtTab(T,i) = ElmtTab(T1,i) - ElmtTab(T2,i);
 				}
 			}
 		return T;;
@@ -212,7 +207,7 @@ boolean IsEQ (TabInt T1, TabInt T2)
 		equal = true;
 		i = GetFirstIdx(T1);
 		while(equal && (i <= GetLastIdx(T1))){
-			if(Elmt(T1, i) != Elmt(T2,i)){
+			if(ElmtTab(T1, i) != ElmtTab(T2,i)){
 				equal =false;
 			}
 			else{
@@ -240,7 +235,7 @@ IdxType Search1 (TabInt T, ElType X)
 	if(!IsEmpty(T)){
 		i = GetFirstIdx(T);
 		while(!found && (i<=GetLastIdx(T))){
-			if(Elmt(T, i) == X){
+			if(ElmtTab(T, i) == X){
 				found = true;
 			}
 			else{
@@ -277,14 +272,14 @@ void MaxMin (TabInt T, ElType * Max, ElType * Min)
 	IdxType i;
 	/*ALGORITMA*/
 	i = GetFirstIdx(T);
-	*Max = Elmt(T,i);
-	*Min = Elmt(T,i);
+	*Max = ElmtTab(T,i);
+	*Min = ElmtTab(T,i);
 	for(i=i+1;i<=GetLastIdx(T);i++){
-		if(Elmt(T,i)>*Max){
-			*Max = Elmt(T,i);
+		if(ElmtTab(T,i)>*Max){
+			*Max = ElmtTab(T,i);
 		}
-		if(Elmt(T,i)<*Min){
-			*Min = Elmt(T,i);
+		if(ElmtTab(T,i)<*Min){
+			*Min = ElmtTab(T,i);
 		}
 	}
 	
@@ -302,7 +297,7 @@ ElType SumTab (TabInt T)
 	sum = 0;
 	if(!IsEmpty(T)){
 		for(i=GetFirstIdx(T);i<=GetLastIdx(T);i++){
-		sum += Elmt(T,i);
+		sum += ElmtTab(T,i);
 		}
 	}
 	return sum;
@@ -319,7 +314,7 @@ int CountX (TabInt T, ElType X)
 	n = 0;
 	if(!IsEmpty(T)){
 		for(i=GetFirstIdx(T);i<=GetLastIdx(T);i++){
-			if(Elmt(T,i)==X){
+			if(ElmtTab(T,i)==X){
 				n+=1;
 			}
 		}
@@ -340,7 +335,7 @@ boolean IsAllGenap (TabInt T)
 		genap = true;
 		i = GetFirstIdx(T);
 		while(genap && (i<=GetLastIdx(T))){
-			if((Elmt(T, i) % 2) != 0){
+			if((ElmtTab(T, i) % 2) != 0){
 				genap = false;
 			}
 			else{
@@ -370,26 +365,26 @@ void Sort (TabInt * T, boolean asc)
 			for(i=idFirst;i<=idLast;i++){
 				id = i;
 				for(j=i+1;j<=idLast;j++){
-					if(Elmt(*T, j) < Elmt(*T, id)){
+					if(ElmtTab(*T, j) < ElmtTab(*T, id)){
 						id = j;
 					}
 				}
-				temp = Elmt(*T, i);
-				Elmt(*T,i) = Elmt(*T, id);
-				Elmt(*T, id) = temp;
+				temp = ElmtTab(*T, i);
+				ElmtTab(*T,i) = ElmtTab(*T, id);
+				ElmtTab(*T, id) = temp;
 			}
 		}
 		else{
 			for(i=idFirst;i<=idLast;i++){
 				id = i;
 				for(j=i+1;j<=idLast;j++){
-					if(Elmt(*T, j) > Elmt(*T, id)){
+					if(ElmtTab(*T, j) > ElmtTab(*T, id)){
 						id = j;
 					}
 				}
-				temp = Elmt(*T, i);
-				Elmt(*T,i) = Elmt(*T, id);
-				Elmt(*T, id) = temp;
+				temp = ElmtTab(*T, i);
+				ElmtTab(*T,i) = ElmtTab(*T, id);
+				ElmtTab(*T, id) = temp;
 			}			
 		}
 		
@@ -406,8 +401,8 @@ void AddAsLastEl (TabInt * T, ElType X)
 	/*KAMUS LOKAL*/
 
 	/*ALGORITMA*/
-	if(Elmt(*T, IdxMax == ValUndef)){
-		Elmt(*T, GetLastIdx(*T)+1) = X;
+	if(ElmtTab(*T, IdxMax == ValUndef)){
+		ElmtTab(*T, GetLastIdx(*T)+1) = X;
 	}
 	
 }
@@ -422,6 +417,6 @@ void DelLastEl (TabInt * T, ElType * X)
 	/*KAMUS LOKAL*/
 
 	/*ALGORITMA*/
-	*X = Elmt(*T, GetLastIdx(*T));
-	Elmt(*T, GetLastIdx(*T)) = ValUndef;
+	*X = ElmtTab(*T, GetLastIdx(*T));
+	ElmtTab(*T, GetLastIdx(*T)) = ValUndef;
 }

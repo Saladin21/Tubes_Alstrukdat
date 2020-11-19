@@ -35,7 +35,7 @@ typedef struct {
    Definisi elemen pertama : T[i] dengan i=1 */
   
 /* ********** SELEKTOR ********** */
-#define Elmt(T,i) (T).TI[(i)]
+#define ElmtTab(T,i) (T).TI[(i)]
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create tabel kosong  */

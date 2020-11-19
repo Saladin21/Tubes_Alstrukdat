@@ -98,4 +98,6 @@ long Durasi (JAM JAw, JAM JAkh);
 /* Mengirim JAkh-JAw dlm Detik, dengan kalkulasi */
 /* Jika JAw > JAkh, maka JAkh adalah 1 hari setelah JAw */
 
+
+
 #endif

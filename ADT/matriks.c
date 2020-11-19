@@ -1,8 +1,3 @@
-/*NIM / Nama : 13519187 / Ahmad Saladin*/
-/*Tanggal : 24 September 2020*/
-/*Topik Praktikum : ADT Matriks*/
-/*Deskripsi : Realisasi ADT Matriks*/
-
 #include<stdio.h>
 #include "matriks.h"
 

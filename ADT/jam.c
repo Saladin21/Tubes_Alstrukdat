@@ -1,6 +1,3 @@
-/*Nama/NIM : Ahmad Saladin/13519187*/
-/*Tanggal : 2 September 2020*/
-
 #include<stdio.h>
 #include "jam.h"
 
@@ -178,4 +175,7 @@ long Durasi (JAM JAw, JAM JAkh){
 		hasil = JAMToDetik(JAkh) - JAMToDetik(JAw);
 	}
 	return hasil;
+}
+
+
 }

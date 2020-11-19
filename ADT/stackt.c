@@ -1,8 +1,3 @@
-//Nama/NIM : Ahmad Saladin/13519187
-//Tanggal : 21 Oktober 2020
-//Topik : ADT Stack
-//Deskripsi : realisasi ADT Stack
-
 #include "stackt.h"
 
 /* ************ Prototype ************ */

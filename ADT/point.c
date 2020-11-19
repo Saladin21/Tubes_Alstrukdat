@@ -1,7 +1,3 @@
-/*Nama/NIM : Ahmad Saladin/13519187*/
-/*Tanggal : 1 September 2020*/
-
-
 #include<stdio.h>
 #include<math.h>
 #include "boolean.h"
