@@ -11,7 +11,7 @@ LoadMap(M1,M2,M3,M4);
 while (true)    // LOOP PROGRAMMNYA
     TulisMap();                   // Print Map
     Tulis_Nama_Money_dll();       // Print attribute kaya nama, money, waktu dll
-    Minta_input_perintah(input);  // scanf kata/huruf, misal "buy","w","a","upgrade",dll
+    Minta_input_perintah(KATA input);  // baca kata/huruf, misal "buy","w","a","upgrade",dll
     
     if ( input = W/A/S/D )        // berarti ingin pindah di map
         FMap();                   // fungsi dimap, pindah posisi, ubah map, dll
