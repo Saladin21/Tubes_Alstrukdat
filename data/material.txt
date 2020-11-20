@@ -1,0 +1,3 @@
+NamaBahan;HargaBahan
+Kayu;10
+Besi;15
