@@ -4,6 +4,7 @@
 #define MAP_H
 
 #include "boolean.h"
+#include "mappoint.h"
 
 /* Ukuran minimum dan maksimum baris dan kolom */
 #define BrsMin 1
@@ -17,6 +18,8 @@ typedef struct {
 	ElType Mem[BrsMax+1][KolMax+1];
    int NBrsEff; /* banyaknya/ukuran baris yg terdefinisi */
 	int NKolEff; /* banyaknya/ukuran kolom yg terdefinisi */
+   POINT GerbangX; // point gerbang yg di atas/bawah
+   POINT GerbangY; // gerbang di kiri/kanan
 } MAP;
 /* NBrsEff >= 1 dan NKolEff >= 1 */
 /* Indeks MAP yang digunakan: [BrsMin..BrsMax][KolMin..KolMax] */
@@ -33,6 +36,8 @@ void MakeMAP (int NB, int NK, MAP * M);
 #define NBrsEff(M) (M).NBrsEff
 #define NKolEff(M) (M).NKolEff
 #define Elmt(M,i,j) (M).Mem[(i)][(j)]
+#define GerbangX(M) (M).GerbangX
+#define GerbangY(M) (M).GerbangY
 
 /* *** Selektor "DUNIA MAP" *** */
 boolean IsIdxValid (int i, int j);

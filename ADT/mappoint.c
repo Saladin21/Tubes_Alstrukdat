@@ -17,14 +17,26 @@ POINT MakePOINT (int X, int Y){
 	return P;
 }
 /* Membentuk sebuah POINT dari komponen-komponennya */
+void XYtoIJ (int X, int Y, int *i, int *j, int lenBrsM) {
+// merubah xy jadi ij
 
+    *i = lenBrsM - Y + 1;
+    *j = X;
+}
+
+void IJtoXY (int *X, int *Y, int i, int j, int lenBrsM) {
+// merubah ij jadi xy
+
+    *Y = lenBrsM - i + 1;
+    *X = j;
+}
 /* *** KELOMPOK Interaksi dengan I/O device, BACA/TULIS  *** */
 void BacaPOINT (POINT * P){
 	/*KAMUS*/
 	int x;
 	int y;
 	/*ALGORITMA*/
-	scanf("%f %f", &x, &y);
+	scanf("%d %d", &x, &y);
 	*P = MakePOINT(x, y);
 }
 /* Membaca nilai absis dan ordinat dari keyboard dan membentuk

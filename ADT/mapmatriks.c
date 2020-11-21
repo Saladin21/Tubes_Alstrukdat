@@ -18,6 +18,10 @@ void MakeMAP (int NB, int NK, MAP * M)
 	/*ALGORITMA*/
 	NBrsEff(*M) = NB;
 	NKolEff(*M) = NK;
+	GerbangX(*M).X = -1;
+	GerbangX(*M).Y = -1;
+	GerbangY(*M).X = -2;
+	GerbangY(*M).Y = -2;
 }
 
 
@@ -117,7 +121,7 @@ void BacaMAP (MAP * M, int NB, int NK)
 */
 {
 	/*KAMUS LOKAL*/
-	int i, j;
+	int i, j; int x,y;
 	ElType nilai;
 	/*ALGORITMA*/
 	MakeMAP(NB, NK, M);
@@ -125,9 +129,19 @@ void BacaMAP (MAP * M, int NB, int NK)
 		for(j=GetFirstIdxKol(*M);j<=GetLastIdxKol(*M);j++){
 			scanf(" %c", &nilai);
 			Elmt(*M, i, j) = nilai;
+
+			// Assign Point gerbang
+			IJtoXY(&x,&y,i,j,GetLastIdxBrs(*M));
+			if (nilai == '>' || nilai == '<') {
+				GerbangX(*M).X = x;
+				GerbangX(*M).Y = y;
+			}
+			if (nilai == 'V' || nilai == 'v' || nilai == '^') {
+				GerbangY(*M).X = x;
+				GerbangY(*M).Y = y;
+			}
 		}
 	}
-	
 }
 
 void TulisMAP (MAP M)

@@ -20,7 +20,10 @@ typedef struct {
 /* *** Konstruktor membentuk POINT *** */
 POINT MakePOINT (int X, int Y);
 /* Membentuk sebuah POINT dari komponen-komponennya */
-
+void XYtoIJ (int X, int Y, int *i, int *j, int lenBrsM);
+// merubah xy jadi ij
+void IJtoXY (int *X, int *Y, int i, int j, int lenBrsM);
+// merubah ij jadi xy
 /* *** KELOMPOK Interaksi dengan I/O device, BACA/TULIS  *** */
 void BacaPOINT (POINT * P);
 /* Membaca nilai absis dan ordinat dari keyboard dan membentuk
