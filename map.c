@@ -8,6 +8,12 @@
 #include "ADT/mappoint.c"
 
 /*
+
+Buat Ngakses bangunan, antrian,wahana, atau office
+office : if (CGedung(P) = 'O')
+antrian : if (CGedung(P) = 'A')
+wahana : if (isWahana(P))
+
 Diprogram Utama (CORET-CORETAN DOANG YG INI MAH):
 CreatePlayer();
 MAP M1,M2,M3,M4;
@@ -26,12 +32,22 @@ while (true)
     cls();
 */
 
-// ------------------------------ CLEAR, KONVERSI XY ------------------------------------
+// ------------------------------ CLEAR, ISWAHANA ------------------------------------
 void cls(void) {
     system("cls||clear");
     return;
 }
-
+boolean isWahana(PLAYER P) {
+    // true jika ada wahana di sebelah P
+    int i,j;
+    char cu, cd, cl, cr; // char up,down,left right
+    XYtoIJ(PosisiX(P),PosisiY(P),&i,&j,NBrsEff(CMap(P))); // cari index(i,j) player pada matrix
+    cu = Elmt(CMap(P),i-1,j);
+    cd = Elmt(CMap(P),i+1,j);
+    cl = Elmt(CMap(P),i,j-1);
+    cr = Elmt(CMap(P),i,j+1);
+    return (cu == 'W' || cd == 'W' || cl == 'W' || cr == 'W');
+}
 // ------------------------------------------- MAP --------------------------------------
 void Legenda() {
     // print legenda
