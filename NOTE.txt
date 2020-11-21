@@ -1,7 +1,7 @@
 Tulis penjelasan program buatan kalian sedetail mungkin
 AHAN - Map:
     Map itu matriks, indeks i,j. Pemain itu POINT, indeks x,y. Karena index matriks dan point beda (point kaya kartesius),
-    jadi make fungsi IJtoXY atau XYtoIJ buat ngerubah index dan sebaliknya.
+    jadi make fungsi IJtoXY atau XYtoIJ (fungsi ada di ADT mappoint.h) buat ngerubah index dan sebaliknya.
     Indeks dimulai dari 1 sampe 100 (BUKAN DARI 0).
     Player geraknya berdasarkan kordinat kartesius alias POINT alias XY.
     
@@ -13,8 +13,8 @@ AHAN - Map:
         char CGedung; // lagi nginjek bangunan apa, 'O','-','W','A' atau apa
 
   - Buat Ngakses bangunan, antrian,wahana, atau office
-      office : if (CGedung(P) = 'O')
-      antrian : if (CGedung(P) = 'A')
+      office : if (CGedung(P) = 'O') then (bisa input 'office' misalnya)
+      antrian : if (CGedung(P) = 'A') then (bisa input 'antrian')
       wahana :
       int i,j;
       char cu, cd, cl, cr; // char up,down,left right
@@ -23,4 +23,4 @@ AHAN - Map:
       cd = Elmt(CMap(*P),i+1,j);
       cl = Elmt(CMap(*P),i,j-1);
       cr = Elmt(CMap(*P),i,j+1);
-      if (cu == 'W' || cd == 'W' || cl == 'W' || cr == 'W')
+      if (cu == 'W' || cd == 'W' || cl == 'W' || cr == 'W') then (bisa input 'wahana')
