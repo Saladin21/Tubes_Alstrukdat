@@ -1,0 +1,26 @@
+Tulis penjelasan program buatan kalian sedetail mungkin
+AHAN - Map:
+    Map itu matriks, indeks i,j. Pemain itu POINT, indeks x,y. Karena index matriks dan point beda (point kaya kartesius),
+    jadi make fungsi IJtoXY atau XYtoIJ buat ngerubah index dan sebaliknya.
+    Indeks dimulai dari 1 sampe 100 (BUKAN DARI 0).
+    Player geraknya berdasarkan kordinat kartesius alias POINT alias XY.
+    
+  - Player punya atribut (yg berhubungan dgn map):
+      	MAP CMap; // current map, map yang lagi di tempatin, kalau P gerak map ini yang di edit2
+        MAP RealMap; // Ga diubah, buat tau dia lagi di Map mana, M1/M2/M3/M4. Dipake buat nyamain antara map player dgn M1/M2/M3/M4
+                      // bedanya sama CMap, RealMap gaada 'P' dan gaakan berubah, CMap ada 'P' dan kalo gerak CMap berubah
+        POINT POS;    // Posisi player saat itu, pakai kordinat kartesius (x,y)
+        char CGedung; // lagi nginjek bangunan apa, 'O','-','W','A' atau apa
+
+  - Buat Ngakses bangunan, antrian,wahana, atau office
+      office : if (CGedung(P) = 'O')
+      antrian : if (CGedung(P) = 'A')
+      wahana :
+      int i,j;
+      char cu, cd, cl, cr; // char up,down,left right
+      XYtoIJ(PosisiX(P),PosisiY(P),&i,&j,NBrsEff(CMap(P))); // cari index(i,j) player pada matrix
+      cu = Elmt(CMap(*P),i-1,j);
+      cd = Elmt(CMap(*P),i+1,j);
+      cl = Elmt(CMap(*P),i,j-1);
+      cr = Elmt(CMap(*P),i,j+1);
+      if (cu == 'W' || cd == 'W' || cl == 'W' || cr == 'W')
