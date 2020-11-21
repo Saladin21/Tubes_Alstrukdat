@@ -6,126 +6,186 @@
 #include "mapplayer.h"
 #include "ADT/mappoint.h"
 #include "ADT/mappoint.c"
-// ada 4 peta / bagian
-// gerak W,A,S,D
-// gerbang untuk pindah peta : < > v ^
-// kosong (player bisa pindah ke sini) : -
-// border / dinding : *
 
-// Program
-// Jadi intinya matriksnya diubah, terus di print
-// Kalau ketemu tembok (*), posisi tetap
-// Kalau ketemu gerbang, pindah map
-// kalau ketemu (-), gerak
+/*
+Diprogram Utama (CORET-CORETAN DOANG YG INI MAH):
+CreatePlayer();
+MAP M1,M2,M3,M4;
+LoadMap(M1,M2,M3,M4);
 
-// Data yang diperlukan
-// Posisi i,j player
-// index tembok (Panjang baris dan kolom)
+while (true)
+    PrintMap();
+    Fungsi_Nama_Money_dll();
+    Minta_input_perintah(input);
+    
+    if ( input = W/A/S/D )
+        FMap();
+        cls();
+    else (misal upgrade, buy, dll)
+        Contoh();
+    cls();
+*/
 
-// variabel yang kira2 perlu
-// index pemain, map keberapa
-
-// 
-void cls(void)
-{
+// ------------------------------ CLEAR, KONVERSI XY ------------------------------------
+void cls(void) {
     system("cls||clear");
     return;
 }
-void UbahMap (PLAYER P,MAP *M, boolean isP)
-// buat ngeprintnya, jadi misal Player pindah ada char yg berubah
-{
+
+// ------------------------------------------- MAP --------------------------------------
+void Legenda() {
+    // print legenda
+    printf("\nLegenda:\nA = Antrian\nP = Player\nW = Wahana\nO = Office\n<, ^, >, V = Gerbang\n");
+}
+
+void PrintMap(MAP M) {
+    // tulismap dan legenda
+    TulisMAP(M); Legenda();
+}
+void
+ LoadMap(MAP *M1,MAP *M2,MAP *M3,MAP *M4) {
+    // load map dari file
+    printf("belum");
+}
+
+void UbahMap (PLAYER *P, boolean isP) {
+// Jadi kalau P nya gerak Cmap nya berubah
+
     int i,j;
-    XYtoIJ(PosisiX(P),PosisiY(P),&i,&j,NBrsEff(*M));
+    XYtoIJ(PosisiX(*P),PosisiY(*P),&i,&j,NBrsEff(CMap(*P)));
+
     if (isP)
-        Elmt(*M,i,j) = 'P';
+        Elmt(CMap(*P),i,j) = 'P';
     else
-        Elmt(*M,i,j) = CGedung(P);
+        Elmt(CMap(*P),i,j) = CGedung(*P);
     
 }
-void GantiMap (PLAYER P,MAP M)
-{
+void GantiMapPlayer (PLAYER P,MAP M) {
+// current map player diganti jadi M
+
     CMap(P) = M;
 }
 
-char CharinMap (MAP M,int X,int Y)
+char cinMap (MAP M,int X,int Y) {
 // return char pada koordinat X,Y
-{
+
     int i,j;
     XYtoIJ(X,Y,&i,&j,NBrsEff(M));
     return Elmt(M,i,j);
 }
-boolean cEQ (char a,char b)
-// true jika a == b
+
+// -------------------------------------- GERAK WASD ---------------------------------
+void WASD (char C /* ini KATA */, int *x, int *y)
 {
-    return (a == b);
+    *x = 0; *y = 0;
+    if (C == 'W' || C == 'w') {
+        *y = 1;
+    }
+    else if (C == 'A' || C == 'a') {
+        *x = -1;
+    }
+    else if (C == 'S' || C == 's') {
+        *y = -1;
+    }
+    else if (C == 'D' || C == 'd') {
+        *x = 1;
+    }
+    else {
+        *x = 0; *y = 0;
+    }
+}
+void pindahPOSMAP (PLAYER *P, MAP M, int newX, int newY) {
+    // pindah pos dan map
+    UbahMap(P,false);
+    PindahPOS(P,newX,newY);
+    // Kalau Map berubah
+    if (!(EQ(RealMap(*P),M)))
+        PindahMAP(P,M);
+    UbahMap(P,true);
+
 }
 
-int main() {
-    MAP Map1;
-    // nanti di ganti load dari file
-    BacaMAP(&Map1,10,20);
-    
-    printf("\n\n");
-    // assign player
-    PLAYER P;
-    PindahPosisi(&P,Map1,3,3);
-    UbahMap(P,&Map1,true);
-    cls();
-    
-    while (true) {
-        char input;
-        TulisMAP(Map1);
-        TulisPOINT(Posisi(P));
-        int i,j;
-        XYtoIJ(PosisiX(P),PosisiY(P),&i,&j,NBrsEff(Map1));
-        printf("\n%d,%d",i,j);
-        printf("\n%c",CGedung(P));
+// ------------------------------ FUNGSI FMAP -------------------------------------
+void FMap(PLAYER *P, char C, MAP M1,MAP M2,MAP M3,MAP M4) {
+    // Minta input arah W/A/S/D
+    int x,y;
+    WASD(C, &x, &y);
+    MAP Mnew; // kalau pindah map
 
-        printf("\nInput WASD : ");
-        scanf(" %c",&input);
-        int x,y;
-        if (input == 'W' || input == 'w') {
-            x = 0; y = 1;
-        }
-        else if (input == 'A' || input == 'a') {
-            x = -1; y = 0;
-        }
-        else if (input == 'S' || input == 's') {
-            x = 0; y = -1;
-        }
-        else if (input == 'D' || input == 'd') {
-            x = 1; y = 0;
-        }
-        else {
-            break;
-        }
-        int newX = PosisiX(P)+x; int newY = PosisiY(P)+y;
-        int newi,newj;
-        XYtoIJ(newX,newY,&newi,&newj,NBrsEff(Map1));
+    // Kordinat baru x,y dan i,j
+    int nX = PosisiX(*P)+x; int nY = PosisiY(*P)+y;
 
-        if (newi<=NBrsEff(Map1) && newj<=NKolEff(Map1)) { // ga lebih dari ukuran matriks
-            if (!(cEQ(CharinMap(Map1,newX,newY),'*'))) { // jika bukan tembok '*'
-                UbahMap(P,&Map1,false);
-                PindahPosisi(&P,Map1,newX,newY);
-                UbahMap(P,&Map1,true);
+    int ni,nj;
+    XYtoIJ(nX,nY,&ni,&nj,NBrsEff(CMap(*P)));
 
-                if (cEQ(CGedung(P),'v'))
-                    GantiMap(P,Map1);
-                else if (cEQ(CGedung(P),'<'))
-                    GantiMap(P,Map1);
-                else if (cEQ(CGedung(P),'>'))
-                    GantiMap(P,Map1);
-                else if (cEQ(CGedung(P),'^'))
-                    GantiMap(P,Map1);
-                else if (cEQ(CGedung(P),'A'))
-                    printf("antrian");
-                else if (cEQ(CGedung(P),'O'))
-                    printf("office");
-                else if (cEQ(CGedung(P),'W'))
-                    printf("WAHANA");
+    // Gerak ke Objek
 
+    // Kalau tidak lebih dari index maksimal
+    if (ni<=NBrsEff(CMap(*P)) && nj<=NKolEff(CMap(*P))) {
+
+        // Bukan Tembok (*)
+        if (cinMap(CMap(*P),nX,nY) != '*' && cinMap(CMap(*P),nX,nY) != 'W') {
+
+            // < > v ^ tiap Map
+            if ( cinMap(CMap(*P),nX,nY) == '^' || cinMap(CMap(*P),nX,nY) == 'V') {
+                // ini EQnya salah, soalnya CMap pasti beda
+                int majuy = 0;
+                if (EQ(RealMap(*P),M1)) {
+                    Mnew = M4;
+                    majuy = -1;
+                } else if (EQ(RealMap(*P),M2)) {
+                    Mnew = M3;
+                    majuy = -1;
+                } else if (EQ(RealMap(*P),M3)) {
+                    Mnew = M2;
+                    majuy = 1;
+                } else if (EQ(RealMap(*P),M4)) {
+                    Mnew = M1;
+                    majuy = 1;
+                } else
+                    printf("\nMap Error\n");
+                pindahPOSMAP(P,Mnew,GerbangY(Mnew).X,GerbangY(Mnew).Y+majuy);
+            } else if ( cinMap(CMap(*P),nX,nY) == '<' || cinMap(CMap(*P),nX,nY) == '>') {
+                int majux = 0;
+                if (EQ(RealMap(*P),M1)) {
+                    Mnew = M2; majux = 1;
+                } else if (EQ(RealMap(*P),M2)) {
+                    Mnew = M1; majux = -1;
+                } else if (EQ(RealMap(*P),M3)) {
+                    Mnew = M4; majux = -1;
+                } else if (EQ(RealMap(*P),M4)) {
+                    Mnew = M3; majux = 1;
+                } else
+                    printf("\nMap Error\n");
+                pindahPOSMAP(P,Mnew,GerbangX(Mnew).X+majux,GerbangX(Mnew).Y);
+
+            } else {
+                pindahPOSMAP(P,RealMap(*P),nX,nY);
             }
         }
+    }
+}
+
+int main() { // INI DITARO DI PROGRAM UTAMA
+    MAP M1,M2,M3,M4;
+    // nanti di ganti load dari file
+    MakeMAP(10,20,&M1); MakeMAP(10,20,&M2); MakeMAP(10,20,&M3); MakeMAP(10,20,&M4);
+    BacaMAP(&M1,10,20); BacaMAP(&M2,10,20); BacaMAP(&M3,10,20); BacaMAP(&M4,10,20);
+    // assign player di x,y = (3,3), ini bebas nanti ganti
+    PLAYER P;
+    CreatePlayer(&P,M1,3,3);
+    UbahMap(&P,true);
+    cls();
+    while (true) {
+        char C;
+        printf("\n");
+        PrintMap(CMap(P));
+        printf("\nInput W/A/S/D : ");
+        scanf(" %c",&C);
+        if (C == 'W' || C == 'A' ||C == 'S' ||C == 'D' || C == 'w' || C == 'a' ||C == 's' ||C == 'd')
+            FMap(&P, C, M1, M2, M3, M4);
+        else
+            break;
         cls();
     }
     return 0;

@@ -10,19 +10,24 @@
 typedef struct {
 	// Kata NAME;
 	MAP CMap; // current map
+	MAP RealMap; // Ga diubah, untuk EQ(RealMap,M1)
 	POINT POS;
 	char CGedung; // lagi nginjek apa, 'O','-' atau apa
 } PLAYER;
 
 #define CMap(P) (P).CMap
+#define RealMap(P) (P).RealMap
 #define Posisi(P) (P).POS
 #define PosisiX(P) (P).POS.X
 #define PosisiY(P) (P).POS.Y
 #define CGedung(P) (P).CGedung
 
-void PindahPosisi (PLAYER *P, MAP M, int newX, int newY);
+void CreatePlayer (PLAYER *P, MAP M, int newX, int newY);
+
+void PindahPOS (PLAYER *P, int newX, int newY);
 // pindah titik
-void XYtoIJ (int X, int Y, int *i, int *j, int lenBrsM);
-// ngerubah xy jadi ij
+void PindahMAP (PLAYER *P, MAP M);
+// pindah MAP
+
 
 #endif

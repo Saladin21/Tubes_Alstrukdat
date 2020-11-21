@@ -1,22 +1,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "mapplayer.h"
+#include "ADT/mapmatriks.h"
 
+void CreatePlayer (PLAYER *P, MAP M, int initX, int initY) {
+    // Assign Attribute Nama, dll
+        // pass
+    // Assign Posisi Awal dan CMap
 
-void PindahPosisi (PLAYER *P, MAP M, int newX, int newY)
+    
+    // int i = NBrsEff(M) - initY + 1; // ubah x,y jadi i,j
+    // int j = initX;
+    // CGedung(*P) = Elmt(M,i,j);
+    
+    PindahPOS(P, initX, initY);
+    PindahMAP(P, M);
+}
+void PindahPOS (PLAYER *P, int newX, int newY) {
 // pindah titik, inget index matriks sama kartesius beda jadi we lieur dari tadi
 // misal A(4,1) -> di matriks (3,4)
-{
-    CMap(*P) = M;
+
     PosisiX(*P) = newX;
     PosisiY(*P) = newY;
-    int i,j;
-    XYtoIJ(newX,newY,&i,&j,NBrsEff(M));
-    if (Elmt(M,i,j) != 'P')
-        CGedung(*P) = Elmt(M,i,j);
+
+    // ubah x,y jadi i,j
+    int i = NBrsEff(CMap(*P)) - newY + 1;
+    int j = newX;
+
+    if (Elmt(CMap(*P),i,j) != 'P')
+        CGedung(*P) = Elmt(CMap(*P),i,j);
 }
-void XYtoIJ (int X, int Y, int *i, int *j, int lenBrsM)
-{
-    *i = lenBrsM - Y + 1;
-    *j = X;
+void PindahMAP(PLAYER *P, MAP M) {
+    // M = Map baru, dicopy ke CMap dan RealMap
+    CopyMAP(M,&CMap(*P));
+    CopyMAP(M,&RealMap(*P));
+    CGedung(*P) = '-';
 }
