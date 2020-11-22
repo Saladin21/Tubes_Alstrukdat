@@ -6,9 +6,9 @@
 #include "mapplayer.h"
 #include "ADT/mappoint.h"
 #include "ADT/mappoint.c"
+#define MAX_FILE_NAME 100
 
 /*
-
 Buat Ngakses bangunan, antrian,wahana, atau office
 office : if (CGedung(P) = 'O')
 antrian : if (CGedung(P) = 'A')
@@ -48,6 +48,63 @@ boolean isWahana(PLAYER P) {
     cr = Elmt(CMap(P),i,j+1);
     return (cu == 'W' || cd == 'W' || cl == 'W' || cr == 'W');
 }
+// ----------------------------- LOAD MAP FROM FILE -----------------------------------
+void LoadMapFromFile(MAP *M, char filename[MAX_FILE_NAME]) {
+
+    // hitung jumlah char,brs,kol pada file
+    FILE *fp = fopen(filename,"r");
+    char c;
+    int jmlEl = 0; int brs = 1;
+    for (c = getc(fp); c != EOF; c = getc(fp)) {
+        if (c != '\n')
+            jmlEl++;
+        if (c == '\n')
+            brs++;
+    }
+    fclose(fp);
+    int kol = jmlEl/brs;
+
+    // isi array temp
+    FILE *fp1 = fopen(filename,"r");
+    char c1; 
+    char temp[jmlEl];
+
+    int i = 0;
+    while ((c1 = fgetc(fp1))!=EOF) {
+        if (c1 != '\n') {
+            temp[i] = c1;
+            i++;
+        }
+    }
+
+    // BUAT MAP
+    MakeMAP(brs,kol,M);
+    
+    // ISI
+    int step = 0; int x,y;
+    for (int i=GetFirstIdxBrs(*M);i<=GetLastIdxBrs(*M);i++){
+        for(int j=GetFirstIdxKol(*M);j<=GetLastIdxKol(*M);j++){
+            Elmt(*M,i,j) = temp[step];
+            // Assign Point gerbang
+			IJtoXY(&x,&y,i,j,GetLastIdxBrs(*M));
+			if (temp[step] == '>' || temp[step] == '<') {
+				GerbangX(*M).X = x;
+				GerbangX(*M).Y = y;
+			}
+			if (temp[step] == 'V' || temp[step] == 'v' || temp[step] == '^') {
+				GerbangY(*M).X = x;
+				GerbangY(*M).Y = y;
+            }
+            step++;
+        }
+    }
+}
+void LoadAllMap (MAP *M1,MAP *M2,MAP *M3,MAP *M4) {
+    LoadMapFromFile(M1,"map1.txt");
+    LoadMapFromFile(M2,"map2.txt");
+    LoadMapFromFile(M3,"map3.txt");
+    LoadMapFromFile(M4,"map4.txt");
+}
 // ------------------------------------------- MAP --------------------------------------
 void Legenda() {
     // print legenda
@@ -57,11 +114,6 @@ void Legenda() {
 void PrintMap(MAP M) {
     // tulismap dan legenda
     TulisMAP(M); Legenda();
-}
-void
- LoadMap(MAP *M1,MAP *M2,MAP *M3,MAP *M4) {
-    // load map dari file
-    printf("belum");
 }
 
 void UbahMap (PLAYER *P, boolean isP) {
@@ -184,9 +236,7 @@ void FMap(PLAYER *P, char C, MAP M1,MAP M2,MAP M3,MAP M4) {
 
 int main() { // INI DITARO DI PROGRAM UTAMA
     MAP M1,M2,M3,M4;
-    // nanti di ganti load dari file
-    MakeMAP(10,20,&M1); MakeMAP(10,20,&M2); MakeMAP(10,20,&M3); MakeMAP(10,20,&M4);
-    BacaMAP(&M1,10,20); BacaMAP(&M2,10,20); BacaMAP(&M3,10,20); BacaMAP(&M4,10,20);
+    LoadAllMap(&M1,&M2,&M3,&M4);
     // assign player di x,y = (3,3), ini bebas nanti ganti
     PLAYER P;
     CreatePlayer(&P,M1,3,3);
