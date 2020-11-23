@@ -3,12 +3,12 @@
 
 #include "ADT/boolean.h"
 #include "ADT/jam.h"
-#include "ADT/prioqueue.h"
+#include "ADT/antrian.h"
 #include "wahana.h"
 #include "proses.h"
 
 
-void Serve (Prioqueue *A, Wahana W, JAM *T, int *money, TabProses *Tab);
+void Serve (Antrian *A, Wahana W, JAM *T, int *money, TabProses *Tab);
 //I.S. Pemain berada di sebelah antrian
 //F.S. Pengunjung pertama dalam antrian dilayani sesuai input wahana jika
 //wahana tersebut ada di daftar milik pengunjung dan tidak penuh, waktu dan uang akan bertambah
@@ -29,7 +29,7 @@ void Prepare();
 //I.S. Sembarang
 //F.S. Antrian kosong dan masuk ke preparation phase
 
-void AdvTime (JAM *J, int durasi, TabProses *Tab, Prioqueue *A, Wahana W);
+void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, Wahana W);
 //Memajukan jam sebanyak durasi detik
 
 

@@ -1,13 +1,13 @@
 #ifndef PROSES_H
 #define PROSES_H
 
-#include "ADT/prioqueue.h"
+#include "ADT/antrian.h"
 #include "wahana.h"
 #include <stdlib.h>
 
 typedef struct 
 {
-    infotype pengunjung;
+    pengunjung pengunjung;
     int durasi;
 } proses;
 
@@ -17,7 +17,7 @@ typedef struct
     int NbElmt;
 }TabProses;
 
-proses MakeProses(infotype p, int durasi);
+proses MakeProses(pengunjung p, int durasi);
 //Menghasilkan sebuah proses
 
 void MakeTabProses(TabProses *T);
@@ -29,7 +29,7 @@ void insert(TabProses *T, proses P);
 void Proses(TabProses *T, int durasi);
 //Memproses isi TabProses Selama durasi
 
-void DelAt(TabProses *T, int i, infotype *P);
+void DelAt(TabProses *T, int i, pengunjung *P);
 //Menghapus elemen dengan indeks i dan bagian infotypenya disimpan di p
 
 void Sort(TabProses *T);

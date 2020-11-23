@@ -1,10 +1,10 @@
-/* File : Prioqueue.h */
+/* File : Antrian.h */
 /* Definisi ADT Priority Queue Char dengan representasi array secara eksplisit dan alokasi dinamik */
 /* Model Implementasi Versi III dengan circular buffer */
 /* Elemen queue terurut tidak mengecil berdasarkan elemen prio */
 
-#ifndef Prioqueue_H
-#define Prioqueue_H
+#ifndef Antrian_H
+#define Antrian_H
 
 #include "boolean.h"
 #include "arraypos.h"
@@ -18,20 +18,20 @@ typedef struct {
     TabInt info;  //Tabel berisi ID wahana yang ingin dinaiki
     int kesabaran;
     int current //berisi ID wahana yang sedang dinaiki, atau -1 jika berada dalam antrian
-} infotype; //Pengunjung
+} pengunjung; //Pengunjung
 typedef int address;   /* indeks tabel */
-/* Contoh deklarasi variabel bertype Prioqueue : */
+/* Contoh deklarasi variabel bertype Antrian : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
 typedef struct {
-    infotype * T;   /* tabel penyimpan elemen */
+    pengunjung * T;   /* tabel penyimpan elemen */
     address HEAD;  /* alamat penghapusan */
     address TAIL;  /* alamat penambahan */
     int MaxEl;     /* Max elemen queue */
-} Prioqueue;
-/* Definisi Prioqueue kosong: HEAD=Nil; TAIL=Nil. */
+} Antrian;
+/* Definisi Antrian kosong: HEAD=Nil; TAIL=Nil. */
 
 /* ********* AKSES (Selektor) ********* */
-/* Jika e adalah infotype dan Q adalah Prioqueue, maka akses elemen : */
+/* Jika e adalah pengunjung dan Q adalah Antrian, maka akses elemen : */
 #define Prio(e)     (e).prio
 #define Info(e)     (e).info
 #define Head(Q)     (Q).HEAD
@@ -42,16 +42,16 @@ typedef struct {
 #define Elmt(Q,i)   (Q).T[(i)]
 
 /* ********* Prototype ********* */
-boolean IsEmpty (Prioqueue Q);
+boolean IsEmpty (Antrian Q);
 /* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsFull (Prioqueue Q);
+boolean IsFull (Antrian Q);
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
-int NBElmt (Prioqueue Q);
+int NBElmt (Antrian Q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 
 /* *** Kreator *** */
-void MakeEmpty (Prioqueue * Q, int Max);
+void MakeEmpty (Antrian * Q, int Max);
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max */
@@ -59,25 +59,25 @@ void MakeEmpty (Prioqueue * Q, int Max);
 /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
 
 /* *** Destruktor *** */
-void DeAlokasi(Prioqueue * Q);
+void DeAlokasi(Antrian * Q);
 /* Proses: Mengembalikan memori Q */
 /* I.S. Q pernah dialokasi */
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
 
 /* *** Primitif Add/Delete *** */
-void Enqueue (Prioqueue * Q, infotype X);
+void Enqueue (Antrian * Q, pengunjung X);
 /* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut mengecil berdasarkan prio */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X disisipkan pada posisi yang tepat sesuai dengan prioritas,
         TAIL "maju" dengan mekanisme circular buffer; */
-void Dequeue (Prioqueue * Q, infotype * X);
+void Dequeue (Antrian * Q, pengunjung * X);
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
         Q mungkin kosong */
 
 /* Operasi Tambahan */
-void PrintPrioqueue (Prioqueue Q);
+void PrintAntrian (Antrian Q);
 /* Mencetak isi queue Q ke layar */
 /* I.S. Q terdefinisi, mungkin kosong */
 /* F.S. Q tercetak ke layar dengan format:

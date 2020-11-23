@@ -3,17 +3,20 @@
 
 
 
-void Serve (Prioqueue *A, Wahana *W, JAM *T, int *money)
+void Serve (Antrian *A, Wahana *W, JAM *T, int *money, TabProses *Tab)
 //I.S. Pemain berada di sebelah antrian
 //F.S. Pengunjung pertama dalam antrian dilayani sesuai input wahana jika
 //wahana tersebut ada di daftar milik pengunjung dan tidak penuh, waktu dan uang akan bertambah
 {
     //KAMUS LOKAl
-    infotype X;
+    pengunjung X;
+    proses P;
     //ALGORITMA
     X = InfoHead(*A);
     if (SearchB(X.info, W->ID) && W->NbPengunjung<W->Kapasitas){
         Dequeue(A, &X);
+        P = MakeProses(X, W->Durasi);
+        insert(Tab, P);
 
     }
 }
@@ -26,6 +29,7 @@ void repair (Wahana *W, JAM *T)
 
     //ALGORITMA
     W->status = 1;
+    
     
 }
 
@@ -59,15 +63,15 @@ void Prepare()
     
 }
 
-void AdvTime (JAM *J, int durasi, TabProses *P, Prioqueue *A, Wahana W)
+void AdvTime (JAM *J, int menit, TabProses *P, Antrian *A, Wahana W)
 //Memajukan jam sebanyak durasi detik
 {
 	//KAMUS LOKAl
-    infotype P1;
+    pengunjung P1;
     TabProses T2;
 	//Algoritma
-	*J = DetikToJAM(JAMToDetik(*J) + durasi);
-    Proses(P, durasi);
+	*J = DetikToJAM(JAMToDetik(*J) + menit*60);
+    Proses(P, menit);
     Sort(P);
     while (P->NbElmt>1 && P->Tab[0].durasi<=0){
         DelAt(P, 0, &P1);

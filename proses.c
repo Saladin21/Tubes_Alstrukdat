@@ -1,7 +1,7 @@
 #include "proses.h"
 
 
-proses MakeProses(infotype p, int durasi)
+proses MakeProses(pengunjung p, int durasi)
 //Menghasilkan sebuah proses
 {
     //KAMUS LOKAL
@@ -45,7 +45,7 @@ void Proses(TabProses *T, int durasi)
     }
 }
 
-void DelAt(TabProses *T, int i, infotype *P)
+void DelAt(TabProses *T, int i, pengunjung *P)
 //Menghapus elemen dengan indeks i dan bagian infotypenya disimpan di p
 {
     //KAMUS LOKAL

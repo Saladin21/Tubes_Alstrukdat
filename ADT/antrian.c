@@ -1,11 +1,11 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "Prioqueue.h"
+#include "antrian.h"
 #include "arraypos.h"
 
 
 /* ********* Prototype ********* */
-boolean IsEmpty (Prioqueue Q)
+boolean IsEmpty (Antrian Q)
 /* Mengirim true jika Q kosong: lihat definisi di atas */
 {
     /*KAMUS LOKAL*/
@@ -13,7 +13,7 @@ boolean IsEmpty (Prioqueue Q)
     /*ALGORITMA*/
     return Head(Q) == Nil && Tail(Q)==Nil;
 }
-boolean IsFull (Prioqueue Q)
+boolean IsFull (Antrian Q)
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
 {
@@ -22,7 +22,7 @@ boolean IsFull (Prioqueue Q)
     /*ALGORITMA*/
     return Tail(Q) == ((Head(Q) - 1) + MaxEl(Q)) % MaxEl(Q);
 }
-int NBElmt (Prioqueue Q)
+int NBElmt (Antrian Q)
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 {
     /*KAMUS LOKAL*/
@@ -45,7 +45,7 @@ int NBElmt (Prioqueue Q)
     return count;
 }
 /* *** Kreator *** */
-void MakeEmpty (Prioqueue * Q, int Max)
+void MakeEmpty (Antrian * Q, int Max)
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max */
@@ -55,7 +55,7 @@ void MakeEmpty (Prioqueue * Q, int Max)
     /*KAMUS LOKAL*/
 
     /*ALGORITMA*/
-    (*Q).T = (infotype*) malloc ((Max) * sizeof(infotype));
+    (*Q).T = (pengunjung*) malloc ((Max) * sizeof(pengunjung));
     if ((*Q).T != NULL){
         Head(*Q) = Nil;
         Tail(*Q) = Nil;
@@ -66,7 +66,7 @@ void MakeEmpty (Prioqueue * Q, int Max)
 }
 
 /* *** Destruktor *** */
-void DeAlokasi(Prioqueue * Q)
+void DeAlokasi(Antrian * Q)
 /* Proses: Mengembalikan memori Q */
 /* I.S. Q pernah dialokasi */
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
@@ -79,7 +79,7 @@ void DeAlokasi(Prioqueue * Q)
 }
 
 /* *** Primitif Add/Delete *** */
-void Enqueue (Prioqueue * Q, infotype X)
+void Enqueue (Antrian * Q, pengunjung X)
 /* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut mengecil berdasarkan prio */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X disisipkan pada posisi yang tepat sesuai dengan prioritas,
@@ -89,7 +89,7 @@ void Enqueue (Prioqueue * Q, infotype X)
     int i;
     int j, k;
     boolean tukar;
-    infotype temp;
+    pengunjung temp;
     /*ALGORITMA*/
     if(IsEmpty(*Q)){
         Head(*Q) = 0;
@@ -127,7 +127,7 @@ void Enqueue (Prioqueue * Q, infotype X)
     }
 }
         
-void Dequeue (Prioqueue * Q, infotype * X)
+void Dequeue (Antrian * Q, pengunjung * X)
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
@@ -151,7 +151,7 @@ void Dequeue (Prioqueue * Q, infotype * X)
 }
 
 /* Operasi Tambahan */
-void PrintPrioqueue (Prioqueue Q)
+void PrintAntrian (Antrian Q)
 /* Mencetak isi queue Q ke layar */
 /* I.S. Q terdefinisi, mungkin kosong */
 /* F.S. Q tercetak ke layar dengan format:
