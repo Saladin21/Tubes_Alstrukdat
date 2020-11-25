@@ -8,10 +8,15 @@
 #include "boolean.h"
 
 #define Nil -1
-#define MaxEl 10
+#define MaxEl 50
 /* Nil adalah stack dengan elemen kosong . */
 
-typedef int infotype;
+typedef struct{
+    int kodeaksi;      // 1 = Buy, 2 = Build, 3 = Upgrade
+    int kodebarang;    // Kode untuk material atau ID akhir wahana
+    int jumlah;        // Jumlah (untuk material)
+    char IDAwal[3];    // ID awal wahana yang akan dibuild/upgrade
+} infotype;
 typedef int address;   /* indeks tabel */
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */

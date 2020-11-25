@@ -1,9 +1,10 @@
-NamaWahana;AsalWahana;Kapasistas;Uang;Kayu;Besi;DurasiBuild;DurasiNaik;HargaTiket;DeskripsiWahana
-Arseille;None;8;100;14;4;180;10;25;Kora-kora mini dengan kapasitas maksimal 8 orang.
-Pantagruel;Arseille;12;250;5;10;200;12;40;Kora-kora dengan kapasitas 5 orang di tiap sisi.
-Courageous;Pantagruel;16;200;20;10;220;15;65;Kora-kora besar dengan total kapasitas 16 orang.
-Blade;None;6;100;10;10;120;5;15;Roller coaster kecil yang tidak menantang dengan panjang lintasan 20 meter. 
-Blade II;Blade;8;100;5;20;150;8;35;Roller coaster yang lumayan tinggi dan menantang.
-Vantage Masters;Blade;12;150;20;10;150;12;35;Roller coaster yang cukup santai dengan panjang lintasan sedang.
-Ashen Chevalier;Vantage Masters;18;250;30;5;150;20;75;Roller coaster dengan lintasan yang panjangnya ~1km.
-Azure Chevalier;Blade II;10;300;5;20;150;12;75;Roller coaster yang membuat berdebar-debar dengan banyaknya drop dan loop.
+IDAwal;NamaWahana;AsalWahana;Kapasistas;Uang;Kayu;Besi;DurasiBuild;DurasiNaik;HargaTiket;DeskripsiWahana
+ARS;Arseille;None;8;100;14;4;180;10;25;Kora-kora mini dengan kapasitas maksimal 8 orang.
+PTG;Pantagruel;Arseille;12;250;5;10;200;12;40;Kora-kora dengan kapasitas 5 orang di tiap sisi.
+CRG;Courageous;Pantagruel;16;200;20;10;220;15;65;Kora-kora besar dengan total kapasitas 16 orang.
+BD1;Blade;None;6;100;10;10;120;5;15;Roller coaster kecil yang tidak menantang dengan panjang lintasan 20 meter. 
+BD2;Blade II;Blade;8;100;5;20;150;8;35;Roller coaster yang lumayan tinggi dan menantang.
+VAN;Vantage Masters;Blade;12;150;20;10;150;12;35;Roller coaster yang cukup santai dengan panjang lintasan sedang.
+ASH;Ashen Chevalier;Vantage Masters;18;250;30;5;150;20;75;Roller coaster dengan lintasan yang panjangnya ~1km.
+AZU;Azure Chevalier;Blade II;10;300;5;20;150;12;75;Roller coaster yang membuat berdebar-debar dengan banyaknya drop dan loop.
+NOR;Nord Highlands;None;4;100;5;5;90;5;20;Komidi putar (carousel) yang dihiasi dengan banyak lampu.
