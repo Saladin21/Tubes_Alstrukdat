@@ -1,9 +1,9 @@
 #ifndef MAINPHASE_H
 #define MAINPHASE_H
 
-#include "ADT/boolean.h"
-#include "ADT/jam.h"
-#include "ADT/antrian.h"
+#include "../ADT/boolean.h"
+#include "../ADT/jam.h"
+#include "antrian.h"
 #include "wahana.h"
 #include "proses.h"
 
@@ -30,7 +30,8 @@ void Prepare();
 //F.S. Antrian kosong dan masuk ke preparation phase
 
 void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, Wahana W);
-//Memajukan jam sebanyak durasi detik
+//Memajukan jam sebanyak durasi detik, memproses pengunjung yang berada dalam proses,
+//mengembalikan pengunjung yang sudah selesai di proses ke antrian
 
 
 #endif

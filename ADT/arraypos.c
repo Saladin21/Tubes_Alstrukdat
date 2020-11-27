@@ -12,14 +12,14 @@ void MakeEmpty (TabInt * T)
 	IdxType i;
 	/*ALGORITMA*/
 	for(i = IdxMin ; i <= IdxMax ; i++){
-		ElmtTabTab(*T, i) = ValUndef;
+		ElmtTab(*T, i) = ValUndef;
 	}
 
 }
 
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
-int NbElmtTabTab (TabInt T)
+int NbElmtTab (TabInt T)
 /* Mengirimkan banyaknya elemen efektif tabel */
 /* Mengirimkan nol jika tabel kosong */
 {
@@ -27,7 +27,7 @@ int NbElmtTabTab (TabInt T)
 	IdxType i;
 	/*ALGORITMA*/
 	i = IdxMin;
-	while(ElmtTabTab(T, i) != ValUndef && i<=IdxMax){
+	while(ElmtTab(T, i) != ValUndef && i<=IdxMax){
 		i++;
 	}
 	return i-IdxMin;

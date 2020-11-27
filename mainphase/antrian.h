@@ -6,8 +6,8 @@
 #ifndef Antrian_H
 #define Antrian_H
 
-#include "boolean.h"
-#include "arraypos.h"
+#include "../ADT/boolean.h"
+#include "../ADT/arraypos.h"
 
 #define Nil -1
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
@@ -17,7 +17,7 @@ typedef struct {
     int prio;  /* [1..100], prioritas dengan nilai 1..100 (1 adalah prioritas tertinggi) */
     TabInt info;  //Tabel berisi ID wahana yang ingin dinaiki
     int kesabaran;
-    int current //berisi ID wahana yang sedang dinaiki, atau -1 jika berada dalam antrian
+    int current; //berisi ID wahana yang sedang dinaiki, atau -1 jika berada dalam antrian
 } pengunjung; //Pengunjung
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Antrian : */
@@ -42,16 +42,18 @@ typedef struct {
 #define Elmt(Q,i)   (Q).T[(i)]
 
 /* ********* Prototype ********* */
-boolean IsEmpty (Antrian Q);
+boolean IsAntrianEmpty (Antrian Q);
 /* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsFull (Antrian Q);
+boolean IsAntrianFull (Antrian Q);
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
-int NBElmt (Antrian Q);
+int NBElmtAntrian (Antrian Q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 
 /* *** Kreator *** */
-void MakeEmpty (Antrian * Q, int Max);
+pengunjung MakePengunjung(int prio, TabInt info, int kesabaran, int current);
+
+void MakeEmptyAntrian (Antrian * Q, int Max);
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max */

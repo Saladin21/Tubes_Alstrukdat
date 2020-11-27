@@ -40,7 +40,7 @@ void Proses(TabProses *T, int durasi)
     //KAMUS LOKAL
 
     //ALGORITMA
-    for(int i =0; i<NbElmt; i++){
+    for(int i =0; i<T->NbElmt; i++){
         T->Tab[i].durasi = T->Tab[i].durasi - durasi; 
     }
 }
@@ -60,7 +60,7 @@ void DelAt(TabProses *T, int i, pengunjung *P)
     T->NbElmt = T->NbElmt -1;
 }
 
-void Sort (TabProses *T)
+void SortProses (TabProses *T)
 {
     //KAMUS LOKAl
     int id, i, j;
@@ -80,3 +80,42 @@ void Sort (TabProses *T)
 		T->Tab[id] = temp;
     }
 }
+
+void PrintDurasiProses(TabProses T)
+{
+    for(int i =0; i<T.NbElmt; i++){
+       printf("%d ", T.Tab[i].durasi); 
+    }
+    printf("\n");
+}
+/*
+int main(){
+    Antrian Q;
+    TabInt T;
+    pengunjung P1, P2, P3;
+    proses A1, A2, A3;
+    TabProses Tab;
+    MakeEmptyAntrian(&Q, 5);
+    MakeEmpty(&T);
+    P1 = MakePengunjung(5, T, 5, 1);
+    P2 = MakePengunjung(4, T, 5, 2);
+    P3 = MakePengunjung(3, T, 5, 3);
+    Enqueue(&Q, P2);
+    Enqueue(&Q, P1);
+    Enqueue(&Q, P3);
+    PrintAntrian(Q);
+
+    A1 = MakeProses(P1, 4);
+    A2 = MakeProses(P2, 8);
+    A3 = MakeProses(P3, 23);
+
+    MakeTabProses(&Tab);
+    insert(&Tab, A2);
+    insert(&Tab, A1);
+    insert(&Tab, A3);
+
+    SortProses(&Tab);
+
+    PrintDurasiProses(Tab);
+}
+*/
