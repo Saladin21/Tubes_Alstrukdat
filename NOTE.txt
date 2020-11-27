@@ -24,3 +24,10 @@ AHAN - Map:
       cl = Elmt(CMap(*P),i,j-1);
       cr = Elmt(CMap(*P),i,j+1);
       if (cu == 'W' || cd == 'W' || cl == 'W' || cr == 'W') then (bisa input 'wahana')
+
+DANIEL-Parser:
+    Parsing input pengguna pakai ADT Parser (aplikasi ADT Mesin Karakter dan Mesin Kata), setiap input pengguna diawali huruf kecil dan diakhiri titik.
+    Penggunnan:
+    - Meminta Input --> InputKata(Kata *K), mengisi K dengan sebuah kata
+    - Membandingkan Kata dengan String --> IsSama(Kata K, char str[]), mengembalikan true jika string dan kata sama dan false jika tidak.
+    
