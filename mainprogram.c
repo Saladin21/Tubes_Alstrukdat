@@ -4,6 +4,9 @@
 #include "map.h"
 #include "mainphase/mainphase.h"
 
+//GLOBAL VARIABLE
+infowahana InfoWahana[];
+
 
 /*
 TULIS URUTAN FUNGSI DI PROGRAM UTAMA KAYA APA,

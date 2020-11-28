@@ -1,6 +1,6 @@
 #include <wahana.h>
 
-
+infowahana InfoWahana[];
 
 
 Wahana MakeWahana (char IDawal[], int ID, POINT lokasi)
@@ -369,7 +369,7 @@ void DelAfter (AllWahana *L, address *Pdel, address Prec)
 }
 
 /****************** PROSES SEMUA ELEMEN LIST ******************/
-void PrintInfo (AllWahana L)
+void PrintAllWahana (AllWahana L)
 /* I.S. List mungkin kosong */
 /* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
@@ -383,13 +383,35 @@ void PrintInfo (AllWahana L)
     P = FirstWahana(L);
     if (P != Nil){
         while(P != Nil){
-            printf("%d,", InfoWahana(P).ID);
-            printf("%s \n",InfoWahana(P).IDawal);
+            printf("%d ", InfoWahana(P).ID);
+            NamaWahana(InfoWahana(P).IDawal, InfoWahana);
+            printf("\n");
             P = NextWahana(P);
         }
     }
     
     
+}
+
+
+void PrintInfo (Wahana W)
+//Menamppilkan detail wahana
+{
+    //KAMUS LOKAL
+
+    //ALGORITMA
+    NamaWahana(W.IDawal, InfoWahana);
+    printf("\n");
+    printf("Harga : %d\n", HargaTiket(W.IDawal, InfoWahana));
+    printf("Lokasi:");
+    TulisPOINT(W.lokasi);
+    printf("\n");
+    printf("Deskripsi :\n");
+    DeskripsiWahana(W.IDawal, InfoWahana);
+    printf("\n");
+    printf("Kapasitas : %d\n", HargaTiket(W.IDawal, InfoWahana));
+    //History upgrad
+    printf("Durasi : %d\n", HargaTiket(W.IDawal, InfoWahana));
 }
 int NbElmtWahana (AllWahana L)
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
