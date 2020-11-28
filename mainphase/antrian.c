@@ -1,11 +1,11 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include "antrian.h"
-#include "arraypos.h"
+#include "../ADT/arraypos.h"
 
 
 /* ********* Prototype ********* */
-boolean IsEmpty (Antrian Q)
+boolean IsEmptyAntrian (Antrian Q)
 /* Mengirim true jika Q kosong: lihat definisi di atas */
 {
     /*KAMUS LOKAL*/
@@ -13,7 +13,7 @@ boolean IsEmpty (Antrian Q)
     /*ALGORITMA*/
     return Head(Q) == Nil && Tail(Q)==Nil;
 }
-boolean IsFull (Antrian Q)
+boolean IsFullAntrian (Antrian Q)
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
 {
@@ -22,7 +22,7 @@ boolean IsFull (Antrian Q)
     /*ALGORITMA*/
     return Tail(Q) == ((Head(Q) - 1) + MaxEl(Q)) % MaxEl(Q);
 }
-int NBElmt (Antrian Q)
+int NBElmtAntrian (Antrian Q)
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 {
     /*KAMUS LOKAL*/
@@ -45,7 +45,19 @@ int NBElmt (Antrian Q)
     return count;
 }
 /* *** Kreator *** */
-void MakeEmpty (Antrian * Q, int Max)
+
+pengunjung MakePengunjung(int prio, TabInt info, int kesabaran, int current){
+    pengunjung P;
+
+    P.prio = prio;
+    P.current = current;
+    P.info = info;
+    P.kesabaran = kesabaran;
+
+    return P;
+}
+
+void MakeEmptyAntrian (Antrian * Q, int Max)
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max */
@@ -91,7 +103,7 @@ void Enqueue (Antrian * Q, pengunjung X)
     boolean tukar;
     pengunjung temp;
     /*ALGORITMA*/
-    if(IsEmpty(*Q)){
+    if(IsEmptyAntrian(*Q)){
         Head(*Q) = 0;
         Tail(*Q) = 0;
         Elmt(*Q,0) = X;
@@ -137,7 +149,7 @@ void Dequeue (Antrian * Q, pengunjung * X)
     int i;
     /*ALGORITMA*/
     *X = InfoHead(*Q);
-    if (NBElmt(*Q)==1){
+    if (NBElmtAntrian(*Q)==1){
         Head(*Q) = Nil;
         Tail(*Q) = Nil;
     }
@@ -165,7 +177,7 @@ void PrintAntrian (Antrian Q)
     int i;
     boolean tail=false;
     /*ALGORITMA*/
-    if (!IsEmpty(Q)){
+    if (!IsEmptyAntrian(Q)){
         i = Head(Q);
         while (!tail){
             if(i>=MaxEl(Q)){
@@ -176,9 +188,9 @@ void PrintAntrian (Antrian Q)
             }
             printf("%d ", Prio(Elmt(Q,i)));
             TulisIsiTab(Elmt(Q, i).info);
-            printf(" %d/n", Elmt(Q,i).kesabaran);
+            printf(" %d\n", Elmt(Q,i).kesabaran);
             i++;
         }
     }
-    printf("#\n");
+    printf("\n");
 }

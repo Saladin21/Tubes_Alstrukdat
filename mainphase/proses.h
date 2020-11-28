@@ -1,9 +1,9 @@
 #ifndef PROSES_H
 #define PROSES_H
 
-#include "ADT/antrian.h"
-#include "wahana.h"
+#include "antrian.h"
 #include <stdlib.h>
+#include<stdio.h>
 
 typedef struct 
 {
@@ -32,6 +32,10 @@ void Proses(TabProses *T, int durasi);
 void DelAt(TabProses *T, int i, pengunjung *P);
 //Menghapus elemen dengan indeks i dan bagian infotypenya disimpan di p
 
-void Sort(TabProses *T);
+void SortProses(TabProses *T);
+//Mengurutkan tabel dari durasi terkecil hingga terbesar
+
+void PrintDurasiProses(TabProses T);
+//Mencetak durasi setiap proses
 
 #endif
