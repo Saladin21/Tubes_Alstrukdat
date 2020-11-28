@@ -33,6 +33,8 @@ void PindahPOS (PLAYER *P, int newX, int newY) {
 void PindahMAP(PLAYER *P, MAP M) {
     // M = Map baru, dicopy ke CMap dan RealMap
     CopyMAP(M,&CMap(*P));
+    Kode(CMap(*P)) = Kode(M);
     CopyMAP(M,&RealMap(*P));
+    Kode(RealMap(*P)) = Kode(M);
     CGedung(*P) = '-';
 }

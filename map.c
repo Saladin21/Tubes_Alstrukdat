@@ -49,7 +49,7 @@ boolean isWahana(PLAYER P) {
     return (cu == 'W' || cd == 'W' || cl == 'W' || cr == 'W');
 }
 // ----------------------------- LOAD MAP FROM FILE -----------------------------------
-void LoadMapFromFile(MAP *M, char filename[MAX_FILE_NAME]) {
+void LoadMapFromFile(MAP *M, int Kode, char filename[MAX_FILE_NAME]) {
 
     // hitung jumlah char,brs,kol pada file
     FILE *fp = fopen(filename,"r");
@@ -98,12 +98,13 @@ void LoadMapFromFile(MAP *M, char filename[MAX_FILE_NAME]) {
             step++;
         }
     }
+    Kode(*M) = Kode; // ngasih kode map
 }
 void LoadAllMap (MAP *M1,MAP *M2,MAP *M3,MAP *M4) {
-    LoadMapFromFile(M1,"map1.txt");
-    LoadMapFromFile(M2,"map2.txt");
-    LoadMapFromFile(M3,"map3.txt");
-    LoadMapFromFile(M4,"map4.txt");
+    LoadMapFromFile(M1,1,"map1.txt");
+    LoadMapFromFile(M2,2,"map2.txt");
+    LoadMapFromFile(M3,3,"map3.txt");
+    LoadMapFromFile(M4,4,"map4.txt");
 }
 // ------------------------------------------- MAP --------------------------------------
 void Legenda() {
@@ -132,6 +133,7 @@ void GantiMapPlayer (PLAYER P,MAP M) {
 // current map player diganti jadi M
 
     CMap(P) = M;
+    Kode(CMap(P)) = Kode(M); 
 }
 
 char cinMap (MAP M,int X,int Y) {

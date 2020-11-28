@@ -20,6 +20,7 @@ typedef struct {
 	int NKolEff; /* banyaknya/ukuran kolom yg terdefinisi */
    POINT GerbangX; // point gerbang yg di atas/bawah
    POINT GerbangY; // gerbang di kiri/kanan
+   int Kode; // Kode map, 1/2/3/4
 } MAP;
 /* NBrsEff >= 1 dan NKolEff >= 1 */
 /* Indeks MAP yang digunakan: [BrsMin..BrsMax][KolMin..KolMax] */
@@ -38,6 +39,7 @@ void MakeMAP (int NB, int NK, MAP * M);
 #define Elmt(M,i,j) (M).Mem[(i)][(j)]
 #define GerbangX(M) (M).GerbangX
 #define GerbangY(M) (M).GerbangY
+#define Kode(M) (M).Kode
 
 /* *** Selektor "DUNIA MAP" *** */
 boolean IsIdxValid (int i, int j);
