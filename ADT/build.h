@@ -33,6 +33,9 @@ typedef struct
 } infowahana;               // Struct berisi data dari pembacaan file wahana.txt
                             // Untuk menyimpan banyak wahana cukup dibuat array infowahana
                             // Tidak ada ID, karena hanya sebagai data semua wahana yang tersedia
+
+
+
                 
 #define JenisM(M,n) (M).T[n].jenis
 #define HargaM(M,n) (M).T[n].harga
