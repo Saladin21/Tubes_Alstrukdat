@@ -15,7 +15,7 @@ void Serve (Antrian *A, AllWahana *L, JAM *T, int *money, TabProses *Tab);
 //F.S. Pengunjung pertama dalam antrian dilayani sesuai input wahana jika
 //wahana tersebut ada di daftar milik pengunjung dan tidak penuh, waktu dan uang akan bertambah
 
-void repair (AllWahana *L, JAM *T);
+void repair (POINT Player, int map, JAM *J, TabProses *Tab, Antrian *A, AllWahana *L);
 //I.S. pemain berada di sebelah wahana
 //F.S. wahana rusak yang berada di sebelah posisi pemain diperbaiki dan waktu bertambah
 

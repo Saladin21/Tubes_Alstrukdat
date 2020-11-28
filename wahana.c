@@ -3,7 +3,7 @@
 daftarwahana InfoWahana;
 
 
-Wahana MakeWahana (char IDawal[], int ID, POINT lokasi)
+Wahana MakeWahana (char IDawal[], int ID, POINT lokasi, int map)
 //Menghasilkan suatu wahana
 {
     //KAMUS LOKAL
@@ -18,6 +18,7 @@ Wahana MakeWahana (char IDawal[], int ID, POINT lokasi)
     W.dayride = 0;
     W.liferide = 0;
     W.lokasi = lokasi;
+    W.map = map;
 
     return W;
 }
@@ -31,7 +32,7 @@ boolean IsWahanaFull (Wahana W)
     return W.NbPengunjung == Kapasitas(W.IDawal);
 }
 
-void AddWahana(char IDAwal[], POINT lokasi, AllWahana *L)
+void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L)
 //Membuat wahana baru dengan tipe IDAwal pada lokasi,
 //Langsung dimasukkan ke dalam AllWahana
 /*
@@ -57,7 +58,7 @@ void AddWahana(char IDAwal[], POINT lokasi, AllWahana *L)
         P = NextWahana(P);
     }
 
-    w = MakeWahana(IDAwal, ID, lokasi);
+    w = MakeWahana(IDAwal, ID, lokasi, map);
 
     InsVLast(L, w);
 }
