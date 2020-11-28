@@ -1,6 +1,6 @@
 #include "wahana.h"
 
-infowahana InfoWahana[];
+daftarwahana InfoWahana;
 
 
 Wahana MakeWahana (char IDawal[], int ID, POINT lokasi)
@@ -165,7 +165,7 @@ address SearchWahanaKosong (AllWahana L, char IDAwal[])
     found = false;
     while(P != Nil && !found){
         if (IsStringSame(InfoWahana(P).IDawal, IDAwal)){
-            if(!IsWahanaFull(InfoWahana(P))){
+            if(!IsWahanaFull(InfoWahana(P)) && InfoWahana(P).status == 1 ){
                 found = true;
             }
         }

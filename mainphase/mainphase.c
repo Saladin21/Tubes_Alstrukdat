@@ -1,7 +1,7 @@
 #include "mainphase.h"
 #include "../parser.h"
 
-infowahana InfoWahana[];
+daftarwahana InfoWahana;
 
 void Serve (Antrian *A, AllWahana *L, JAM *T, int *money, TabProses *Tab)
 //I.S. Pemain berada di sebelah antrian
@@ -59,6 +59,8 @@ void repair (Wahana *W, JAM *T)
     //KAMUS LOKAl
 
     //ALGORITMA
+
+    
     W->status = 1;
     
     
@@ -126,10 +128,11 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)
 //Memajukan jam sebanyak durasi menit
 {
 	//KAMUS LOKAl
-    pengunjung P1;
+    pengunjung P1, P2;
     TabProses T2;
-    address a1;
-    int id;
+    address a1, a2;
+    int id,a, i, j, b, c;
+    Lwahana wahanaP;
 	//Algoritma
 	*J = MenitToJAM(JAMToMenit(*J) + durasi); //Memajukan waktu
      
@@ -147,8 +150,64 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)
         /*Di sini cek apakah pengunjung mau menaiki wahana lain*/
         
         P1.current = -1;
-        P1.prio++;
+        P1.prio--;
         Enqueue(A, P1);
 
     }
+
+    if(NbElmtWahana(*L) > 0){
+        //random generate pengunjung
+        if(!IsAntrianFull(*A)){
+            a = random(0, 100);
+
+            if (a>50){
+
+                
+                for (i=0;i<3;i++){
+                    b = random(0, NbElmtWahana(*L));
+                    a2 = SearchWahana(*L, b);
+                    if (i==0){
+                        wahanaP.TabID[0][0] = InfoWahana(a2).IDawal[0];
+                        wahanaP.TabID[0][1] = InfoWahana(a2).IDawal[1]; 
+                        wahanaP.TabID[0][2] = InfoWahana(a2).IDawal[2]; 
+                        wahanaP.TabID[0][3] = InfoWahana(a2).IDawal[3]; 
+                        wahanaP.Nb ++;
+                    }
+                    else{
+                        if(!IsStringSame(wahanaP.TabID[0], InfoWahana(a2).IDawal)){
+                            if(i == 1 || !IsStringSame(wahanaP.TabID[1], InfoWahana(a2).IDawal))
+                                wahanaP.TabID[wahanaP.Nb][0] = InfoWahana(a2).IDawal[0];
+                                wahanaP.TabID[wahanaP.Nb][1] = InfoWahana(a2).IDawal[1]; 
+                                wahanaP.TabID[wahanaP.Nb][2] = InfoWahana(a2).IDawal[2]; 
+                                wahanaP.TabID[wahanaP.Nb][3] = InfoWahana(a2).IDawal[3]; 
+                                wahanaP.Nb ++;
+                            }
+                        }
+
+                    }
+
+                }
+
+                c = random(1,5);
+                P2 = MakePengunjung(c, wahanaP, 5, -1);
+
+                Enqueue(A, P2);
+
+        }
+        //random wahana rusak
+        b = random(1,10);
+        if (b >8){
+            b = random(0, NbElmtWahana(*L));
+            a2 = SearchWahana(*L, b);
+
+            if (InfoWahana(a2).status != -1){
+                InfoWahana(a2).status = -1;
+            }
+        }
+
+    }
+}
+
+int random(int lower, int upper){ 
+    return rand() % (upper-lower+1) + lower;;
 }

@@ -1,11 +1,11 @@
 #include <stdio.h>
+#include <time.h>
 #include "parser.h"
 #include "mapplayer.h"
 #include "map.h"
 #include "mainphase/mainphase.h"
 
-//GLOBAL VARIABLE
-infowahana InfoWahana[];
+
 
 
 /*
@@ -33,6 +33,9 @@ while (true)    // LOOP PROGRAMMNYA
         Contoh();
     cls();
 */
+//GLOBAL VARIABLE
+daftarwahana InfoWahana;
+
 
 int main(){
     Kata input;
@@ -47,7 +50,16 @@ int main(){
         MAP M1,M2,M3,M4;
         PLAYER P;
         int day = 1;
+        int money;
         Antrian A;
+        JAM J, Buka, Tutup;
+        TabProses TabProses;
+        AllWahana L;
+
+        srand(time(0)); //Set random seed
+
+        Buka = MakeJAM(9,0);
+        Tutup = MakeJAM(21, 00);
 
         LoadAllMap(&M1,&M2,&M3,&M4);
         CreatePlayer(&P,M1,3,3); // assign player di x,y = (3,3), ini bebas nanti ganti
@@ -81,6 +93,23 @@ int main(){
                     day++;
                     break;
                 }*/
+                J = Buka;
+                while (JLT(J, Tutup)){
+                    InputKata(&input);
+                    if (IsSama(input, "serve")){
+                        
+                        if (CGedung(P) == 'A'){
+                            Serve(&A, &L, &J, &money, &TabProses);
+                        }
+                        else{
+                            printf("Harus berada di dekat antrian untung menggunakan command ini\n");
+                        }
+                    }
+                    else if (IsSama(input, "repair")){
+                        //Cek apakah ada wahana di deket yang rusak
+
+                    }
+                }
             } else if(IsSama(input, "exit")){
                 exit = true;
             }

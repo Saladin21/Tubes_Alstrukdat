@@ -7,6 +7,7 @@
 #include "../wahana.h"
 #include "proses.h"
 #include "../ADT/build.h"
+#include<time.h>
 
 
 void Serve (Antrian *A, AllWahana *L, JAM *T, int *money, TabProses *Tab);
@@ -33,6 +34,10 @@ void Prepare();
 void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L);
 //Memajukan jam sebanyak durasi detik, memproses pengunjung yang berada dalam proses,
 //mengembalikan pengunjung yang sudah selesai di proses ke antrian
+
+int random(int lower, int upper);
+//Menghasilkan integer random X, lower <= X <= upper
+
 
 
 #endif

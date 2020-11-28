@@ -46,7 +46,7 @@ int NBElmtAntrian (Antrian Q)
 }
 /* *** Kreator *** */
 
-pengunjung MakePengunjung(int prio, TabInt info, int kesabaran, int current){
+pengunjung MakePengunjung(int prio, Lwahana info, int kesabaran, int current){
     pengunjung P;
 
     P.prio = prio;

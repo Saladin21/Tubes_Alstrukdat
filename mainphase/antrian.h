@@ -56,7 +56,7 @@ int NBElmtAntrian (Antrian Q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 
 /* *** Kreator *** */
-pengunjung MakePengunjung(int prio, TabInt info, int kesabaran, int current);
+pengunjung MakePengunjung(int prio, Lwahana info, int kesabaran, int current);
 
 void MakeEmptyAntrian (Antrian * Q, int Max);
 /* I.S. sembarang */
