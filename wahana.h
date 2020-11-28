@@ -4,9 +4,11 @@
 #include "ADT/boolean.h"
 #include "ADT/build.h"
 
+#define Nil NULL
+
 //Struct untuk wahana yang sudah dibangun
 typedef struct{
-    char IDawal[3]; //ID menggambarkan nama wahana
+    char IDawal[4]; //ID menggambarkan nama wahana
     int ID; //ID unik untuk setiap wahana yang udah dibangun
     int NbPengunjung;
     int status; //-1 : rusak, 1 : operasional
@@ -35,14 +37,7 @@ typedef struct {
 #define InfoWahana(P) (P)->info
 #define NextWahana(P) (P)->next
 #define FirstWahana(L) ((L).FirstWahana)
-#define Nil NULL;
 
-int Kapasitas(char IDawal[]);
-//Mengembalikan kapasitas wahanan dengan IDawal
-int Harga(char IDawal[]);
-//Mengembalikan harga wahanan dengan IDawal
-int Durasi(char IDawal[]);
-//Mengembalikan durasi wahanan dengan IDawal
 
 
 
@@ -79,7 +74,7 @@ address AlokWahana (Wahana X);
 /* Jika alokasi berhasil, maka address tidak nil, dan misalnya */
 /* menghasilkan P, maka info(P)=X, Next(P)=Nil */
 /* Jika alokasi gagal, mengirimkan Nil */
-void DealokWahana (address *P);
+void DealokWahana (address P);
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian address P */
