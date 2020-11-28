@@ -81,16 +81,6 @@ boolean IsIdxEff (MAP M, indeks i, indeks j)
 	return (i>=GetFirstIdxBrs(M)) && (i<=GetLastIdxBrs(M)) && (j>=GetFirstIdxKol(M)) && (j<=GetLastIdxKol(M));
 }
 
-ElType GetElmtDiagonal (MAP M, indeks i)
-/* Mengirimkan elemen M(i,i) */
-{
-	/*KAMUS LOKAL*/
-
-	/*ALGORITMA*/
-	return Elmt(M, i, i);
-}
-
-
 /* ********** Assignment  MAP ********** */
 void CopyMAP (MAP MIn, MAP * MHsl)
 /* Melakukan assignment MHsl  MIn */
@@ -204,84 +194,4 @@ boolean EQ (MAP M1, MAP M2)
 		}
 	}
 	return equal;
-}
-
-boolean NEQ (MAP M1, MAP M2)
-/* Mengirimkan true jika M1 tidak sama dengan M2 */
-{
-	/*KAMUS LOKAL*/
-
-	/*ALGORITMA*/
-	return !EQ(M1, M2);
-}	
-
-boolean EQSize (MAP M1, MAP M2)
-/* Mengirimkan true jika ukuran efektif MAP M1 sama dengan ukuran efektif M2 */
-/* yaitu GetBrsEff(M1) = GetNBrsEff (M2) dan GetNKolEff (M1) = GetNKolEff (M2) */
-{
-	/*KAMUS LOKAL*/
-
-	/*ALGORITMA*/
-	return (NBrsEff(M1) == NBrsEff (M2)) && (NKolEff (M1) == NKolEff (M2));
-}
-
-/* ********** Operasi lain ********** */
-int NBElmt (MAP M)
-/* Mengirimkan banyaknya elemen M */
-{
-	/*KAMUS LOKAL*/
-
-	/*ALGORITMA*/
-	return NBrsEff(M) * NKolEff(M);
-}
-
-
-void Transpose (MAP * M)
-/* I.S. M terdefinisi dan IsBujursangkar(M) */
-/* F.S. M "di-transpose", yaitu setiap elemen M(i,j) ditukar nilainya dengan elemen M(j,i) */
-{
-	/*KAMUS LOKAL*/
-	ElType temp;
-	indeks i,j;
-	/*ALGORITMA*/
-	for (i=GetFirstIdxBrs(*M);i<=GetLastIdxBrs(*M);i++){
-		for(j=GetFirstIdxKol(*M);j<i;j++){
-			temp = Elmt(*M, i, j);
-			Elmt(*M, i, j) = Elmt(*M, j, i);
-			Elmt(*M, j, i) = temp;
-		}
-	}		
-}
-
-int CountXBrs (MAP M, indeks i, ElType X)
-/* Menghasilkan banyaknya kemunculan X pada baris i dari M */
-{
-	/*KAMUS LOKAL*/
-	indeks j;
-	int count;
-	/*ALGORITMA*/
-	count=0;
-	for (j=GetFirstIdxKol(M);j<=GetLastIdxKol(M);j++){
-		if (Elmt(M,i,j)==X){
-			count++;
-		}
-	}
-	return count;
-	
-}
-int CountXKol (MAP M, indeks j, ElType X)
-/* Menghasilkan banyaknya kemunculan X pada kolom j dari M */
-{
-	/*KAMUS LOKAL*/
-	indeks i;
-	int count;
-	/*ALGORITMA*/
-	count=0;
-	for (i=GetFirstIdxBrs(M);i<=GetLastIdxBrs(M);i++){
-		if (Elmt(M,i,j)==X){
-			count++;
-		}
-	}
-	return count;
-	
 }

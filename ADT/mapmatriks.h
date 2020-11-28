@@ -54,8 +54,6 @@ indeks GetLastIdxKol (MAP M);
 /* Mengirimkan indeks kolom terbesar M */
 boolean IsIdxEff (MAP M, indeks i, indeks j);
 /* Mengirimkan true jika i, j adalah indeks efektif bagi M */
-ElType GetElmtDiagonal (MAP M, indeks i);
-/* Mengirimkan elemen M(i,i) */
 
 /* ********** Assignment  MAP ********** */
 void CopyMAP (MAP MIn, MAP * MHsl);
@@ -89,23 +87,5 @@ boolean EQ (MAP M1, MAP M2);
 /* untuk setiap i,j yang merupakan indeks baris dan kolom M1(i,j) = M2(i,j) */
 /* Juga merupakan strong EQ karena GetFirstIdxBrs(M1) = GetFirstIdxBrs(M2) 
    dan GetLastIdxKol(M1) = GetLastIdxKol(M2) */
-boolean NEQ (MAP M1, MAP M2);
-/* Mengirimkan true jika M1 tidak sama dengan M2 */
-boolean EQSize (MAP M1, MAP M2);
-/* Mengirimkan true jika ukuran efektif MAP M1 sama dengan ukuran efektif M2 */
-/* yaitu GetBrsEff(M1) = GetNBrsEff (M2) dan GetNKolEff (M1) = GetNKolEff (M2) */
-
-/* ********** Operasi lain ********** */
-int NBElmt (MAP M);
-/* Mengirimkan banyaknya elemen M */
-
-void Transpose (MAP * M);
-/* I.S. M terdefinisi dan IsBujursangkar(M) */
-/* F.S. M "di-transpose", yaitu setiap elemen M(i,j) ditukar nilainya dengan elemen M(j,i) */
-
-int CountXBrs (MAP M, indeks i, ElType X);
-/* Menghasilkan banyaknya kemunculan X pada baris i dari M */
-int CountXKol (MAP M, indeks j, ElType X);
-/* Menghasilkan banyaknya kemunculan X pada kolom j dari M */
 
 #endif
