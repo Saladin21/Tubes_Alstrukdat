@@ -22,6 +22,7 @@ void MakeMAP (int NB, int NK, MAP * M)
 	GerbangX(*M).Y = -1;
 	GerbangY(*M).X = -2;
 	GerbangY(*M).Y = -2;
+	Kode(*M) = -1;
 }
 
 
