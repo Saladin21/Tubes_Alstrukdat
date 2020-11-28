@@ -2,6 +2,7 @@
 #include "parser.h"
 #include "mapplayer.h"
 #include "map.h"
+#include "mainphase/mainphase.h"
 
 
 /*
@@ -42,6 +43,8 @@ int main(){
         boolean exit = false;
         MAP M1,M2,M3,M4;
         PLAYER P;
+        int day = 1;
+        Antrian A;
 
         LoadAllMap(&M1,&M2,&M3,&M4);
         CreatePlayer(&P,M1,3,3); // assign player di x,y = (3,3), ini bebas nanti ganti
@@ -52,6 +55,8 @@ int main(){
         
 
         while(!exit){
+            Prepare(&A);
+            printf("Preparation phase day %d\n", day);
             PrintMap(CMap(P));
             printf("Masukan Perintah:\n");
             InputKata(&input);
@@ -67,6 +72,12 @@ int main(){
                 FMap(&P, C, M1, M2, M3, M4);
             } else if(IsSama(input, "main")){
                 //Masukan Program loop untuk main phase
+                /*dalam loop prepare
+                else if (IsSama(input, "prepare")) {
+                    Prepare(&A);
+                    day++;
+                    break;
+                }*/
             } else if(IsSama(input, "exit")){
                 exit = true;
             }
