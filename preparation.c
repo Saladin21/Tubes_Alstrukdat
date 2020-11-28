@@ -139,12 +139,11 @@ void build(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwah
     }
 }
 
-void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwahana W, PLAYER P) // plus lokasi player, Allwahna
+void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwahana W, PLAYER P, AllWahana *L) // plus lokasi player, Allwahna
 {
     char input[4];
+    int ID;
     infotype X;
-    int i = 0;
-    boolean matcukup = true;
     int currmoney = initialmoney-500; // Belum, ceritanya ambil dari initialmoney-Stack -> buat fungsi?
     int timeremaining = 240;           // Belum, sama kaya yang atas
     int currmat[NMaterial]; currmat[0] = 100; currmat[1] = 100; // Belum, sama kaya atas
@@ -152,7 +151,17 @@ void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarw
     if(isWahana(P))
     {
         printf("\nDaftar wahana:\n");
-        PrintWahanaSekitar();  //Belum
+        PrintWahanaSekitar(P,W,L);  //Belum
+        printf("\nMasukkan ID wahana yang ingin Anda upgrade:\n > ");
+        if(scanf("%d",&ID)==1 && IsWahanaNear(ID,P,*L))
+        {
+            // Jika ID ada dan di sebelah P
+            
+        }
+        else
+        {
+            printf("\nID yang Anda masukkan tidak valid.\n");
+        }
     }
     else
     {

@@ -52,6 +52,23 @@ boolean IsWahanaAwal(char *s, daftarwahana W)
     return temu;
 }
 
+
+
+/*******************/
+/* FUNGSI UPGRADE */
+/*****************/
+void PrintWahanaSekitar(PLAYER P, daftarwahana W, AllWahana L)
+// Mencetak daftar wahana yang ada di kiri, atas, kanan, bawah Player P
+{
+    // ...
+}
+
+boolean IsWahanaNear(ID, PLAYER P, AllWahana L)
+// Mengembalikan true jika wahana ID ada di sebelah P
+{
+    //
+}
+
 /********************/
 /* FUNGSI MATERIAL */
 /******************/

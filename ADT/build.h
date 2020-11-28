@@ -65,6 +65,19 @@ void PrintDaftarBuild(daftarwahana W, material M);
 boolean IsWahanaAwal(char *s, daftarwahana W);
 // Mengembalikan true jika a adalah nama wahana yang bukan hasil upgrade
 
+
+
+/*******************/
+/* FUNGSI UPGRADE */
+/*****************/
+void PrintWahanaSekitar(PLAYER P,daftarwahana W, AllWahana *L);
+// Mencetak daftar wahana yang ada di kiri, atas, kanan, bawah Player P
+
+boolean IsWahanaNear(ID, PLAYER P, AllWahana L);
+// Mengembalikan true jika wahana ID ada di sebelah P
+
+
+
 /********************/
 /* FUNGSI MATERIAL */
 /******************/
@@ -79,6 +92,8 @@ int IdxMaterial(char* s, material M);
 
 boolean IsStringSame(char a[], char b[]);
 // Mengembalikan true jika 2 string a b sama
+
+
 
 /***********************************/
 /* FUNGSI PENGAMBILAN DATA WAHANA */
