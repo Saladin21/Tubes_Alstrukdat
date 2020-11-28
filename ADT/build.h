@@ -20,7 +20,7 @@ typedef struct
 
 typedef struct
 {
-    char IDawal[3];         // Awalan ID wahana yang melambangkan jenis/nama wahana
+    char IDawal[4];         // Awalan ID wahana yang melambangkan jenis/nama wahana
     char namawahana[50];    // Nama dari wahana
     char asalwahana[50];    // Asal wahana sebelum upgrade, jika bukan hasil upgrade maka "None"
     int kapasitas;          // Maks. orang yang naik di wahana dalam satu waktu
@@ -33,9 +33,6 @@ typedef struct
 } infowahana;               // Struct berisi data dari pembacaan file wahana.txt
                             // Untuk menyimpan banyak wahana cukup dibuat array infowahana
                             // Tidak ada ID, karena hanya sebagai data semua wahana yang tersedia
-
-
-
                 
 #define JenisM(M,n) (M).T[n].jenis
 #define HargaM(M,n) (M).T[n].harga
@@ -50,4 +47,26 @@ int IdxMaterial(char* s, material M);
 // Mengembalikan index material s. Asumsi s ada.
 
 boolean IsStringSame(char a[], char b[]);
+
+
+/***********************************/
+/* FUNGSI PENGAMBILAN DATA WAHANA */
+/*********************************/
+void NamaWahana(char IDAwal[], infowahana W[]);
+// Mencetak nama wahana dengan ID IDAwal
+
+void DeskripsiWahana(char IDAwal[], infowahana W[]);
+// Mencetak deskripsi wahana dengan ID IDAwal
+
+int KapasitasWahana(char IDAwal[], infowahana W[]);
+// Mengembalikan kapasistas wahana dengan ID IDAwal;
+
+int DurasiNaik(char IDAwal[], infowahana W[]);
+// Mengembalikan durasi naik wahana dengan ID IDAwal dalam menit
+
+int DurasiBuild(char IDAwal[], infowahana W[]);
+// Mengembalikan durasi build wahana dengan ID IDAwal dalam menit
+
+int HargaTiket(char IDAwal[], infowahana W[]);
+// Mengembalikan harga tiket wahana dengan ID IDAwal
 #endif

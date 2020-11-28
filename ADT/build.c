@@ -64,3 +64,144 @@ boolean IsStringSame(char a[], char b[])
     }
     return sama;
 }
+
+/***********************************/
+/* FUNGSI PENGAMBILAN DATA WAHANA */
+/*********************************/
+void NamaWahana(char IDAwal[], infowahana W[])
+// Mengembalikan nama wahana dengan ID IDAwal
+{
+    // Kamus Lokal
+    boolean found = false;
+    int i = 0;
+    
+    // Algoritma
+    while(!found)
+    {
+        if(IsStringSame(IDAwal,W[i].IDawal))
+        {
+            found = true;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    
+    printf("%s",W[i].namawahana);
+}
+
+void DeskripsiWahana(char IDAwal[], infowahana W[])
+// Mencetak deskripsi wahana dengan ID IDAwal
+{
+    // Kamus Lokal
+    boolean found = false;
+    int i = 0;
+    
+    // Algoritma
+    while(!found)
+    {
+        if(IsStringSame(IDAwal,W[i].IDawal))
+        {
+            found = true;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    
+    printf("%s",W[i].deskripsi);
+}
+
+int KapasitasWahana(char IDAwal[], infowahana W[])
+// Mengembalikan kapasistas wahana dengan ID IDAwal
+{
+    // Kamus Lokal
+    boolean found = false;
+    int i = 0;
+    
+    // Algoritma
+    while(!found)
+    {
+        if(IsStringSame(IDAwal,W[i].IDawal))
+        {
+            found = true;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    
+    return W[i].kapasitas;
+}
+
+int DurasiNaik(char IDAwal[], infowahana W[])
+// Mengembalikan durasi naik wahana dengan ID IDAwal dalam menit
+{
+    // Kamus Lokal
+    boolean found = false;
+    int i = 0;
+    
+    // Algoritma
+    while(!found)
+    {
+        if(IsStringSame(IDAwal,W[i].IDawal))
+        {
+            found = true;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    
+    return W[i].durasinaik;
+}
+
+int DurasiBuild(char IDAwal[], infowahana W[])
+// Mengembalikan durasi build wahana dengan ID IDAwal dalam menit
+{
+    // Kamus Lokal
+    boolean found = false;
+    int i = 0;
+    
+    // Algoritma
+    while(!found)
+    {
+        if(IsStringSame(IDAwal,W[i].IDawal))
+        {
+            found = true;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    
+    return W[i].durasibuild;
+}
+
+int HargaTiket(char IDAwal[], infowahana W[])
+// Mengembalikan harga tiket wahana dengan ID IDAwal
+{
+    // Kamus Lokal
+    boolean found = false;
+    int i = 0;
+    
+    // Algoritma
+    while(!found)
+    {
+        if(IsStringSame(IDAwal,W[i].IDawal))
+        {
+            found = true;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    
+    return W[i].hargatiket;
+}

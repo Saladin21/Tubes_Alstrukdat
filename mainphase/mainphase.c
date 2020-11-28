@@ -42,14 +42,15 @@ void repair (Wahana *W, JAM *T)
     
 }
 
-void Detail ()
+void Detail (Antrian *A)
 //I.S. pemain berada di sebelah wahana
 //F.S. Menampilkan detail dari wahana yang berada di sebelah pemain
 {
     //KAMUS LOKAl
 
     //ALGORITMA
-    
+    Head(*A) = Nil;
+    Tail(*A) = Nil;
 }
 
 void Office()
