@@ -4,6 +4,33 @@
 #include "../ADT/arraypos.h"
 
 
+int SearchLwahana(char IDawal[], Lwahana L){
+    //Kamus LOKAL
+    int i;
+    //ALGORITMA
+    for(i=0;i<L.Nb;i++){
+        if (IsStringSame(IDawal, L.Nb)){
+            return i;
+        }
+    }
+    return -1;
+}
+
+void DelLwahana(Lwahana *L, int index){
+    //KAMUS LOKAL
+    int i;
+    //ALGORITMA
+    if (index < (L->Nb)-1){
+        for (i==index;i<(L->Nb)-1;i++){
+            L->TabID[i][0] = L->TabID[i+1][0];
+            L->TabID[i][1] = L->TabID[i+1][1];
+            L->TabID[i][2] = L->TabID[i+1][2];
+            L->TabID[i][3] = L->TabID[i+1][3];
+        }
+    }
+    L->Nb--;
+}
+
 /* ********* Prototype ********* */
 boolean IsEmptyAntrian (Antrian Q)
 /* Mengirim true jika Q kosong: lihat definisi di atas */
@@ -187,10 +214,21 @@ void PrintAntrian (Antrian Q)
                 tail = true;
             }
             printf("%d ", Prio(Elmt(Q,i)));
-            TulisIsiTab(Elmt(Q, i).info);
+            //Tulis antrian
             printf(" %d\n", Elmt(Q,i).kesabaran);
             i++;
         }
     }
     printf("\n");
+}
+
+void ReduceKesabaran(Antrian *Q, int X)
+//Mengurangi kesabaran setiap pengunjung dalam antrian sebesar X
+{
+    //KAMUS LOKAL
+    int i;
+    //ALGORITMA
+    for (i=0;i<NBElmtAntrian(*Q);i++){
+        Q->T[i].kesabaran = Q->T[i].kesabaran -X;
+    }
 }

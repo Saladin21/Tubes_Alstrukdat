@@ -14,6 +14,7 @@ typedef struct{
     int status; //-1 : rusak, 1 : operasional
     int dayride;
     int liferide;
+    int map; //wahana ada di map 1,2,3, atau 4
     POINT lokasi;
     
 } Wahana;

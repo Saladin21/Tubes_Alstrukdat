@@ -106,10 +106,15 @@ int main(){
                         }
                     }
                     else if (IsSama(input, "repair")){
-                        //Cek apakah ada wahana di deket yang rusak
+                        repair(P.POS, /*map,*/&J, &TabProses, &A, &L);
 
                     }
-                }
+                    else if(IsSama(input, "w") || IsSama(input, "a") || IsSama(input,"s") || IsSama(input,"d")){
+                    char C = input.TabKata[0];
+                    FMap(&P, C, M1, M2, M3, M4);
+                    AdvTime(&J, 1, &TabProses, &A, &L);
+                    }
+
             } else if(IsSama(input, "exit")){
                 exit = true;
             }

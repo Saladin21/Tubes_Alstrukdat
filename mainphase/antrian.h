@@ -7,15 +7,22 @@
 #define Antrian_H
 
 #include "../ADT/boolean.h"
-#include "../ADT/arraypos.h"
+//#include "../ADT/arraypos.h"
+#include "../ADT/build.h"
+
 
 #define Nil -1
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 typedef struct {
-    char TabID[5][4];
+    char TabID[3][4];
     int Nb;
 } Lwahana;
 
+int SearchLwahana(char IDawal[], Lwahana L);
+//Menghasilkan index IDawal jika ada, jika tidak ada -1
+
+void DelLwahana(Lwahana *L, int index);
+//Menghapus elemen dengan indeks index
 
 /* Definisi elemen dan address */
 typedef struct {
@@ -24,13 +31,13 @@ typedef struct {
     int kesabaran;
     int current; //berisi ID wahana yang sedang dinaiki, atau -1 jika berada dalam antrian
 } pengunjung; //Pengunjung
-typedef int address;   /* indeks tabel */
+
 /* Contoh deklarasi variabel bertype Antrian : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
 typedef struct {
     pengunjung * T;   /* tabel penyimpan elemen */
-    address HEAD;  /* alamat penghapusan */
-    address TAIL;  /* alamat penambahan */
+    int HEAD;  /* alamat penghapusan */
+    int TAIL;  /* alamat penambahan */
     int MaxEl;     /* Max elemen queue */
 } Antrian;
 /* Definisi Antrian kosong: HEAD=Nil; TAIL=Nil. */
@@ -93,5 +100,8 @@ void PrintAntrian (Antrian Q);
 <prio-n> <elemen-n>
 #
 */
+
+void ReduceKesabaran(Antrian *Q, int X);
+//Mengurangi kesabaran setiap pengunjung dalam antrian sebesar X
 
 #endif

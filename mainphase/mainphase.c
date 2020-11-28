@@ -16,52 +16,82 @@ void Serve (Antrian *A, AllWahana *L, JAM *T, int *money, TabProses *Tab)
     //ALGORITMA
     X = InfoHead(*A);
 
-    for (i=0;i<X.info.Nb;i++){
-        printf("%d. ", i);
-        NamaWahana(X.info.TabID[i], InfoWahana);
-        printf("\n");
-    }
-    scanf("Pilih wahana: %d", &a);
-    
-    
-    a1 = SearchWahanaKosong(*L, X.info.TabID[a]);
-
-    if (a1 != Nil){
-        InfoWahana(a1).NbPengunjung ++; //Update jumlah pengunjung dalam wahana
-        InfoWahana(a1).dayride ++;
-        InfoWahana(a1).liferide ++;
-
-        *money = *money + HargaTiket(InfoWahana(a1).IDawal, InfoWahana); //tambah uang
-
-        Dequeue(A, &X); //Mengeluarkan dari antrian
-        
-        /*Di sini hapus wahana yang akan dinaiki dari list pengunjung*/
-
-        //masuk ke proses
-        X.current = InfoWahana(a1).ID;
-        P = MakeProses(X, DurasiNaik(InfoWahana(a1).IDawal, InfoWahana));
-
-        insert(Tab, P);
-
-        //Memajukan waktu 5 menit
-        AdvTime(T, 5, Tab, A, L);
-
+    if (X.kesabaran <= 0){
+        printf("Pengunjung sudah pergi karena kesabarannya habis.\n");
+        Dequeue(A, &X);
     }
     else{
-        printf("Wahana penuh.\n");
+
+        for (i=0;i<X.info.Nb;i++){
+            printf("%d. ", i);
+            NamaWahana(X.info.TabID[i], InfoWahana);
+            printf("\n");
+        }
+        scanf("Pilih wahana: %d", &a);
+        
+        
+        a1 = SearchWahanaKosong(*L, X.info.TabID[a]);
+
+        if (a1 != Nil){
+            InfoWahana(a1).NbPengunjung ++; //Update jumlah pengunjung dalam wahana
+            InfoWahana(a1).dayride ++;
+            InfoWahana(a1).liferide ++;
+
+            *money = *money + HargaTiket(InfoWahana(a1).IDawal, InfoWahana); //tambah uang
+
+            Dequeue(A, &X); //Mengeluarkan dari antrian
+            
+            DelLwahana(&X.info.TabID, a); //Menghapus wahana dari list pengunjung
+
+            //masuk ke proses
+            X.current = InfoWahana(a1).ID;
+            P = MakeProses(X, DurasiNaik(InfoWahana(a1).IDawal, InfoWahana));
+
+            insert(Tab, P);
+            printf("Pengunjung berhasil dilayani\n");
+
+            //Memajukan waktu 5 menit
+            AdvTime(T, 5, Tab, A, L);
+
+            
+
+        }
+        else{
+            printf("Wahana penuh.\n");
+        }
     }
 }
 
-void repair (Wahana *W, JAM *T)
+void repair (POINT Player, int map, JAM *J, TabProses *Tab, Antrian *A, AllWahana *L)
 //I.S. pemain berada di sebelah wahana
 //F.S. wahana rusak yang berada di sebelah posisi pemain diperbaiki dan waktu bertambah
 {
     //KAMUS LOKAl
-
+    int i, count;
+    address P;
+    Wahana w;
     //ALGORITMA
-
+    count =0;
     
-    W->status = 1;
+    P = First(*L);
+
+    while(P != Nil){
+        w = InfoWahana(P);
+        if(w.map == map && Panjang(Player, w.lokasi) == 1 && w.status==-1){
+            w.status = 1;
+            NamaWahana(w.IDawal, InfoWahana);
+            printf(" berhasil diperbaiki\n");
+            count++;
+        }
+    }
+    if(count>0){
+        AdvTime(J, (10*count), Tab, A, L);
+    }
+    else{
+        printf("Tidak ada wahana rusak di sekitar player.\n");
+    }
+    
+    
     
     
 }
@@ -202,10 +232,15 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)
 
             if (InfoWahana(a2).status != -1){
                 InfoWahana(a2).status = -1;
+                printf("Wahana berikut rusak : ");
+                NamaWahana(InfoWahana(a2).IDawal, InfoWahana);
+                printf("\n");
             }
         }
 
     }
+
+    ReduceKesabaran(A, 1);
 }
 
 int random(int lower, int upper){ 
