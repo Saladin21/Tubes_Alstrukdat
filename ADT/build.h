@@ -59,8 +59,11 @@ typedef struct
 /*****************/
 /* FUNGSI BUILD */
 /***************/
-void PrintDaftarBuild(infowahana W[], material M);
+void PrintDaftarBuild(daftarwahana W, material M);
 // Mencetak daftar wahana yang bisa di-build beserta cost-nya
+
+boolean IsWahanaAwal(char *s, daftarwahana W);
+// Mengembalikan true jika a adalah nama wahana yang bukan hasil upgrade
 
 /********************/
 /* FUNGSI MATERIAL */
@@ -75,27 +78,33 @@ int IdxMaterial(char* s, material M);
 // Mengembalikan index material s. Asumsi s ada.
 
 boolean IsStringSame(char a[], char b[]);
-
+// Mengembalikan true jika 2 string a b sama
 
 /***********************************/
 /* FUNGSI PENGAMBILAN DATA WAHANA */
 /*********************************/
-void NamaWahana(char IDAwal[], infowahana W[]);
+void NamaWahana(char IDAwal[], daftarwahana W);
 // Mencetak nama wahana dengan ID IDAwal
 
-void DeskripsiWahana(char IDAwal[], infowahana W[]);
+void DeskripsiWahana(char IDAwal[], daftarwahana W);
 // Mencetak deskripsi wahana dengan ID IDAwal
 
-int KapasitasWahana(char IDAwal[], infowahana W[]);
+int KapasitasWahana(char IDAwal[], daftarwahana W);
 // Mengembalikan kapasistas wahana dengan ID IDAwal;
 
-int DurasiNaik(char IDAwal[], infowahana W[]);
+int DurasiNaik(char IDAwal[], daftarwahana W);
 // Mengembalikan durasi naik wahana dengan ID IDAwal dalam menit
 
-int DurasiBuild(char IDAwal[], infowahana W[]);
+int DurasiBuild(char IDAwal[], daftarwahana W);
 // Mengembalikan durasi build wahana dengan ID IDAwal dalam menit
 
-int HargaTiket(char IDAwal[], infowahana W[]);
+int HargaTiket(char IDAwal[], daftarwahana W);
 // Mengembalikan harga tiket wahana dengan ID IDAwal
+
+int HargaBuild(char IDAwal[], daftarwahana W);
+// Mengembalikan harga build wahana dengan ID IDAwal
+
+int IdxWahana(char IDAwal[], daftarwahana W);
+// Mengembalikan index wahana dengan ID IDAwal
 
 #endif

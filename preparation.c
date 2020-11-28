@@ -69,7 +69,7 @@ void buy(Stack *aksi, int initialmoney, JAM initialtime, material M)
 
 void build(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwahana W)
 {
-    char input[50];
+    char input[4];
     infotype X;
     int i = 0;
     boolean matcukup = true;
@@ -137,6 +137,28 @@ void build(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwah
     {
         printf("\nWahana tersebut tidak tersedia.\n");
     }
+}
+
+void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwahana W, PLAYER P) // plus lokasi player, Allwahna
+{
+    char input[4];
+    infotype X;
+    int i = 0;
+    boolean matcukup = true;
+    int currmoney = initialmoney-500; // Belum, ceritanya ambil dari initialmoney-Stack -> buat fungsi?
+    int timeremaining = 240;           // Belum, sama kaya yang atas
+    int currmat[NMaterial]; currmat[0] = 100; currmat[1] = 100; // Belum, sama kaya atas
+    
+    if(isWahana(P))
+    {
+        printf("\nDaftar wahana:\n");
+        PrintWahanaSekitar();  //Belum
+    }
+    else
+    {
+        printf("\nTidak ada wahana di sekitar Anda.\n");
+    }
+    
 }
 
 // Untuk pengetesan
