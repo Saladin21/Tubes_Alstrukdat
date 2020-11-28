@@ -1,5 +1,5 @@
 #include "mainphase.h"
-
+#include "../parser.h"
 
 
 
@@ -42,35 +42,62 @@ void repair (Wahana *W, JAM *T)
     
 }
 
-void Detail (Antrian *A)
+void Detail (address P)
 //I.S. pemain berada di sebelah wahana
 //F.S. Menampilkan detail dari wahana yang berada di sebelah pemain
 {
     //KAMUS LOKAl
 
     //ALGORITMA
-    Head(*A) = Nil;
-    Tail(*A) = Nil;
+    //PrintInfo(P);
 }
 
-void Office()
+void Office(AllWahana L)
 //I.S. Pemain berada di sebelah office
 //Menampilkan tampilan office
 {
     //KAMUS LOKAl
-
+    Kata input;
+    int id;
+    address P;
+    boolean office = true;
     //ALGORITMA
-    
+    while (office) {
+        printf("Masukkan perintah (Details / Report / Exit):\n");
+        InputKata(&input);
+        if(IsSama(input,"Details")) {
+            //printAllWahana();
+            printf("Pilih ID dari wahana yang ingin ditampilkan detailnya\n");
+            scanf("%d", &id);
+            P = SearchWahana(L,id);
+            Detail(P);
+        } else if(IsSama(input,"Report")) {
+            //printAllWahana();
+            printf("Pilih ID dari wahana yang ingin ditampilkan reportnya\n");
+            scanf("%d", &id);
+            P = SearchWahana(L,id);
+            int hargalife = InfoWahana(P).liferide /* * HargaTiket() */ ;
+            int hargaday = InfoWahana(P).dayride /* * HargaTiket() */ ;
+            printf("Total wahana dinaiki keseluruhan : %d\n", InfoWahana(P).liferide);
+            printf("Total penghasilan dari wahana keseluruhan : %d\n", hargalife);
+            printf("Total wahana dinaiki hari ini : %d\n", InfoWahana(P).dayride);
+            printf("Total penghasilan dari wahana hari ini : %d\n", hargaday);
+        } else if(IsSama(input,"Exit")) {
+            printf("Keluar dari office mode\n");
+            office = false;
+        }
+    }
 }
 
-void Prepare()
+void Prepare(Antrian *A)
 //I.S. Sembarang
 //F.S. Antrian kosong dan masuk ke preparation phase
 {
     //KAMUS LOKAl
 
     //ALGORITMA
-    
+    Head(*A) = Nil;
+    Tail(*A) = Nil;
 }
 
 void AdvTime (JAM *J, int menit, TabProses *P, Antrian *A, Wahana W)
