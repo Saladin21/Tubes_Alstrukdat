@@ -48,16 +48,17 @@ material LoadMaterial(char NamaFile[]){
     int row = 0;
     int i = 0;
     char line[64];
-    while(fgets(line,64,fp) && i<NMaterial+1){
+    while(fgets(line,64,fp)!=NULL && i<NMaterial+1){
         int col = 0;
         if(i!=0){
-            char *tok;
-            for(tok = strtok(line,";"); tok && *tok; col++, tok=strtok(NULL,";")){
+            //char *tok;
+            for(char *tok = strtok(line,";"); tok!=NULL; tok = strtok(NULL, ";")){
                 if(col == 1){
                     HargaM(M,row) = atoi(tok);
                 } else{
                     strcpy(JenisM(M,row),tok);
                 }
+                col++;
             }
             row++;
         }
@@ -67,3 +68,49 @@ material LoadMaterial(char NamaFile[]){
     return M;
 }
 
+daftarwahana LoadWahana(char NamaFile[]){
+    FILE *fp;
+    fp = fopen(NamaFile, "r");
+    daftarwahana W;
+    int row = 0;
+    int i = 0;
+    char line[255];
+    while(fgets(line,255,fp)!=NULL && i<NWahana+1){
+        int col = 1;
+        if(i!=0){
+            char *tok;
+            tok = strtok(line,";");
+            while(tok!=NULL){
+                if(col == 1){
+                    strcpy(IDw(W, row), tok);
+                } else if (col==2){
+                    strcpy(NamaW(W, row), tok);
+                } else if(col==3){
+                    strcpy(AsalW(W, row), tok);
+                } else if(col==4){
+                    KapasitasW(W, row) = atoi(tok);
+                } else if(col==5){
+                    MoneyreqW(W, row) = atoi(tok);
+                } else if(col==6){
+                    MaterialW(W, row, 0) = atoi(tok);
+                } else if(col==7){
+                    MaterialW(W, row, 1) = atoi(tok);
+                } else if(col==8){
+                    DurasiBW(W, row) = atoi(tok);
+                } else if(col==9){
+                    DurasiNW(W, row) = atoi(tok);
+                } else if(col==10){
+                    HargaW(W, row) = atoi(tok);
+                } else{
+                    strcpy(DeskripsiW(W,row),tok);
+                }
+                col++;
+                tok = strtok(NULL, ";");
+            }
+            row++;
+        }
+        i++;
+    }
+    fclose(fp);
+    return W;
+}

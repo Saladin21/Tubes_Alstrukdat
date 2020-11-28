@@ -4,6 +4,7 @@
 #ifndef BUILD_H
 #define BUILD_H
 #define NMaterial 2  // Jumlah material yang ada dalam game
+#define NWahana 9 // Jumlah wahana yang ada dalam game
 #include "boolean.h"
 #include <string.h>
 
@@ -20,7 +21,7 @@ typedef struct
 
 typedef struct
 {
-    char IDawal[3];         // Awalan ID wahana yang melambangkan jenis/nama wahana
+    char IDawal[4];         // Awalan ID wahana yang melambangkan jenis/nama wahana
     char namawahana[50];    // Nama dari wahana
     char asalwahana[50];    // Asal wahana sebelum upgrade, jika bukan hasil upgrade maka "None"
     int kapasitas;          // Maks. orang yang naik di wahana dalam satu waktu
@@ -34,6 +35,22 @@ typedef struct
                             // Untuk menyimpan banyak wahana cukup dibuat array infowahana
                             // Tidak ada ID, karena hanya sebagai data semua wahana yang tersedia
                 
+typedef struct
+{
+    infowahana T[NWahana];    // Tabel penyimpan semua info material
+} daftarwahana;
+
+#define IDw(W,n) (W).T[n].IDawal
+#define NamaW(W,n) (W).T[n].namawahana
+#define AsalW(W,n) (W).T[n].asalwahana
+#define KapasitasW(W,n) (W).T[n].kapasitas
+#define MoneyreqW(W,n) (W).T[n].moneyreq
+#define MaterialW(W,n,m) (W).T[n].matreq[m] //m=0 Kayu, m=1 Besi
+#define DurasiBW(W,n) (W).T[n].durasibuild
+#define DurasiNW(W,n) (W).T[n].durasinaik
+#define HargaW(W,n) (W).T[n].hargatiket
+#define DeskripsiW(W,n) (W).T[n].deskripsi
+
 #define JenisM(M,n) (M).T[n].jenis
 #define HargaM(M,n) (M).T[n].harga
 
