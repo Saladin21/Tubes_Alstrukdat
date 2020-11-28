@@ -80,6 +80,31 @@ int main()
     M.T[1].harga = 15;
     CreateEmpty(&SAksi);
     
-    buy(&SAksi,uang,jamawal,M);   // Call fungsi
+    // Isi data wahana
+    infowahana W[10];
+    strcpy(W[0].IDawal,"ARS");
+    strcpy(W[0].namawahana,"Arseille");
+    strcpy(W[0].deskripsi,"Kora-kora mini dengan kapasitas maksimal 8 orang.");
+    W[0].kapasitas = 8;
+    W[0].hargatiket = 25;
+    W[0].durasinaik = 10;
+    
+    strcpy(W[1].IDawal,"PTG");
+    strcpy(W[1].namawahana,"Pantagruel");
+    strcpy(W[1].deskripsi,"Kora-kora dengan kapasitas 5 orang di tiap sisi.");
+    W[1].kapasitas = 12;
+    W[1].hargatiket = 40;
+    W[1].durasinaik = 12;
+
+    char kode[4] = "PTG";
+    printf("Nama wahana: ");
+    NamaWahana(kode,W);
+    printf("\nDeskripsi  : ");
+    DeskripsiWahana(kode,W);
+    printf("\nKapasitas  : %d",KapasitasWahana(kode,W));
+    printf("\nHarga tiket: %d",HargaTiket(kode,W));
+    printf("\nDurasi naik: %d",DurasiNaik(kode,W));
+    
+    //buy(&SAksi,uang,jamawal,M);   // Call fungsi
     return 0;
 }

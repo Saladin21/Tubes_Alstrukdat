@@ -11,8 +11,17 @@ void Serve (Antrian *A, Wahana *W, JAM *T, int *money, TabProses *Tab)
     //KAMUS LOKAl
     pengunjung X;
     proses P;
+    TabInt ListWahana;
+    int n,i;
     //ALGORITMA
     X = InfoHead(*A);
+    ListWahana = X.info;
+    n = NbElmt(ListWahana);
+    for (i==1;i<=n;i++){
+        
+    }
+
+
     if (SearchB(X.info, W->ID) && W->NbPengunjung<W->Kapasitas){
         Dequeue(A, &X);
         P = MakeProses(X, W->Durasi);
@@ -33,14 +42,15 @@ void repair (Wahana *W, JAM *T)
     
 }
 
-void Detail ()
+void Detail (Antrian *A)
 //I.S. pemain berada di sebelah wahana
 //F.S. Menampilkan detail dari wahana yang berada di sebelah pemain
 {
     //KAMUS LOKAl
 
     //ALGORITMA
-    
+    Head(*A) = Nil;
+    Tail(*A) = Nil;
 }
 
 void Office()
@@ -72,7 +82,7 @@ void AdvTime (JAM *J, int menit, TabProses *P, Antrian *A, Wahana W)
 	//Algoritma
 	*J = DetikToJAM(JAMToDetik(*J) + menit*60);
     Proses(P, menit);
-    Sort(P);
+    SortProses(P);
     while (P->NbElmt>1 && P->Tab[0].durasi<=0){
         DelAt(P, 0, &P1);
         //Pengguna wahana -1

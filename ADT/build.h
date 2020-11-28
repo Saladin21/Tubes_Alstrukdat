@@ -64,4 +64,26 @@ int IdxMaterial(char* s, material M);
 // Mengembalikan index material s. Asumsi s ada.
 
 boolean IsStringSame(char a[], char b[]);
+
+
+/***********************************/
+/* FUNGSI PENGAMBILAN DATA WAHANA */
+/*********************************/
+void NamaWahana(char IDAwal[], infowahana W[]);
+// Mencetak nama wahana dengan ID IDAwal
+
+void DeskripsiWahana(char IDAwal[], infowahana W[]);
+// Mencetak deskripsi wahana dengan ID IDAwal
+
+int KapasitasWahana(char IDAwal[], infowahana W[]);
+// Mengembalikan kapasistas wahana dengan ID IDAwal;
+
+int DurasiNaik(char IDAwal[], infowahana W[]);
+// Mengembalikan durasi naik wahana dengan ID IDAwal dalam menit
+
+int DurasiBuild(char IDAwal[], infowahana W[]);
+// Mengembalikan durasi build wahana dengan ID IDAwal dalam menit
+
+int HargaTiket(char IDAwal[], infowahana W[]);
+// Mengembalikan harga tiket wahana dengan ID IDAwal
 #endif
