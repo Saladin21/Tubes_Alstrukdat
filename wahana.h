@@ -41,7 +41,7 @@ typedef struct {
 
 
 
-Wahana MakeWahana (char IDawal[], int ID, int NbPengunjung, int status, int dayride, int liferide, POINT lokasi);
+Wahana MakeWahana (char IDawal[], int ID, POINT lokasi);
 //Menghasilkan suatu wahana
 
 void AddWahana(char IDAwal[], POINT lokasi, AllWahana *L);

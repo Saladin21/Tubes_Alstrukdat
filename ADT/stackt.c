@@ -2,34 +2,34 @@
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty (Stack *S)
+void CreateEmptyStack (Stack *S)
 /* I.S. sembarang; */
-/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
-/* jadi indeksnya antara 0.. MaxEl */
-/* Ciri stack kosong : TOP bernilai Nil */
+/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxElStack */
+/* jadi indeksnya antara 0.. MaxElStack */
+/* Ciri stack kosong : TOP berNilStackai NilStack */
 {
     /*KAMUS LOKAL*/
 
     /*ALGORITMA*/
-    Top(*S) = Nil;
+    Top(*S) = NilStack;
 }
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
-boolean IsEmpty (Stack S)
+boolean IsEmptyStack (Stack S)
 /* Mengirim true jika Stack kosong: lihat definisi di atas */
 {
     /*KAMUS LOKAL*/
 
     /*ALGORITMA*/
-    return Top(S) == Nil;
+    return Top(S) == NilStack;
 }
 boolean IsFull (Stack S)
-/* Mengirim true jika tabel penampung nilai elemen stack penuh */
+/* Mengirim true jika tabel penampung NilStackai elemen stack penuh */
 {
     /*KAMUS LOKAL*/
 
     /*ALGORITMA*/
-    return Top(S) == MaxEl-1;
+    return Top(S) == MaxElStack-1;
 }
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
@@ -49,7 +49,7 @@ void Push (Stack * S, infotype X)
 void Pop (Stack * S, infotype* X)
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
-/* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
+/* F.S. X adalah NilStackai elemen TOP yang lama, TOP berkurang 1 */
 {
     /*KAMUS LOKAL*/
 
@@ -59,6 +59,6 @@ void Pop (Stack * S, infotype* X)
         Top(*S) -= 1;
     }
     else{
-        Top(*S) = Nil;
+        Top(*S) = NilStack;
     }
 }
