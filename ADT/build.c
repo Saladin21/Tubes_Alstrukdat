@@ -1,5 +1,40 @@
 #include "build.h"
 #include <stdio.h>
+
+/*****************/
+/* FUNGSI BUILD */
+/***************/
+void PrintDaftarBuild(infowahana W[], material M)
+// Mencetak daftar wahana yang bisa di-build beserta cost-nya
+{
+    // Kamus Lokal
+    int banyakwahana;
+    
+    // Algoritma
+    printf("Berikut adalah daftar wahana yang bisa dibangun.\n");
+    for(int i=0;i<NWahana;i++)
+    {
+        if(IsStringSame(W[i].asalwahana,"None"))
+        {
+            printf(" - ");
+            NamaWahana(W[i].IDawal,W);
+            printf(" | %d gold ",W[i].moneyreq);
+            
+            // Material requirements
+            for(int j=0;j<NMaterial;j++)
+            {
+                printf("| %d %s ",W[i].matreq[j],JenisM(M,j));
+            }
+            
+            // Build time
+            printf("| %d menit\n",W[i].durasibuild);
+        }
+    }
+}
+
+/********************/
+/* FUNGSI MATERIAL */
+/******************/
 void PrintDaftarMaterial(material M)
 // Mencetak daftar material beserta harganya, untuk fungsi BUY
 {

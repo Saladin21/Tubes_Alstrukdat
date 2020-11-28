@@ -4,6 +4,7 @@
 #ifndef BUILD_H
 #define BUILD_H
 #define NMaterial 2  // Jumlah material yang ada dalam game
+#define NWahana 9 // Jumlah wahana yang ada dalam game
 #include "boolean.h"
 #include <string.h>
 
@@ -11,6 +12,7 @@ typedef struct
 {
     char jenis[20];     // Nama material, contoh: kayu, besi, dll.
     int harga;          // Harga material per buah
+    int jumlah;         // Jumlah yang dimiliki saat ini
 } infomaterial;         // Struct yang menyimpan info material
 
 typedef struct
@@ -33,10 +35,36 @@ typedef struct
 } infowahana;               // Struct berisi data dari pembacaan file wahana.txt
                             // Untuk menyimpan banyak wahana cukup dibuat array infowahana
                             // Tidak ada ID, karena hanya sebagai data semua wahana yang tersedia
-                
+
+typedef struct
+{
+    infowahana T[NWahana];    // Tabel penyimpan semua info material
+} daftarwahana;
+
+#define IDw(W,n) (W).T[n].IDawal
+#define NamaW(W,n) (W).T[n].namawahana
+#define AsalW(W,n) (W).T[n].asalwahana
+#define KapasitasW(W,n) (W).T[n].kapasitas
+#define MoneyreqW(W,n) (W).T[n].moneyreq
+#define MaterialW(W,n,m) (W).T[n].matreq[m] //m=0 Kayu, m=1 Besi
+#define DurasiBW(W,n) (W).T[n].durasibuild
+#define DurasiNW(W,n) (W).T[n].durasinaik
+#define HargaW(W,n) (W).T[n].hargatiket
+#define DeskripsiW(W,n) (W).T[n].deskripsi
+
 #define JenisM(M,n) (M).T[n].jenis
 #define HargaM(M,n) (M).T[n].harga
 
+
+/*****************/
+/* FUNGSI BUILD */
+/***************/
+void PrintDaftarBuild(infowahana W[], material M);
+// Mencetak daftar wahana yang bisa di-build beserta cost-nya
+
+/********************/
+/* FUNGSI MATERIAL */
+/******************/
 void PrintDaftarMaterial(material M);
 // Mencetak daftar material beserta harganya, untuk fungsi BUY
 
@@ -69,4 +97,5 @@ int DurasiBuild(char IDAwal[], infowahana W[]);
 
 int HargaTiket(char IDAwal[], infowahana W[]);
 // Mengembalikan harga tiket wahana dengan ID IDAwal
+
 #endif
