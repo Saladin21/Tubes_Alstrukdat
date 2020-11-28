@@ -6,14 +6,15 @@
 #include "antrian.h"
 #include "../wahana.h"
 #include "proses.h"
+#include "../ADT/build.h"
 
 
-void Serve (Antrian *A, Wahana W, JAM *T, int *money, TabProses *Tab);
+void Serve (Antrian *A, AllWahana *L, JAM *T, int *money, TabProses *Tab);
 //I.S. Pemain berada di sebelah antrian
 //F.S. Pengunjung pertama dalam antrian dilayani sesuai input wahana jika
 //wahana tersebut ada di daftar milik pengunjung dan tidak penuh, waktu dan uang akan bertambah
 
-void repair (Wahana *W, JAM *T);
+void repair (AllWahana *L, JAM *T);
 //I.S. pemain berada di sebelah wahana
 //F.S. wahana rusak yang berada di sebelah posisi pemain diperbaiki dan waktu bertambah
 
@@ -29,7 +30,7 @@ void Prepare();
 //I.S. Sembarang
 //F.S. Antrian kosong dan masuk ke preparation phase
 
-void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, Wahana W);
+void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L);
 //Memajukan jam sebanyak durasi detik, memproses pengunjung yang berada dalam proses,
 //mengembalikan pengunjung yang sudah selesai di proses ke antrian
 

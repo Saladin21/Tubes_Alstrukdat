@@ -89,6 +89,7 @@ void PrintDurasiProses(TabProses T)
     printf("\n");
 }
 
+/*
 int main(){
     Antrian Q;
     TabInt T;
@@ -122,3 +123,4 @@ int main(){
 
     PrintDurasiProses(Tab);
 }
+*/

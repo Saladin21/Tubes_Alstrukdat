@@ -11,11 +11,16 @@
 
 #define Nil -1
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
+typedef struct {
+    char TabID[5][4];
+    int Nb;
+} Lwahana;
+
 
 /* Definisi elemen dan address */
 typedef struct {
     int prio;  /* [1..100], prioritas dengan nilai 1..100 (1 adalah prioritas tertinggi) */
-    TabInt info;  //Tabel berisi ID wahana yang ingin dinaiki
+    Lwahana info;  //Tabel berisi ID wahana yang ingin dinaiki
     int kesabaran;
     int current; //berisi ID wahana yang sedang dinaiki, atau -1 jika berada dalam antrian
 } pengunjung; //Pengunjung

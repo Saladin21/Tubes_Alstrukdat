@@ -151,12 +151,12 @@ void DelAfter (AllWahana *L, address *Pdel, address Prec);
 /*      Pdel adalah alamat elemen list yang dihapus  */
 
 /****************** PROSES SEMUA ELEMEN LIST ******************/
-void PrintInfo (AllWahana L);
-/* I.S. List mungkin kosong */
-/* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
-/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
-/* Jika list kosong : menulis [] */
-/* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
+void PrintAllWahana (AllWahana L);
+// Menampilkan Id dan nama wahana
+
+void PrintInfo (Wahana W);
+//Menamppilkan detail wahana
+
 int NbElmtWahana (AllWahana L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
