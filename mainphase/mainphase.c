@@ -104,7 +104,7 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)
     address a1;
     int id;
 	//Algoritma
-	*J = DetikToJAM(JAMToDetik(*J) + durasi*60); //Memajukan waktu
+	*J = MenitToJAM(JAMToMenit(*J) + durasi); //Memajukan waktu
      
     Proses(Tab, durasi); //Memproses pengunjung
     SortProses(Tab); //Menyortir
