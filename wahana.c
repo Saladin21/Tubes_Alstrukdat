@@ -8,6 +8,7 @@ Wahana MakeWahana (char IDawal[], int ID, POINT lokasi, int map)
 {
     //KAMUS LOKAL
     Wahana W;
+    ListUpgrade U;
     //ALGORITMA
     W.IDawal[0] = IDawal[0];
     W.IDawal[1] = IDawal[1];
@@ -19,6 +20,11 @@ Wahana MakeWahana (char IDawal[], int ID, POINT lokasi, int map)
     W.liferide = 0;
     W.lokasi = lokasi;
     W.map = map;
+
+    CreateEmptyUpgrade(&U);
+    InsertUpgrade(IDawal, &U);
+    W.upgrade = U;
+
 
     return W;
 }
@@ -411,7 +417,9 @@ void PrintInfo (Wahana W)
     DeskripsiWahana(W.IDawal, InfoWahana);
     printf("\n");
     printf("Kapasitas : %d\n", HargaTiket(W.IDawal, InfoWahana));
-    //History upgrad
+    printf("History upgrade: ");
+    PrintUpgrade(W.upgrade);
+    printf("\n");
     printf("Durasi : %d\n", HargaTiket(W.IDawal, InfoWahana));
 }
 int NbElmtWahana (AllWahana L)

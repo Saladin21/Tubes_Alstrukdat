@@ -38,6 +38,9 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L);
 int random(int lower, int upper);
 //Menghasilkan integer random X, lower <= X <= upper
 
+void PrintStatus(JAM J, JAM Tutup, int money, Antrian A);
+//Menampilkan status saat main phase
+
 
 
 #endif

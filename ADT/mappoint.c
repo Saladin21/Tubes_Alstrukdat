@@ -66,3 +66,14 @@ void TulisPOINT (POINT P){
 // 	return !EQ(P1, P2);
 // }
 /* Mengirimkan true jika P1 tidak sama dengan P2 */
+
+float Panjang (POINT P1, POINT P2){
+	/*KAMUS*/
+	double panjang;
+	float deltaX, deltaY;
+	/*ALGORITMA*/
+	deltaX = Absis(P1)-Absis(P2);
+	deltaY = Ordinat(P1)-Ordinat(P2);
+	panjang = sqrt((deltaX*deltaX) + (deltaY*deltaY));
+	return panjang;
+}

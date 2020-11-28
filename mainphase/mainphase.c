@@ -83,6 +83,7 @@ void repair (POINT Player, int map, JAM *J, TabProses *Tab, Antrian *A, AllWahan
             printf(" berhasil diperbaiki\n");
             count++;
         }
+        P = NextWahana(P);
     }
     if(count>0){
         AdvTime(J, (10*count), Tab, A, L);
@@ -251,4 +252,23 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)
 
 int random(int lower, int upper){ 
     return rand() % (upper-lower+1) + lower;;
+}
+
+void PrintStatus(JAM J, JAM Tutup, int money, Antrian A)
+{
+    //KAMUS LOKAL
+    JAM J1;
+    //ALGORITMA
+    /*Di sini print nama kalo mau*/
+    printf("Money: %d\n", money);
+    printf("Current Time: ");
+    TulisJAM(J);
+    printf("\n");
+    printf("Closing Time: ");
+    TulisJAM(Tutup);
+    printf("\n");
+    J1 = MenitToJAM(Durasi(J, Tutup));
+    printf("Time Remaining: %d hour(s) %d minute(s)\n", Hour(J1), Minute(J1));
+    PrintAntrian(A);
+    printf("\n");
 }

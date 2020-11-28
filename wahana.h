@@ -3,6 +3,7 @@
 #include "ADT/mappoint.h"
 #include "ADT/boolean.h"
 #include "ADT/build.h"
+#include "listupgrade.h"
 
 #define Nil NULL
 
@@ -16,6 +17,8 @@ typedef struct{
     int liferide;
     int map; //wahana ada di map 1,2,3, atau 4
     POINT lokasi;
+    ListUpgrade upgrade;
+    
     
 } Wahana;
 // info lain seperti harga, durasi dll ambil dari infowahana pake IDawal (nanti dibikin fungsinya).

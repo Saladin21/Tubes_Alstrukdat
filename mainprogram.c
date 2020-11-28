@@ -34,7 +34,7 @@ while (true)    // LOOP PROGRAMMNYA
     cls();
 */
 //GLOBAL VARIABLE
-daftarwahana InfoWahana;
+daftarwahana InfoWahana; 
 
 
 int main(){
@@ -50,11 +50,14 @@ int main(){
         MAP M1,M2,M3,M4;
         PLAYER P;
         int day = 1;
-        int money;
+        
         Antrian A;
+        MakeEmptyAntrian(&A, 15); //Set maksimum antrian
         JAM J, Buka, Tutup;
         TabProses TabProses;
+        MakeTabProses(&TabProses);
         AllWahana L;
+        CreateEmpty(&L);
 
         srand(time(0)); //Set random seed
 
@@ -63,6 +66,7 @@ int main(){
 
         LoadAllMap(&M1,&M2,&M3,&M4);
         CreatePlayer(&P,M1,3,3); // assign player di x,y = (3,3), ini bebas nanti ganti
+        Money(P) = 5000; //Sesuaiin aja uang awalnya berapa
         UbahMap(&P,true);
         cls();
 
@@ -95,18 +99,21 @@ int main(){
                 }*/
                 J = Buka;
                 while (JLT(J, Tutup)){
-                    InputKata(&input);
+                    printf("Main phase day %d\n", day);
+                    PrintMap(CMap(P));
+                    PrintStatus(J, Tutup, Money(P), A);
+                    printf("Masukan Perintah:\n");
                     if (IsSama(input, "serve")){
                         
                         if (CGedung(P) == 'A'){
-                            Serve(&A, &L, &J, &money, &TabProses);
+                            Serve(&A, &L, &J, &Money(P), &TabProses);
                         }
                         else{
                             printf("Harus berada di dekat antrian untung menggunakan command ini\n");
                         }
                     }
                     else if (IsSama(input, "repair")){
-                        repair(P.POS, /*map,*/&J, &TabProses, &A, &L);
+                        repair(P.POS, Kode(CMap(P)), &J, &TabProses, &A, &L);
 
                     }
                     else if(IsSama(input, "w") || IsSama(input, "a") || IsSama(input,"s") || IsSama(input,"d")){
@@ -114,6 +121,10 @@ int main(){
                     FMap(&P, C, M1, M2, M3, M4);
                     AdvTime(&J, 1, &TabProses, &A, &L);
                     }
+
+                    
+
+                }
 
             } else if(IsSama(input, "exit")){
                 exit = true;

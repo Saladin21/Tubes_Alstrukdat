@@ -3,6 +3,7 @@
 #include "antrian.h"
 #include "../ADT/arraypos.h"
 
+daftarwahana InfoWahana;
 
 int SearchLwahana(char IDawal[], Lwahana L){
     //Kamus LOKAL
@@ -201,9 +202,11 @@ void PrintAntrian (Antrian Q)
 */
 {
     /*KAMUS LOKAL*/
-    int i;
+    int i,j;
     boolean tail=false;
+    Lwahana Lwahana;
     /*ALGORITMA*/
+    printf("Antrian [%d/%d]:\n", NBElmtAntrian(Q), Q.MaxEl);
     if (!IsEmptyAntrian(Q)){
         i = Head(Q);
         while (!tail){
@@ -213,9 +216,14 @@ void PrintAntrian (Antrian Q)
             if(i==Tail(Q)){
                 tail = true;
             }
-            printf("%d ", Prio(Elmt(Q,i)));
-            //Tulis antrian
-            printf(" %d\n", Elmt(Q,i).kesabaran);
+            Lwahana = Elmt(Q,i).info;
+            for (j=0;j<Lwahana.Nb;j++){
+                NamaWahana(Lwahana.TabID[i], InfoWahana);
+                printf(", ");
+            }
+
+            printf("Prioritas: %d, ", Prio(Elmt(Q,i)));
+            printf("Kesabaran: %d\n", Elmt(Q,i).kesabaran);
             i++;
         }
     }
@@ -227,8 +235,18 @@ void ReduceKesabaran(Antrian *Q, int X)
 {
     //KAMUS LOKAL
     int i;
+    boolean tail=false;
     //ALGORITMA
-    for (i=0;i<NBElmtAntrian(*Q);i++){
-        Q->T[i].kesabaran = Q->T[i].kesabaran -X;
+    if (!IsEmptyAntrian(*Q)){
+        i = Head(*Q);
+        while (!tail){
+            if(i>=MaxEl(*Q)){
+                i= i% MaxEl(*Q);
+            }
+            if(i==Tail(*Q)){
+                tail = true;
+            }
+            Q->T[i].kesabaran = Q->T[i].kesabaran -X;
+        }
     }
 }
