@@ -1,7 +1,7 @@
 #ifndef __PARSER_H__
 #define __PARSER_H__
 
-#include "boolean.h"
+#include "ADT/boolean.h"
 
 #define MARK '.'
 /* State Mesin */

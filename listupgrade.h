@@ -1,7 +1,7 @@
 #ifndef listupgrade_H
 #define listupgrade_H
 
-#include "boolean.h"
+#include "ADT/boolean.h"
 #include "ADT/build.h"
 #include <stdlib.h>
 #include <stdio.h>

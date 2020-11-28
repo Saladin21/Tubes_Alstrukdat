@@ -6,6 +6,8 @@
 #define NMaterial 2  // Jumlah material yang ada dalam game
 #define NWahana 9 // Jumlah wahana yang ada dalam game
 #include "boolean.h"
+#include "../wahana.h"
+#include "../mapplayer.h"
 #include <string.h>
 
 typedef struct
@@ -73,7 +75,7 @@ boolean IsWahanaAwal(char *s, daftarwahana W);
 void PrintWahanaSekitar(PLAYER P,daftarwahana W, AllWahana *L);
 // Mencetak daftar wahana yang ada di kiri, atas, kanan, bawah Player P
 
-boolean IsWahanaNear(ID, PLAYER P, AllWahana L);
+boolean IsWahanaNear(int ID, PLAYER P, AllWahana L);
 // Mengembalikan true jika wahana ID ada di sebelah P
 
 

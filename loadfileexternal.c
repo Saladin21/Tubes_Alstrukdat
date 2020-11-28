@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "loadfileexternal.h"
-#include "boolean.h"
+#include "ADT/boolean.h"
 #include <string.h>
 
 /* Membentuk data tipe MAP dari file dengan nama namafile */
