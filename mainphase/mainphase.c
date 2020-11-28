@@ -96,14 +96,14 @@ void repair (POINT Player, int map, JAM *J, TabProses *Tab, Antrian *A, AllWahan
     
 }
 
-void Detail (address P)
+void Detail (Wahana W)
 //I.S. pemain berada di sebelah wahana
 //F.S. Menampilkan detail dari wahana yang berada di sebelah pemain
 {
     //KAMUS LOKAl
 
     //ALGORITMA
-    //PrintInfo(P);
+    PrintInfo(W);
 }
 
 void Office(AllWahana L)
@@ -119,19 +119,19 @@ void Office(AllWahana L)
     while (office) {
         printf("Masukkan perintah (Details / Report / Exit):\n");
         InputKata(&input);
-        if(IsSama(input,"Details")) {
-            //printAllWahana();
+        if(IsSama(input,"Details")) { 
+            PrintAllWahana(L);
             printf("Pilih ID dari wahana yang ingin ditampilkan detailnya\n");
             scanf("%d", &id);
-            P = SearchWahana(L,id);
-            Detail(P);
+            P = SearchWahana(L,id); //Cari wahana dari ID yang dipilih
+            Detail(InfoWahana(P));
         } else if(IsSama(input,"Report")) {
-            //printAllWahana();
+            PrintAllWahana(L);
             printf("Pilih ID dari wahana yang ingin ditampilkan reportnya\n");
-            scanf("%d", &id);
-            P = SearchWahana(L,id);
-            int hargalife = InfoWahana(P).liferide /* * HargaTiket() */ ;
-            int hargaday = InfoWahana(P).dayride /* * HargaTiket() */ ;
+            scanf("%d", &id); 
+            P = SearchWahana(L,id); //Cari wahana dari ID yang dipilih
+            int hargalife = InfoWahana(P).liferide * HargaTiket(InfoWahana(P).IDawal, InfoWahana); //Menghitung penghasilan keseluruhan
+            int hargaday = InfoWahana(P).dayride * HargaTiket(InfoWahana(P).IDawal, InfoWahana); //Menghitung penghasilan hari itu
             printf("Total wahana dinaiki keseluruhan : %d\n", InfoWahana(P).liferide);
             printf("Total penghasilan dari wahana keseluruhan : %d\n", hargalife);
             printf("Total wahana dinaiki hari ini : %d\n", InfoWahana(P).dayride);
@@ -143,15 +143,21 @@ void Office(AllWahana L)
     }
 }
 
-void Prepare(Antrian *A)
+void Prepare(Antrian *A, TabProses *Tab, AllWahana *L)
 //I.S. Sembarang
 //F.S. Antrian kosong dan masuk ke preparation phase
 {
     //KAMUS LOKAl
-
+    address P;
     //ALGORITMA
     Head(*A) = Nil;
     Tail(*A) = Nil;
+    Tab->NbElmt = 0;
+    P = FirstWahana(*L);
+    while(P != Nil){
+        InfoWahana(P).NbPengunjung = 0;
+        P = NextWahana(P);
+    }
 }
 
 void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)

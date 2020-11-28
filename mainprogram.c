@@ -70,7 +70,7 @@ int main(){
         
 
         while(!exit){
-            Prepare(&A);
+            Prepare(&A,&TabProses,&L);
             printf("Preparation phase day %d\n", day);
             PrintMap(CMap(P));
             printf("Masukan Perintah:\n");
@@ -89,7 +89,7 @@ int main(){
                 //Masukan Program loop untuk main phase
                 /*dalam loop prepare
                 else if (IsSama(input, "prepare")) {
-                    Prepare(&A);
+                    Prepare(&A,&TabProses,&L);
                     day++;
                     break;
                 }*/
