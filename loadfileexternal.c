@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "loadfileexternal.h"
 #include "boolean.h"
+#include <string.h>
 
 /* Membentuk data tipe MAP dari file dengan nama namafile */
 /* Contoh pemakaian MAP M1 = LoadMap("map1.txt"); */
@@ -38,3 +39,31 @@ MAP LoadMap(char NamaFile[]){
     GerbangY(M).Y = GerbangYy;
     return M;
 }
+
+
+material LoadMaterial(char NamaFile[]){
+    FILE *fp;
+    fp = fopen(NamaFile, "r");
+    material M;
+    int row = 0;
+    int i = 0;
+    char line[64];
+    while(fgets(line,64,fp) && i<NMaterial+1){
+        int col = 0;
+        if(i!=0){
+            char *tok;
+            for(tok = strtok(line,";"); tok && *tok; col++, tok=strtok(NULL,";")){
+                if(col == 1){
+                    HargaM(M,row) = atoi(tok);
+                } else{
+                    strcpy(JenisM(M,row),tok);
+                }
+            }
+            row++;
+        }
+        i++;
+    }
+    fclose(fp);
+    return M;
+}
+
