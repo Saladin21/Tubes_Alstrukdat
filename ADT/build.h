@@ -12,6 +12,7 @@ typedef struct
 {
     char jenis[20];     // Nama material, contoh: kayu, besi, dll.
     int harga;          // Harga material per buah
+    int jumlah;         // Jumlah yang dimiliki saat ini
 } infomaterial;         // Struct yang menyimpan info material
 
 typedef struct
@@ -34,7 +35,7 @@ typedef struct
 } infowahana;               // Struct berisi data dari pembacaan file wahana.txt
                             // Untuk menyimpan banyak wahana cukup dibuat array infowahana
                             // Tidak ada ID, karena hanya sebagai data semua wahana yang tersedia
-                
+
 typedef struct
 {
     infowahana T[NWahana];    // Tabel penyimpan semua info material
@@ -54,6 +55,16 @@ typedef struct
 #define JenisM(M,n) (M).T[n].jenis
 #define HargaM(M,n) (M).T[n].harga
 
+
+/*****************/
+/* FUNGSI BUILD */
+/***************/
+void PrintDaftarBuild(infowahana W[], material M);
+// Mencetak daftar wahana yang bisa di-build beserta cost-nya
+
+/********************/
+/* FUNGSI MATERIAL */
+/******************/
 void PrintDaftarMaterial(material M);
 // Mencetak daftar material beserta harganya, untuk fungsi BUY
 
@@ -86,4 +97,5 @@ int DurasiBuild(char IDAwal[], infowahana W[]);
 
 int HargaTiket(char IDAwal[], infowahana W[]);
 // Mengembalikan harga tiket wahana dengan ID IDAwal
+
 #endif
