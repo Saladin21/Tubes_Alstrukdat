@@ -303,7 +303,7 @@ void PrintStatPlayer(Stack S,JAM inittime,JAM optime,int initmoney, material MAT
         
 }
 
-void UndoAksi(Stack *S, AllWahana *L)
+void UndoAksi(Stack *S, AllWahana *L, PLAYER *P)
 // Melakukan Undo sebuah aksi
 {
     infotype X;
@@ -313,7 +313,7 @@ void UndoAksi(Stack *S, AllWahana *L)
         Pop(S,&X);
         if(X.kodeaksi==2)
         {
-            DelVLast(L,&Y);  //Delete Wahana di sini
+            RemoveLastWahana(L,P);
         }
         printf("\nAnda berhasil melakukan Undo.\n");
     }

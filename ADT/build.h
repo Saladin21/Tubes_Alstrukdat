@@ -183,7 +183,7 @@ void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L, PLAYER *Playe
     liferide 0
 */
 
-void RemoveLastWahana(AllWahana *L, PLAYER P);
+void RemoveLastWahana(AllWahana *L, PLAYER *P);
 //Menghapus Wahana terakhir dari Allwahana dan menghapus dari map
 
 boolean IsWahanaFull (Wahana W);

@@ -27,5 +27,5 @@ int CountMaterialX(Stack S, material M, int i);
 void PrintStatPlayer(Stack S,JAM inittime,JAM optime,int initmoney, material MAT, AllWahana L);
 // Mencetak info seperti gold, waktu, dll.
 
-void UndoAksi(Stack *S, AllWahana *L);
+void UndoAksi(Stack *S, AllWahana *L, PLAYER *P);
 // Melakukan Undo sebuah aksi

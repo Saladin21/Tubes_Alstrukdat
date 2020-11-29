@@ -98,7 +98,7 @@ int main(){
             } else if(IsSama(input, "buy")){
                 buy(&SAksi,Money(P),J,Buka,MAT,L);
             } else if(IsSama(input, "undo")){
-                UndoAksi(&SAksi,&L);
+                UndoAksi(&SAksi,&L,&P);
             } else if(IsSama(input, "w") || IsSama(input, "a") || IsSama(input,"s") || IsSama(input,"d")){
                 char C = input.TabKata[0];
                 FMap(&P, C, M1, M2, M3, M4);
