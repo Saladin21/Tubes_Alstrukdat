@@ -299,12 +299,19 @@ void UndoAksi(Stack *S, AllWahana *L)
 {
     infotype X;
     Wahana Y;
-    Pop(S,&X);
-    if(X.kodeaksi==2)
+    if(!IsEmptyStack(*S))
     {
-        DelVLast(L,&Y);
+        Pop(S,&X);
+        if(X.kodeaksi==2)
+        {
+            DelVLast(L,&Y);
+        }
+        printf("\nAnda berhasil melakukan Undo.\n");
     }
-    printf("\nAnda berhasil melakukan Undo.\n");
+    else
+    {
+        printf("\nTidak ada aksi untuk di-undo.\n");
+    }
 }
 
 /*
