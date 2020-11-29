@@ -41,10 +41,17 @@ daftarwahana InfoWahana;
 int main(){
     Kata input;
 
-    printf("Welcome to Willy wangky's fun factory!!\n");
-    printf(" - New Game  [ Query: new.  ]\n");
-    printf(" - Load Game [ Query: load. ]\n");
-    printf(" - Exit      [ Query: exit. ]\n > ");
+    printf("\n .  . ..     .  .         .      *   \n");
+    printf(" |  |*||  .  |  | _.._  _ ;_/  . ' __\n");
+    printf(" |/\\||||\\_|  |/\\|(_][ )(_]| \\\\_|  _) \n");
+    printf("        ._|            ._|   ._|     \n");
+    printf("         .  .      .  .              \n");
+    printf("         |  | _ ._.| _|              \n");
+    printf("         |/\\|(_)[  |(_]             \n\n\n");
+    
+    printf("     New Game  [ Query: new.  ]\n");
+    printf("     Load Game [ Query: load. ]\n");
+    printf("     Exit      [ Query: exit. ]\n > ");
     InputKata(&input);
     
     if(IsSama(input, "new")){
@@ -65,26 +72,36 @@ int main(){
         srand(time(0)); //Set random seed
 
         Buka = MakeJAM(9,0);
-        J = MakeJAM(21,0);
+        J = MakeJAM(12,0);
         Tutup = MakeJAM(21,0);
 
         LoadAllMap(&M1,&M2,&M3,&M4);
         CreatePlayer(&P,M1,3,3); // assign player di x,y = (3,3), ini bebas nanti ganti
         Money(P) = 5000; //Sesuaiin aja uang awalnya berapa
-        //scanf("Masukkan nama : %s",&Name(P));
-        //scanf("Masukkan jumlah uang : ",&Money(P));
+        
+        printf("Masukkan username: ");
+        char input2[50];
+        fgets(input2, sizeof(input2), stdin);
+        input2[strlen(input2)-2] = '\0';
+        // scanf("Masukkan jumlah uang : ",&Money(P));
         UbahMap(&P,true);
         cls();
 
         printf("Memulai permainan baru......\n");
         
+        
         Stack SAksi, STarget;
         CreateEmptyStack(&SAksi); CreateEmptyStack(&STarget);
         material MAT = LoadMaterial("data/material.txt");
+        for(int z=0;z<NMaterial;z++)
+        {
+            MAT.T[z].jumlah = 0;
+        }
         InfoWahana = LoadWahana("data/wahana.txt");
 
         while(!exit){
             Prepare(&A,&TabProses,&L);
+
             printf("Preparation phase day %d\n", day);
             PrintMap(CMap(P));
             PrintStatPlayer(SAksi,J,Buka,Money(P),MAT,L);
@@ -118,11 +135,21 @@ int main(){
                     // Lakukan aksi di target
                     ProsesStack(&STarget,&P,&MAT);
                 }
+                else
+                {
+                    // Jika "main"
+                    // Hapus semua isi stackavail
+                    while(!IsEmptyStack(SAksi))
+                    {
+                        UndoAksi(&SAksi,&L,&P);
+                    }
+                }
 
                 J = Buka;
                 while (JLT(J, Tutup)){
                     printf("\nMain phase day %d\n", day);
                     PrintMap(CMap(P));
+                    
                     PrintStatus(J, Tutup, Money(P), A);
                     printf("Masukan Perintah:\n > ");
                     InputKata(&input);
@@ -133,7 +160,7 @@ int main(){
                             Serve(&A, &L, &J, &Money(P), &TabProses);
                         }
                         else{
-                            printf("Harus berada di dekat antrian untuk menggunakan command ini\n");
+                            printf("Harus berada di dekat antrian untuk menggunakan command ini.\n");
                         }
                     }
                     else if (IsSama(input, "repair")){
@@ -150,7 +177,7 @@ int main(){
                             Office(L);
                         }
                         else {
-                            printf("Harus berada di dalam Office untuk menggunakan command ini\n");
+                            printf("Harus berada di dalam Office untuk menggunakan command ini.\n");
                         }
                     }
                     else if(IsSama(input, "detail")){

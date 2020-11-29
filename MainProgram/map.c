@@ -64,7 +64,7 @@ void LoadMapFromFile(MAP *M, int Kode, char filename[MAX_FILE_NAME]) {
     }
     fclose(fp);
     int kol = jmlEl/brs;
-    printf("%d %d %d\n",jmlEl,brs,kol );
+    //printf("%d %d %d\n",jmlEl,brs,kol );
 
     // isi array temp
     FILE *fp1 = fopen(filename,"r");
