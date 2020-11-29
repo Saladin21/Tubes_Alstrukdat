@@ -1,4 +1,5 @@
 #include "build.h"
+#include "map.h"
 #include <stdio.h>
 #include "../globalvariable.h"
 /*****************/
@@ -373,7 +374,7 @@ boolean IsWahanaFull (Wahana W)
     return W.NbPengunjung == KapasitasWahana(W.IDawal,InfoWahana);
 }
 
-void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L)
+void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L, PLAYER *Player)
 //Membuat wahana baru dengan tipe IDAwal pada lokasi,
 //Langsung dimasukkan ke dalam AllWahana
 /*
@@ -388,6 +389,7 @@ void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L)
     int ID;
     address P;
     Wahana w;
+    MAP Mout;
     //ALGORITMA
     ID = 1;
     P = FirstWahana(*L);
@@ -402,6 +404,21 @@ void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L)
     w = MakeWahana(IDAwal, ID, lokasi, map);
 
     InsVLast(L, w);
+
+    if (map==1){
+        Mout =M1;
+    }
+    else if (map==2){
+        Mout = M2;
+    }
+    else if (map==3){
+        Mout = M3;
+    }
+    else if (map==4){
+        Mout = M4;
+    }
+
+    UbahMapAddWahana(Player, &Mout, lokasi);
 }
 
 /* PROTOTYPE */
