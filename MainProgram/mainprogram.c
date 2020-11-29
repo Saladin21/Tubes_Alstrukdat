@@ -118,6 +118,15 @@ int main(){
                     // Lakukan aksi di target
                     ProsesStack(&STarget,&P,&MAT);
                 }
+                else
+                {
+                    // Jika "main"
+                    // Hapus semua isi stackavail
+                    while(!IsEmptyStack(SAksi))
+                    {
+                        UndoAksi(&SAksi,&L,&P);
+                    }
+                }
 
                 J = Buka;
                 while (JLT(J, Tutup)){
