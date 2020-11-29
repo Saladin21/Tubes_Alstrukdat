@@ -70,8 +70,8 @@ int main(){
         LoadAllMap(&M1,&M2,&M3,&M4);
         CreatePlayer(&P,M1,3,3); // assign player di x,y = (3,3), ini bebas nanti ganti
         Money(P) = 5000; //Sesuaiin aja uang awalnya berapa
-        scanf("Masukkan nama : %s",&Name(P));
-        scanf("Masukkan jumlah uang : ",&Money(P));
+        //scanf("Masukkan nama : %s",&Name(P));
+        //scanf("Masukkan jumlah uang : ",&Money(P));
         UbahMap(&P,true);
         cls();
 
@@ -96,6 +96,8 @@ int main(){
                 //upgrade()
             } else if(IsSama(input, "buy")){
                 buy(&SAksi,Money(P),J,Buka,MAT);
+            } else if(IsSama(input, "undo")){
+                UndoAksi(&SAksi);
             } else if(IsSama(input, "w") || IsSama(input, "a") || IsSama(input,"s") || IsSama(input,"d")){
                 char C = input.TabKata[0];
                 FMap(&P, C, M1, M2, M3, M4);
