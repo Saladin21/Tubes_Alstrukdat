@@ -121,10 +121,10 @@ int main(){
 
                 J = Buka;
                 while (JLT(J, Tutup)){
-                    printf("Main phase day %d\n", day);
+                    printf("\nMain phase day %d\n", day);
                     PrintMap(CMap(P));
                     PrintStatus(J, Tutup, Money(P), A);
-                    printf("Masukan Perintah:\n");
+                    printf("Masukan Perintah:\n > ");
                     InputKata(&input);
 
                     if (IsSama(input, "serve")){

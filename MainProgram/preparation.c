@@ -474,7 +474,8 @@ void ProsesStack(Stack *S, PLAYER *P, material *M)
         else if(X.kodeaksi==2||X.kodeaksi==3)
         {
             // Jika build atau upgrade
-            // ...
+            Money(*P) -= HargaBuild(X.ID,InfoWahana);
+            (*M).T[X.kodebarang].jumlah -= CostMat(X.ID,InfoWahana,X.kodebarang);
         }
     }
 }
