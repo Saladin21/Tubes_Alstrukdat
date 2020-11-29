@@ -160,7 +160,7 @@ int main(){
                             Serve(&A, &L, &J, &Money(P), &TabProses);
                         }
                         else{
-                            printf("Harus berada di dekat antrian untuk menggunakan command ini\n");
+                            printf("Harus berada di dekat antrian untuk menggunakan command ini.\n");
                         }
                     }
                     else if (IsSama(input, "repair")){
@@ -177,7 +177,7 @@ int main(){
                             Office(L);
                         }
                         else {
-                            printf("Harus berada di dalam Office untuk menggunakan command ini\n");
+                            printf("Harus berada di dalam Office untuk menggunakan command ini.\n");
                         }
                     }
                     else if(IsSama(input, "detail")){

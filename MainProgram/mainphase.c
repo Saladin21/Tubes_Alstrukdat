@@ -13,6 +13,7 @@ void Serve (Antrian *A, AllWahana *L, JAM *T, int *money, TabProses *Tab)
     proses P;
     address a1;
     int i, a;
+    char input[10];
     //ALGORITMA
     if (!IsEmptyAntrian(*A)){
         X = InfoHead(*A);
@@ -29,7 +30,10 @@ void Serve (Antrian *A, AllWahana *L, JAM *T, int *money, TabProses *Tab)
                 printf("\n");
             }
             printf("Pilih wahana: ");
-            scanf("%d", &a);
+            fgets(input, sizeof(input), stdin);
+            input[strlen(input)-2] = '\0';
+            a = atoi(input);
+            //scanf("%d", &a);
             
             if (a>0 && a<=X.info.Nb){
                 a1 = SearchWahanaKosong(*L, X.info.TabID[a-1]);
@@ -50,7 +54,7 @@ void Serve (Antrian *A, AllWahana *L, JAM *T, int *money, TabProses *Tab)
                         P = MakeProses(X, DurasiNaik(InfoWahana(a1).IDawal, InfoWahana));
 
                         insert(Tab, P);
-                        printf("Pengunjung berhasil dilayani\n");
+                        printf("\nPengunjung berhasil dilayani!\n\n");
 
                         //Memajukan waktu 5 menit
                         AdvTime(T, 5, Tab, A, L);
@@ -64,12 +68,12 @@ void Serve (Antrian *A, AllWahana *L, JAM *T, int *money, TabProses *Tab)
 
             }
             else{
-                printf("input salah\n");
+                printf("Input salah.\n");
             }
         }
     }
     else{
-        printf("Antrian kosong\n");
+        printf("Antrian kosong.\n");
     }
 }
 
