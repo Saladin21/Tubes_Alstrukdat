@@ -235,7 +235,7 @@ void FMap(PLAYER *P, char C, MAP M1,MAP M2,MAP M3,MAP M4) {
         }
     }
 }
-
+/*
 int main() { // INI DITARO DI PROGRAM UTAMA
     MAP M1,M2,M3,M4;
     LoadAllMap(&M1,&M2,&M3,&M4);
@@ -257,4 +257,4 @@ int main() { // INI DITARO DI PROGRAM UTAMA
         cls();
     }
     return 0;
-}
+}*/

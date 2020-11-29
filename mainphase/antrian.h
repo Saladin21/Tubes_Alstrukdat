@@ -7,7 +7,7 @@
 #define Antrian_H
 
 #include "../ADT/boolean.h"
-
+//#include "../ADT/arraypos.h"
 #include "../ADT/build.h"
 
 
@@ -56,7 +56,7 @@ typedef struct {
 /* ********* Prototype ********* */
 boolean IsAntrianEmpty (Antrian Q);
 /* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsAntrianFull (Antrian Q);
+boolean IsFullAntrian (Antrian Q);
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
 int NBElmtAntrian (Antrian Q);

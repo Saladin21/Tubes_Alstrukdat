@@ -138,7 +138,7 @@ void build(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwah
         printf("\nWahana tersebut tidak tersedia.\n");
     }
 }
-
+/*
 void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwahana W, PLAYER P, AllWahana *L) // plus lokasi player, Allwahna
 {
     char input[4];
@@ -168,8 +168,8 @@ void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarw
         printf("\nTidak ada wahana di sekitar Anda.\n");
     }
     
-}
-
+}*/
+/*
 // Untuk pengetesan
 int main()
 {
@@ -218,7 +218,7 @@ int main()
     strcpy(W.T[7].asalwahana,"X");
     strcpy(W.T[8].asalwahana,"X");
     
-    /*
+    
     char kode[4] = "PTG";
     printf("Nama wahana: ");
     NamaWahana(kode,W);
@@ -227,7 +227,7 @@ int main()
     printf("\nKapasitas  : %d",KapasitasWahana(kode,W));
     printf("\nHarga tiket: %d",HargaTiket(kode,W));
     printf("\nDurasi naik: %d",DurasiNaik(kode,W));
-    */
+    
     
     // Tes build
     // PrintDaftarBuild(W,M);
@@ -237,3 +237,4 @@ int main()
     // buy(&SAksi,uang,jamawal,M);   // Call fungsi
     return 0;
 }
+*/

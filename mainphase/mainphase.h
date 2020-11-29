@@ -4,7 +4,6 @@
 #include "../ADT/boolean.h"
 #include "../ADT/jam.h"
 #include "antrian.h"
-#include "../wahana.h"
 #include "proses.h"
 #include "../ADT/build.h"
 #include<time.h>
