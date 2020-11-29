@@ -191,7 +191,31 @@ void upgrade(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, materia
         {
             // Jika ID ada dan di sebelah P
             // Print pilihan upgrade jika ada
-            printf("\nPilihan upgrade:\n");
+            address PW = FirstWahana(*L);
+            boolean temu = false;
+            while(PW!=Nil && !temu)
+            {
+                if((*PW).info.ID==ID)
+                {
+                    temu = true;
+                }
+                else
+                {
+                    PW = NextWahana(PW);
+                }
+            }
+            
+            printf("ID awal: %s\n",(*PW).info.IDawal);
+            
+            if(IsAdaUpgrade((*PW).info.IDawal,W))
+            {
+                printf("\nPilihan upgrade:\n");
+                PrintDaftarUpgrade((*PW).info.IDawal);
+            }
+            else
+            {
+                printf("\nWahana ini tidak memiliki upgrade.\n");
+            }
             
         }
         else
@@ -303,7 +327,7 @@ void PrintStatPlayer(Stack S,JAM inittime,JAM optime,int initmoney, material MAT
         
 }
 
-void UndoAksi(Stack *S, AllWahana *L)
+void UndoAksi(Stack *S, AllWahana *L, PLAYER *P)
 // Melakukan Undo sebuah aksi
 {
     infotype X;
@@ -313,7 +337,7 @@ void UndoAksi(Stack *S, AllWahana *L)
         Pop(S,&X);
         if(X.kodeaksi==2)
         {
-            DelVLast(L,&Y);  //Delete Wahana di sini
+            RemoveLastWahana(L,P);
         }
         printf("\nAnda berhasil melakukan Undo.\n");
     }
