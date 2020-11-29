@@ -349,14 +349,10 @@ int CountReqMoney(Stack S, material M, AllWahana L)
         {
             money += X.jumlah*HargaM(M,X.kodebarang);
         }
-        else if(X.kodeaksi==2)
+        else if(X.kodeaksi==2||X.kodeaksi==3)
         {
-            // Jika build:
+            // Jika build atau upgrade
             money += HargaBuild(X.ID,InfoWahana);
-        }
-        else
-        {
-            // Jika upgrade: 
         }
     }
     return money;
@@ -376,9 +372,9 @@ int CountMaterialX(Stack S, material M, int i)
         {
             mat += X.jumlah;
         }
-        else if(X.kodeaksi==2)
+        else if(X.kodeaksi==2 || X.kodeaksi==3)
         {
-            // Jika build:
+            // Jika build atua upgrade
             mat -= CostMat(X.ID,InfoWahana,i);
         }
     }
@@ -415,6 +411,44 @@ void UndoAksi(Stack *S, AllWahana *L, PLAYER *P)
         if(X.kodeaksi==2)
         {
             RemoveLastWahana(L,P);
+        }
+        else if(X.kodeaksi==3)
+        {
+            // Cari alamat ID wahana
+            address P2 = FirstWahana(*L);
+            boolean temu = false;
+            while(P2!=Nil && !temu)
+            {
+                if((*P2).info.ID==X.kodebarang)
+                {
+                    temu = true;
+                }
+                else
+                {
+                    P2 = NextWahana(P2);
+                }
+            }
+            
+            // Ubah ID wahana jadi ID asal wahananya
+            int index = IdxWahana((*P2).info.IDawal,InfoWahana);
+            char namaasal[50];
+            strcpy(namaasal,AsalW(InfoWahana,index));
+            
+            int i = 0;
+            boolean temu2 = false;
+            while(i<NWahana && !temu2)
+            {
+                if(IsStringSame(namaasal,NamaW(InfoWahana,i)))
+                {
+                    temu2 = true;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+            strcpy((*P2).info.IDawal,IDw(InfoWahana,i));
+            
         }
         printf("\nAnda berhasil melakukan Undo.\n");
     }
