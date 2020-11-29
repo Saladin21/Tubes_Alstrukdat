@@ -8,6 +8,7 @@
 
 #include "preparation.h"
 #include "../ADTLain/loadfileexternal.h"
+#include "saver.h"
 /*
 TULIS URUTAN FUNGSI DI PROGRAM UTAMA KAYA APA,
 Dikasih komen ya biar paham
@@ -105,7 +106,7 @@ int main(){
             printf("Preparation phase day %d\n", day);
             PrintMap(CMap(P));
             PrintStatPlayer(SAksi,J,Buka,Money(P),MAT,L);
-            printf("\nMasukan Perintah:\n > ");
+            printf("\nMasukan Perintah:\n > ");STra
             InputKata(&input);
 
             if(IsSama(input,"build")){
@@ -217,15 +218,16 @@ int main(){
                         Prepare(&A, &TabProses, &L);
                         day++;
                         J = Tutup;
-                    } else if(IsSama(input, "save")){
-                        SaveGame(SAksi, P, J, M1, M2, M3, M4, L, MAT, day);
-                    }
+                    } 
 
                 }
                 day++;
 
             } else if(IsSama(input, "exit")){
                 exit = true;
+            } else if(IsSama(input, "save"))
+            {
+                SaveGame(SAksi, P, J, M1, M2, M3, M4, L, MAT, day);
             }
 
         }
