@@ -15,7 +15,7 @@ boolean isWahana(PLAYER P);
 // true jika ada wahana di sebelah P
 
 // ----------------------------- LOAD MAP FROM FILE -----------------------------------
-void LoadMapFromFile(MAP *M, char filename[MAX_FILE_NAME]);
+void LoadMapFromFile(MAP *M, int Kode, char filename[MAX_FILE_NAME]);
 
 void LoadAllMap (MAP *M1,MAP *M2,MAP *M3,MAP *M4);
 
