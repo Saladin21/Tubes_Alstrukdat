@@ -214,8 +214,80 @@ void upgrade(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, materia
                 printf(" >> ");
     
                 // Terima input
-               fgets(input, sizeof(input), stdin);
-               input[strlen(input)-2] = '\0';
+                fgets(input, sizeof(input), stdin);
+                input[strlen(input)-2] = '\0';
+                char nama[50];
+                int k = 0;
+                temu = false;
+                while(k<NWahana && !temu)
+                {
+                    if(IsStringSame((*PW).info.IDawal,W.T[k].IDawal))
+                    {
+                        temu = true;
+                    }
+                    else
+                    {
+                        k++;
+                    }
+                }
+                
+                strcpy(nama,W.T[k].namawahana);
+                
+                if(IsWahanaUpgrade(input,nama,W))
+                {
+                    // Nama wahana tersedia
+                    // Cek jika gold cukup
+                    if(currmoney>=HargaBuild(input,W))
+                    {
+                        // Cek jika material cukup
+                        int i =0;
+                        while(matcukup && i<NMaterial)
+                        {
+                            if(currmat[i]<MaterialW(W,IdxWahana(input,W),i))
+                            {
+                                matcukup = false;
+                            }
+                            i++;
+                        }
+                        if (matcukup)
+                        {
+                            // Cek jika waktu cukup
+                            if(timeremaining>=DurasiBuild(input,W))
+                            {
+                                // Bangun wahana
+                                X.kodeaksi = 3;
+                                X.reqtime = DurasiBuild(input,W);
+                                X.jumlah = 0;
+                                X.kodebarang = (*PW).info.ID;
+                                strcpy(X.ID,input);
+                                // Ganti wahana
+                                strcpy((*PW).info.IDawal,input);
+                
+                                Push(aksi,X);
+                                printf("\nAnda berhasil meng-upgrade wahana menjadi ");
+                                NamaWahana(input,W);
+                                printf(".\n");
+                            }
+                            else
+                            {
+                                printf("\nWaktu tidak cukup untuk melakukan aksi tersebut.\n");
+                            }
+                    
+                        }
+                        else
+                        {
+                            printf("\nMaaf, material Anda tidak cukup.\n");
+                        }                
+                    }
+                    else
+                    {
+                        printf("\nMaaf, uang Anda tidak cukup.\n");
+                    }
+                }
+                else
+                {
+                    printf("\nUpgrade tersebut tidak tersedia.\n");
+                }
             }
             else
             {
@@ -277,14 +349,10 @@ int CountReqMoney(Stack S, material M, AllWahana L)
         {
             money += X.jumlah*HargaM(M,X.kodebarang);
         }
-        else if(X.kodeaksi==2)
+        else if(X.kodeaksi==2||X.kodeaksi==3)
         {
-            // Jika build:
+            // Jika build atau upgrade
             money += HargaBuild(X.ID,InfoWahana);
-        }
-        else
-        {
-            // Jika upgrade: 
         }
     }
     return money;
@@ -304,9 +372,9 @@ int CountMaterialX(Stack S, material M, int i)
         {
             mat += X.jumlah;
         }
-        else if(X.kodeaksi==2)
+        else if(X.kodeaksi==2 || X.kodeaksi==3)
         {
-            // Jika build:
+            // Jika build atua upgrade
             mat -= CostMat(X.ID,InfoWahana,i);
         }
     }
@@ -344,11 +412,71 @@ void UndoAksi(Stack *S, AllWahana *L, PLAYER *P)
         {
             RemoveLastWahana(L,P);
         }
+        else if(X.kodeaksi==3)
+        {
+            // Cari alamat ID wahana
+            address P2 = FirstWahana(*L);
+            boolean temu = false;
+            while(P2!=Nil && !temu)
+            {
+                if((*P2).info.ID==X.kodebarang)
+                {
+                    temu = true;
+                }
+                else
+                {
+                    P2 = NextWahana(P2);
+                }
+            }
+            
+            // Ubah ID wahana jadi ID asal wahananya
+            int index = IdxWahana((*P2).info.IDawal,InfoWahana);
+            char namaasal[50];
+            strcpy(namaasal,AsalW(InfoWahana,index));
+            
+            int i = 0;
+            boolean temu2 = false;
+            while(i<NWahana && !temu2)
+            {
+                if(IsStringSame(namaasal,NamaW(InfoWahana,i)))
+                {
+                    temu2 = true;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+            strcpy((*P2).info.IDawal,IDw(InfoWahana,i));
+            
+        }
         printf("\nAnda berhasil melakukan Undo.\n");
     }
     else
     {
         printf("\nTidak ada aksi untuk di-undo.\n");
+    }
+}
+
+void ProsesStack(Stack *S, PLAYER *P, material *M)
+// Melaksanakan semua aksi di stack
+{
+    infotype X;
+    while(!IsEmptyStack(*S))
+    {
+        Pop(S,&X);
+        if(X.kodeaksi==1)
+        {
+            // Jika buy
+            Money(*P) -= HargaM(*M,X.kodebarang)*X.jumlah;
+            (*M).T[X.kodebarang].jumlah += X.jumlah;
+        }
+        else if(X.kodeaksi==2||X.kodeaksi==3)
+        {
+            // Jika build atau upgrade
+            Money(*P) -= HargaBuild(X.ID,InfoWahana);
+            (*M).T[X.kodebarang].jumlah -= CostMat(X.ID,InfoWahana,X.kodebarang);
+        }
     }
 }
 

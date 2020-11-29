@@ -18,15 +18,15 @@ void repair (POINT Player, int map, JAM *J, TabProses *Tab, Antrian *A, AllWahan
 //I.S. pemain berada di sebelah wahana
 //F.S. wahana rusak yang berada di sebelah posisi pemain diperbaiki dan waktu bertambah
 
-void Detail ();
+void Detail (Wahana W);
 //I.S. pemain berada di sebelah wahana
 //F.S. Menampilkan detail dari wahana yang berada di sebelah pemain
 
-void Office();
+void Office(AllWahana L);
 //I.S. Pemain berada di sebelah office
 //Menampilkan tampilan office
 
-void Prepare();
+void Prepare(Antrian *A, TabProses *Tab, AllWahana *L);
 //I.S. Sembarang
 //F.S. Antrian kosong dan masuk ke preparation phase
 

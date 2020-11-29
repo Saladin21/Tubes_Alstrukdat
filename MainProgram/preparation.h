@@ -29,3 +29,6 @@ void PrintStatPlayer(Stack S,JAM inittime,JAM optime,int initmoney, material MAT
 
 void UndoAksi(Stack *S, AllWahana *L, PLAYER *P);
 // Melakukan Undo sebuah aksi
+
+void ProsesStack(Stack *S, PLAYER *P, material *M);
+// Melaksanakan semua aksi di stack

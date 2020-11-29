@@ -78,8 +78,8 @@ int main(){
 
         printf("Memulai permainan baru......\n");
         
-        Stack SAksi;
-        CreateEmptyStack(&SAksi);
+        Stack SAksi, STarget;
+        CreateEmptyStack(&SAksi); CreateEmptyStack(&STarget);
         material MAT = LoadMaterial("data/material.txt");
         InfoWahana = LoadWahana("data/wahana.txt");
 
@@ -102,20 +102,29 @@ int main(){
             } else if(IsSama(input, "w") || IsSama(input, "a") || IsSama(input,"s") || IsSama(input,"d")){
                 char C = input.TabKata[0];
                 FMap(&P, C, M1, M2, M3, M4);
-            } else if(IsSama(input, "main")){
+            } else if(IsSama(input, "main")||IsSama(input, "execute")){
                 //Masukan Program loop untuk main phase
-                /*dalam loop prepare
-                else if (IsSama(input, "prepare")) {
-                    Prepare(&A,&TabProses,&L);
-                    day++;
-                    break;
-                }*/
+                if(IsSama(input, "execute"))
+                {
+                    // Proses Stack
+                    // Push ke target
+                    infotype X;
+                    while(!IsEmptyStack(SAksi))
+                    {
+                        Pop(&SAksi,&X);
+                        Push(&STarget,X);
+                    }
+                    
+                    // Lakukan aksi di target
+                    ProsesStack(&STarget,&P,&MAT);
+                }
+
                 J = Buka;
                 while (JLT(J, Tutup)){
-                    printf("Main phase day %d\n", day);
+                    printf("\nMain phase day %d\n", day);
                     PrintMap(CMap(P));
                     PrintStatus(J, Tutup, Money(P), A);
-                    printf("Masukan Perintah:\n");
+                    printf("Masukan Perintah:\n > ");
                     InputKata(&input);
 
                     if (IsSama(input, "serve")){
@@ -124,7 +133,7 @@ int main(){
                             Serve(&A, &L, &J, &Money(P), &TabProses);
                         }
                         else{
-                            printf("Harus berada di dekat antrian untung menggunakan command ini\n");
+                            printf("Harus berada di dekat antrian untuk menggunakan command ini\n");
                         }
                     }
                     else if (IsSama(input, "repair")){
@@ -136,12 +145,52 @@ int main(){
                         FMap(&P, C, M1, M2, M3, M4);
                         AdvTime(&J, 1, &TabProses, &A, &L);
                     }
+                    else if(IsSama(input, "office")){
+                        if (CGedung(P) = 'O') {
+                            Office(L);
+                        }
+                        else {
+                            printf("Harus berada di dalam Office untuk menggunakan command ini\n");
+                        }
+                    }
+                    else if(IsSama(input, "detail")){
+                        if(isWahana(P)) {
+                            //Nyari wahana yang di sebelah
+                            POINT atas = MakePOINT(P.POS.X,P.POS.Y-1);
+                            POINT kiri = MakePOINT(P.POS.X-1,P.POS.Y);
+                            POINT kanan = MakePOINT(P.POS.X+1,P.POS.Y);
+                            POINT bawah = MakePOINT(P.POS.X,P.POS.Y+1);
+                            boolean temu = false;
+                            boolean isatas, isbawah, iskiri, iskanan;
+                            
+                            address P2 = FirstWahana(L);
+                            while(P2!=Nil && !temu)
+                            {
+                                isatas = ((*P2).info.lokasi.X == atas.X) && ((*P2).info.lokasi.Y == atas.Y);
+                                isbawah = ((*P2).info.lokasi.X == bawah.X) && ((*P2).info.lokasi.Y == bawah.Y);
+                                iskiri = ((*P2).info.lokasi.X == kiri.X) && ((*P2).info.lokasi.Y == kiri.Y);
+                                iskanan = ((*P2).info.lokasi.X == kanan.X) && ((*P2).info.lokasi.Y == kanan.Y);
+                                
+                                if(isatas||isbawah||iskiri||iskanan)
+                                {
+                                    temu = true;
+                                }
+                                else
+                                {
+                                    P2 = NextWahana(P2);
+                                }
+                            }
+                            Detail(InfoWahana(P2)); 
+                        }
+                        else { 
+                            printf("Harus berada di dekat wahana untuk menggunakan command ini\n");
+                        }
+                    }
                     else if(IsSama(input, "prepare")){
                         Prepare(&A, &TabProses, &L);
+                        day++;
                         J = Tutup;
                     }
-
-                    
 
                 }
                 day++;
