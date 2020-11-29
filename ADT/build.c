@@ -8,9 +8,6 @@
 void PrintDaftarBuild(daftarwahana W, material M)
 // Mencetak daftar wahana yang bisa di-build beserta cost-nya
 {
-    // Kamus Lokal
-    int banyakwahana;
-    
     // Algoritma
     printf("Berikut adalah daftar wahana yang bisa dibangun.\n");
     printf("  Kode | Nama Wahana | Biaya | Waktu Build\n");
@@ -35,7 +32,7 @@ void PrintDaftarBuild(daftarwahana W, material M)
 }
 
 boolean IsWahanaAwal(char *s, daftarwahana W)
-// Mengembalikan true jika a adalah nama wahana yang bukan hasil upgrade
+// Mengembalikan true jika s adalah nama wahana yang bukan hasil upgrade
 {
     boolean temu = false;
     int i = 0;
@@ -53,7 +50,54 @@ boolean IsWahanaAwal(char *s, daftarwahana W)
     return temu;
 }
 
+boolean IsAdaUpgrade(char *s, daftarwahana W)
+// Menghasilkan true jika wahana s punya upgrade
+{
+    boolean temu = false;
+    int i = 0;
+    int index = IdxWahana(s,W);
+    char nama[50];
+    strcpy(nama,NamaW(W,index));
+    
+    while(!temu && i<NWahana)
+    {
+        if(IsStringSame(nama,AsalW(W,i)))
+        {
+            temu = true;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    return temu;
+}
 
+void PrintDaftarUpgrade(char *s, daftarwahana W)
+// Mencetak pilihan upgrade wahana salah
+{
+    // Algoritma
+    printf("Berikut adalah daftar wahana yang bisa dibangun.\n");
+    printf("  Kode | Nama Wahana | Biaya | Waktu Build\n");
+    for(int i=0;i<NWahana;i++)
+    {
+        if(IsStringSame(AsalW(W,i),"None"))
+        {
+            printf(" - %s | ",IDw(W,i));
+            NamaWahana(IDw(W,i),W);
+            printf(" | %d gold ",MoneyreqW(W,i));
+            
+            // Material requirements
+            for(int j=0;j<NMaterial;j++)
+            {
+                printf("| %d %s ",W.T[i].matreq[j],JenisM(M,j));
+            }
+            
+            // Build time
+            printf("| %d menit\n",DurasiBW(W,i));
+        }
+    }
+}
 
 /*******************/
 /* FUNGSI UPGRADE */
@@ -889,5 +933,25 @@ int NbElmtWahana (AllWahana L)
     
 }
 
-
-
+/*********/
+/* TREE */
+/*******/
+/*
+BinTree MakeWahanaTree()
+// Membuat sebuah tree berdasarkan data daftarwahana
+{
+    BinTree T[NWahana];
+    
+    // Buat node tree tiap wahana
+    for(int i=0;i<NWahana;i++)
+    {
+        MakeTree(InfoWahana.T[i],Nil,Nil,&(T[i]));
+    }
+    
+    // Hubungkan
+    for(int j=0;j<NWahana;j++)
+    {
+        //
+    }
+}
+*/

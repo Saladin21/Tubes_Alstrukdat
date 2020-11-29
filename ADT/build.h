@@ -100,6 +100,11 @@ void PrintDaftarBuild(daftarwahana W, material M);
 boolean IsWahanaAwal(char *s, daftarwahana W);
 // Mengembalikan true jika a adalah nama wahana yang bukan hasil upgrade
 
+boolean IsAdaUpgrade(char *s, daftarwahana W);
+// Menghasilkan true jika wahana s punya upgrade
+
+void PrintDaftarUpgrade(char *s, daftarwahana W)
+// Mencetak pilihan upgrade wahana salah
 
 
 /*******************/
@@ -292,6 +297,12 @@ int NbElmtWahana (AllWahana L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
 
+/*********/
+/* TREE */
+/*******/
+/*
+BinTree MakeWahanaTree();
+// Membuat sebuah tree berdasarkan data daftarwahana
 
-
+*/
 #endif

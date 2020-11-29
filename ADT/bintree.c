@@ -1,9 +1,6 @@
 /* ADT Pohon Biner */
 /* Implementasi dengan menggunakan pointer */
 /* File: bintree.c */
-
-
-#include "boolean.h"
 #include "bintree.h"
 #include <stdio.h>
 #include <stdlib.h>
