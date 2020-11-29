@@ -9,11 +9,11 @@ int SearchLwahana(char IDawal[], Lwahana L){
     int i;
     //ALGORITMA
     for(i=0;i<L.Nb;i++){
-        /*
-        if (IsStringSame(IDawal, L.Nb)){
+        
+        if (IsStringSame(IDawal, L.TabID[i])){
             return i;
         }
-        */ //ini knp wkwkw
+        
     }
     return -1;
 }
@@ -218,8 +218,9 @@ void PrintAntrian (Antrian Q)
                 tail = true;
             }
             Lwahana = ElmtAntrian(Q,i).info;
+
             for (j=0;j<Lwahana.Nb;j++){
-                NamaWahana(Lwahana.TabID[i], InfoWahana);
+                NamaWahana(Lwahana.TabID[j], InfoWahana);
                 printf(", ");
             }
 
@@ -248,6 +249,7 @@ void ReduceKesabaran(Antrian *Q, int X)
                 tail = true;
             }
             Q->T[i].kesabaran = Q->T[i].kesabaran -X;
+            i++;
         }
     }
 }

@@ -3,7 +3,7 @@
 #ifndef MATRIKS_H
 #define MATRIKS_H
 
-#include "boolean.h"
+#include "../ADTLain/boolean.h"
 
 /* Ukuran minimum dan maksimum baris dan kolom */
 #define BrsMin 0

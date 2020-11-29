@@ -24,41 +24,47 @@ void Serve (Antrian *A, AllWahana *L, JAM *T, int *money, TabProses *Tab)
         else{
 
             for (i=0;i<X.info.Nb;i++){
-                printf("%d. ", i);
+                printf("%d. ", (i+1));
                 NamaWahana(X.info.TabID[i], InfoWahana);
                 printf("\n");
             }
-            scanf("Pilih wahana: %d", &a);
+            printf("Pilih wahana: ");
+            scanf("%d", &a);
             
-            
-            a1 = SearchWahanaKosong(*L, X.info.TabID[a]);
+            if (a>0 && a<=X.info.Nb){
+                a1 = SearchWahanaKosong(*L, X.info.TabID[a-1]);
 
-            if (a1 != NULL){
-                InfoWahana(a1).NbPengunjung ++; //Update jumlah pengunjung dalam wahana
-                InfoWahana(a1).dayride ++;
-                InfoWahana(a1).liferide ++;
+                    if (a1 != NULL){
+                        InfoWahana(a1).NbPengunjung ++; //Update jumlah pengunjung dalam wahana
+                        InfoWahana(a1).dayride ++;
+                        InfoWahana(a1).liferide ++;
 
-                *money = *money + HargaTiket(InfoWahana(a1).IDawal, InfoWahana); //tambah uang
+                        *money = *money + HargaTiket(InfoWahana(a1).IDawal, InfoWahana); //tambah uang
 
-                Dequeue(A, &X); //Mengeluarkan dari antrian
-                
-                DelLwahana(&X.info, a); //Menghapus wahana dari list pengunjung
+                        Dequeue(A, &X); //Mengeluarkan dari antrian
+                        
+                        DelLwahana(&X.info, a); //Menghapus wahana dari list pengunjung
 
-                //masuk ke proses
-                X.current = InfoWahana(a1).ID;
-                P = MakeProses(X, DurasiNaik(InfoWahana(a1).IDawal, InfoWahana));
+                        //masuk ke proses
+                        X.current = InfoWahana(a1).ID;
+                        P = MakeProses(X, DurasiNaik(InfoWahana(a1).IDawal, InfoWahana));
 
-                insert(Tab, P);
-                printf("Pengunjung berhasil dilayani\n");
+                        insert(Tab, P);
+                        printf("Pengunjung berhasil dilayani\n");
 
-                //Memajukan waktu 5 menit
-                AdvTime(T, 5, Tab, A, L);
+                        //Memajukan waktu 5 menit
+                        AdvTime(T, 5, Tab, A, L);
 
-                
+                        
+
+                    }
+                    else{
+                        printf("Wahana penuh.\n");
+                    }
 
             }
             else{
-                printf("Wahana penuh.\n");
+                printf("input salah\n");
             }
         }
     }
@@ -176,27 +182,32 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)
     int id,a, i, j, b, c;
     Lwahana wahanaP;
 	//Algoritma
+    
+
 	*J = MenitToJAM(JAMToMenit(*J) + durasi); //Memajukan waktu
-     
-    Proses(Tab, durasi); //Memproses pengunjung
-    SortProses(Tab); //Menyortir
 
-    //Mengembalikan pengunjung yang sudah selesai ke antrian
-    while (Tab->NbElmt>1 && Tab->Tab[0].durasi<=0){
-        DelAt(Tab, 0, &P1);
-        //Pengguna wahana -1
-        id = P1.current;
-        a1 = SearchWahana(*L, id);
-        InfoWahana(a1).NbPengunjung--;
+    if (Tab->NbElmt >0){ 
+        Proses(Tab, durasi); //Memproses pengunjung
+        SortProses(Tab); //Menyortir
 
-        /*Di sini cek apakah pengunjung mau menaiki wahana lain*/
-        
-        P1.current = -1;
-        P1.prio--;
-        Enqueue(A, P1);
+        //Mengembalikan pengunjung yang sudah selesai ke antrian
+        while (Tab->NbElmt>1 && Tab->Tab[0].durasi<=0){
+            DelAt(Tab, 0, &P1);
+            //Pengguna wahana -1
+            id = P1.current;
+            a1 = SearchWahana(*L, id);
+            InfoWahana(a1).NbPengunjung--;
 
+            
+            if (P1.info.Nb >0 && !IsEmptyAntrian(*A)){
+                P1.current = -1;
+                P1.prio--;
+                Enqueue(A, P1);
+            }
+
+        }
     }
-
+    
     if(NbElmtWahana(*L) > 0){
         //randomGenerator generate pengunjung
         if(!IsFullAntrian(*A)){
@@ -204,10 +215,12 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)
 
             if (a>50){
 
-                
+                wahanaP.Nb = 0;
                 for (i=0;i<3;i++){
-                    b = randomGenerator(0, NbElmtWahana(*L));
+                    b = randomGenerator(1, NbElmtWahana(*L));
+                    
                     a2 = SearchWahana(*L, b);
+                    NamaWahana(InfoWahana(a2).IDawal, InfoWahana);
                     if (i==0){
                         wahanaP.TabID[0][0] = InfoWahana(a2).IDawal[0];
                         wahanaP.TabID[0][1] = InfoWahana(a2).IDawal[1]; 
@@ -228,13 +241,15 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)
 
                     }
 
-                }
+                
+                
 
                 c = randomGenerator(1,5);
-                P2 = MakePengunjung(c, wahanaP, 5, -1);
+                P2 = MakePengunjung(c, wahanaP, 101, -1);
 
                 Enqueue(A, P2);
-
+                
+            }
         }
         //randomGenerator wahana rusak
         b = randomGenerator(1,10);

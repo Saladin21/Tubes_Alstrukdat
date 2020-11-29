@@ -6,7 +6,7 @@
 #ifndef prioqueuechar_H
 #define prioqueuechar_H
 
-#include "boolean.h"
+#include "../ADTLain/boolean.h"
 
 #define Nil -1
 /* Konstanta untuk mendefinisikan address tak terdefinisi */

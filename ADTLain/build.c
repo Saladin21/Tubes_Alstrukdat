@@ -474,6 +474,7 @@ Wahana MakeWahana (char IDawal[], int ID, POINT lokasi, int map)
     W.NbPengunjung = 0;
     W.dayride = 0;
     W.liferide = 0;
+    W.status = 1;
     W.lokasi = lokasi;
     W.map = map;
 
@@ -491,7 +492,7 @@ boolean IsWahanaFull (Wahana W)
     //KAMUS LOKAL
 
     //ALGORITMA
-    return W.NbPengunjung == KapasitasWahana(W.IDawal,InfoWahana);
+    return W.NbPengunjung >= KapasitasWahana(W.IDawal,InfoWahana);
 }
 
 void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L, PLAYER *Player)
@@ -666,10 +667,13 @@ address SearchWahanaKosong (AllWahana L, char IDAwal[])
     /*ALGORITMA*/
     P = FirstWahana(L);
     found = false;
-    while(P != Nil && !found){
+    while(P != NULL && !found){
         if (IsStringSame(InfoWahana(P).IDawal, IDAwal)){
-            if(!IsWahanaFull(InfoWahana(P)) && InfoWahana(P).status == 1 ){
+            if(!IsWahanaFull(InfoWahana(P)) && (InfoWahana(P).status == 1) ){
                 found = true;
+            }
+            else{
+                P = NextWahana(P);
             }
         }
         else{
@@ -680,7 +684,7 @@ address SearchWahanaKosong (AllWahana L, char IDAwal[])
         return P;
     }
     else{
-        return Nil;
+        return NULL;
     }
     
 }
