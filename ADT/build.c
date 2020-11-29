@@ -40,7 +40,7 @@ boolean IsWahanaAwal(char *s, daftarwahana W)
     int i = 0;
     while(!temu && i<NWahana)
     {
-        if(IsStringSame(s,IDw(W,i)) && IsStringSame("None",AsalW(W,i)))
+        if(IsStringSame(s,IDw(W,i)) && IsStringSame(AsalW(W,i),"None"))
         {
             temu = true;
         }

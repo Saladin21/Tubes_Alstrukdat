@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include "ADT/build.h"
-#include "ADT/stackt.h"
-#include "ADT/jam.h"
-#include <string.h>
+#include "preparation.h"
 
 void buy(Stack *aksi, int initialmoney, JAM initialtime, material M)
 {
@@ -21,11 +17,11 @@ void buy(Stack *aksi, int initialmoney, JAM initialtime, material M)
     
     // Terima input
     fgets(input, sizeof(input), stdin);
-    input[strlen(input)-1] = '\0';
+    input[strlen(input)-2] = '\0';
     
     if(IsMaterial(input,M))
     {
-        printf("\nBerapa banyak %s yang ingin Anda beli?\n > ",input);
+        printf("\nBerapa banyak %s yang ingin Anda beli? (Masukkan angka saja)\n >> ",input);
         if(scanf("%d",&jumlah)==1 &&jumlah>0)
         {
             // Hitung total harga
@@ -69,7 +65,7 @@ void buy(Stack *aksi, int initialmoney, JAM initialtime, material M)
 
 void build(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwahana W)
 {
-    char input[4];
+    char input[10];
     infotype X;
     int i = 0;
     boolean matcukup = true;
@@ -79,7 +75,7 @@ void build(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwah
     
     PrintDaftarBuild(W,M);
     printf("\nMasukkan kode wahana yang ingin Anda build:\n");
-    printf(" > ");
+    printf(" >> ");
     
     // Terima input
     fgets(input, sizeof(input), stdin);
