@@ -1,5 +1,5 @@
 #include "build.h"
-#include "map.h"
+#include "../map.h"
 #include <stdio.h>
 #include "../globalvariable.h"
 /*****************/

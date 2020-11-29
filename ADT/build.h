@@ -169,7 +169,7 @@ int IdxWahana(char IDAwal[], daftarwahana W);
 Wahana MakeWahana (char IDawal[], int ID, POINT lokasi, int map);
 //Menghasilkan suatu wahana
 
-void AddWahana(char IDAwal[], POINT lokasi, int map,AllWahana *L);
+void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L, PLAYER *Player);
 //Membuat wahana baru dengan tipe IDAwal pada lokasi,
 //Langsung dimasukkan ke dalam AllWahana
 /*

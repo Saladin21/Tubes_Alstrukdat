@@ -34,7 +34,7 @@ while (true)    // LOOP PROGRAMMNYA
         Contoh();
     cls();
 */
-
+MAP M1,M2,M3,M4;
 
 
 int main(){
@@ -49,7 +49,7 @@ int main(){
     if(IsSama(input, "new")){
         
         boolean exit = false;
-        MAP M1,M2,M3,M4;
+        
         PLAYER P;
         int day = 1;
         
