@@ -359,7 +359,6 @@ int IdxWahana(char IDAwal[], daftarwahana W)
 
 // WAHANA.h
 
-daftarwahana InfoWahana;
 
 
 Wahana MakeWahana (char IDawal[], int ID, POINT lokasi, int map)

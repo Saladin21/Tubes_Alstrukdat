@@ -36,6 +36,8 @@ while (true)    // LOOP PROGRAMMNYA
 
 
 MAP M1,M2,M3,M4;
+daftarwahana InfoWahana;
+
 int main(){
     Kata input;
 
@@ -80,11 +82,6 @@ int main(){
         CreateEmptyStack(&SAksi);
         material MAT = LoadMaterial("data/material.txt");
         InfoWahana = LoadWahana("data/wahana.txt");
-
-        PrintMap(M1);
-        PrintMap(M2);
-        PrintMap(M2);
-        PrintMap(M4);
 
         while(!exit){
             Prepare(&A,&TabProses,&L);

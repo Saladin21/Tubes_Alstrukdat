@@ -1,6 +1,5 @@
 #include "preparation.h"
-MAP M1,M2,M3,M4;
-daftarwahana InfoWahana;
+#include "globalvariable.h"
 void buy(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, material M, AllWahana L)
 {
     // Dijalankan setelah command "buy"
