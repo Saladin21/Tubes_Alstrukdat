@@ -1,17 +1,17 @@
 #include "preparation.h"
 
-void buy(Stack *aksi, int initialmoney, JAM initialtime, material M)
+void buy(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, material M)
 {
     // Dijalankan setelah command "buy"
-    char input[20];
+    char input[20]; char input2[20];
     int jumlah;
     int totalharga;
-    int currmoney = initialmoney-500; // Belum, ceritanya ambil dari initialmoney-Stack -> buat fungsi?
-    int timeremaining = 90;           // Belum, sama kaya yang atas
+    int currmoney = initialmoney-CountReqMoney(*aksi,M);
+    int timeremaining = Durasi(initialtime,optime)-CountReqTime(*aksi);
     int timebeli = 30;                // Waktu beli bahan apapun dan berapapun adalah 30 menit.
     infotype X;
     
-    printf("Material apa yang ingin Anda beli?\n");
+    printf("\nMaterial apa yang ingin Anda beli?\n");
     PrintDaftarMaterial(M);
     printf(" > ");
     
@@ -21,8 +21,11 @@ void buy(Stack *aksi, int initialmoney, JAM initialtime, material M)
     
     if(IsMaterial(input,M))
     {
-        printf("\nBerapa banyak %s yang ingin Anda beli? (Masukkan angka saja)\n >> ",input);
-        if(scanf("%d",&jumlah)==1 &&jumlah>0)
+        printf("\nBerapa banyak %s yang ingin Anda beli?\n >> ",input);
+        fgets(input2, sizeof(input2), stdin);
+        input2[strlen(input2)-2] = '\0';
+        jumlah = atoi(input2);
+        if(jumlah>0)
         {
             // Hitung total harga
             totalharga = HargaM(M,IdxMaterial(input,M))*jumlah;
@@ -134,6 +137,8 @@ void build(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwah
         printf("\nWahana tersebut tidak tersedia.\n");
     }
 }
+
+
 /*
 void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwahana W, PLAYER P, AllWahana *L) // plus lokasi player, Allwahna
 {
@@ -165,6 +170,77 @@ void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarw
     }
     
 }*/
+
+/************************/
+/* FUNGSI PROSES STACK */
+/**********************/
+int CountReqTime(Stack S)
+// Mengembalikan total req time aksi stack S dalam menit
+{
+    int time = 0;
+    infotype X;
+    while(!IsEmptyStack(S))
+    {
+        Pop(&S,&X);
+        time += X.reqtime;
+    }
+    return time;
+}
+
+int CountAksi(Stack S)
+// Mengembalikan total aksi stack S
+{
+    int aksi = 0;
+    infotype X;
+    while(!IsEmptyStack(S))
+    {
+        Pop(&S,&X);
+        aksi++;
+    }
+    return aksi;
+}
+
+int CountReqMoney(Stack S, material M)
+// Mengembalikan total req money waktu aksi stack S
+{
+    int money = 0;
+    infotype X;
+    while(!IsEmptyStack(S))
+    {
+        Pop(&S,&X);
+        if(X.kodeaksi==1)
+        {
+            money += X.jumlah*HargaM(M,X.kodebarang);
+        }
+        else if(X.kodeaksi==2)
+        {
+            // Jika build:
+        }
+        else
+        {
+            // Jika upgrade: 
+        }
+    }
+    return money;
+}
+
+void PrintStatPlayer(Stack S,JAM inittime,JAM optime,int initmoney, material MAT)
+// Mencetak info seperti gold, waktu, dll.
+{
+    printf("Gold          : %d\n",initmoney);
+    printf("Current Time  : "); TulisJAM(inittime);
+    printf("\nOpening Time  : "); TulisJAM(optime);
+    printf("\nTime Remaining: %ld jam %ld menit", Durasi(inittime,optime)/60,Durasi(inittime,optime)%60);
+    printf("\nTotal aksi yang akan dilakukan: %d",CountAksi(S));
+    printf("\nTotal waktu yang dibutuhkan   : %d jam %d menit",CountReqTime(S)/60,CountReqTime(S)%60);
+    printf("\nTotal uang yang dibutuhkan    : %d gold",CountReqMoney(S,MAT));
+}
+
+void UndoAksi(Stack *S)
+// Melakukan Undo sebuah aksi
+{
+}
+
 /*
 // Untuk pengetesan
 int main()
