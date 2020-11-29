@@ -90,6 +90,4 @@ boolean EQ (MAP M1, MAP M2);
 /* Juga merupakan strong EQ karena GetFirstIdxBrs(M1) = GetFirstIdxBrs(M2) 
    dan GetLastIdxKol(M1) = GetLastIdxKol(M2) */
 
-boolean NbElmtMatriks (MAP M);
-
 #endif

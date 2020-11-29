@@ -9,9 +9,11 @@ int SearchLwahana(char IDawal[], Lwahana L){
     int i;
     //ALGORITMA
     for(i=0;i<L.Nb;i++){
-        if (IsStringSame(IDawal, L.TabID[i])){
+        /*
+        if (IsStringSame(IDawal, L.Nb)){
             return i;
         }
+        */ //ini knp wkwkw
     }
     return -1;
 }

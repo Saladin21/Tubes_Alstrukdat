@@ -2,6 +2,7 @@
 #include "ADT/build.h"
 #include "ADT/stackt.h"
 #include "ADT/jam.h"
+#include "wahana.h"
 #include <string.h>
 
 void buy(Stack *aksi, int initialmoney, JAM initialtime, material M)
@@ -169,7 +170,7 @@ void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarw
     }
     
 }
-
+/*
 // Untuk pengetesan
 int main()
 {
@@ -218,7 +219,7 @@ int main()
     strcpy(W.T[7].asalwahana,"X");
     strcpy(W.T[8].asalwahana,"X");
     
-    /*
+    
     char kode[4] = "PTG";
     printf("Nama wahana: ");
     NamaWahana(kode,W);
@@ -227,7 +228,7 @@ int main()
     printf("\nKapasitas  : %d",KapasitasWahana(kode,W));
     printf("\nHarga tiket: %d",HargaTiket(kode,W));
     printf("\nDurasi naik: %d",DurasiNaik(kode,W));
-    */
+    
     
     // Tes build
     // PrintDaftarBuild(W,M);
@@ -237,3 +238,4 @@ int main()
     // buy(&SAksi,uang,jamawal,M);   // Call fungsi
     return 0;
 }
+*/

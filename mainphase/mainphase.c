@@ -194,7 +194,7 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)
 
     if(NbElmtWahana(*L) > 0){
         //randomGenerator generate pengunjung
-        if(!IsAntrianFull(*A)){
+        if(!IsFullAntrian(*A)){
             a = randomGenerator(0, 100);
 
             if (a>50){
