@@ -205,12 +205,17 @@ void upgrade(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, materia
                 }
             }
             
-            printf("ID awal: %s\n",(*PW).info.IDawal);
             
             if(IsAdaUpgrade((*PW).info.IDawal,W))
             {
                 printf("\nPilihan upgrade:\n");
-                PrintDaftarUpgrade((*PW).info.IDawal);
+                PrintDaftarUpgrade((*PW).info.IDawal,W,M);
+                printf("\nMasukkan kode wahana tujuan upgrade:\n");
+                printf(" >> ");
+    
+                // Terima input
+               fgets(input, sizeof(input), stdin);
+               input[strlen(input)-2] = '\0';
             }
             else
             {

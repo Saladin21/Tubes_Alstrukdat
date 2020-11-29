@@ -2,7 +2,6 @@
 #include "../MainProgram/map.h"
 #include <stdio.h>
 #include "../MainProgram/globalvariable.h"
-
 /*****************/
 /* FUNGSI BUILD */
 /***************/
@@ -11,7 +10,7 @@ void PrintDaftarBuild(daftarwahana W, material M)
 {
     // Algoritma
     printf("Berikut adalah daftar wahana yang bisa dibangun.\n");
-    printf("  Kode | Nama Wahana | Biaya | Waktu Build\n");
+    printf("  Kode | Nama Wahana | Biaya | Waktu Build | Deskripsi\n");
     for(int i=0;i<NWahana;i++)
     {
         if(IsStringSame(AsalW(W,i),"None"))
@@ -27,7 +26,7 @@ void PrintDaftarBuild(daftarwahana W, material M)
             }
             
             // Build time
-            printf("| %d menit\n",DurasiBW(W,i));
+            printf("| %d menit | %s",DurasiBW(W,i),DeskripsiW(W,i));
         }
     }
 }
@@ -74,15 +73,19 @@ boolean IsAdaUpgrade(char *s, daftarwahana W)
     return temu;
 }
 
-void PrintDaftarUpgrade(char *s, daftarwahana W)
+void PrintDaftarUpgrade(char *s, daftarwahana W, material M)
 // Mencetak pilihan upgrade wahana salah
 {
     // Algoritma
-    printf("Berikut adalah daftar wahana yang bisa dibangun.\n");
+    int index = IdxWahana(s,W);
+    char nama[50];
+    strcpy(nama,NamaW(W,index));
+    
+    printf("Berikut adalah daftar upgrade wahana ini.\n");
     printf("  Kode | Nama Wahana | Biaya | Waktu Build\n");
     for(int i=0;i<NWahana;i++)
     {
-        if(IsStringSame(AsalW(W,i),"None"))
+        if(IsStringSame(AsalW(W,i),nama))
         {
             printf(" - %s | ",IDw(W,i));
             NamaWahana(IDw(W,i),W);
@@ -95,7 +98,7 @@ void PrintDaftarUpgrade(char *s, daftarwahana W)
             }
             
             // Build time
-            printf("| %d menit\n",DurasiBW(W,i));
+            printf("| %d menit | %s",DurasiBW(W,i),DeskripsiW(W,i));
         }
     }
 }
