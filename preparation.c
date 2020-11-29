@@ -165,19 +165,24 @@ void build(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, material 
 
 
 
-void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwahana W, PLAYER P, AllWahana *L)
+void upgrade(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, material M, daftarwahana W, PLAYER P, AllWahana *L)
 {
     char input[10];
     int ID;
     infotype X;
-    int currmoney = initialmoney-500; // Belum, ceritanya ambil dari initialmoney-Stack -> buat fungsi?
-    int timeremaining = 240;           // Belum, sama kaya yang atas
-    int currmat[NMaterial]; currmat[0] = 100; currmat[1] = 100; // Belum, sama kaya atas
+    boolean matcukup = true;
+    int currmoney = initialmoney-CountReqMoney(*aksi,M,*L);
+    int timeremaining = Durasi(initialtime,optime)-CountReqTime(*aksi);
+    int currmat[NMaterial];
+    for(int j=0;j<NMaterial;j++)
+    {
+        currmat[j] = CountMaterialX(*aksi,M,j);
+    }
     
     if(isWahana(P))
     {
         printf("\nDaftar wahana:\n");
-        // PrintWahanaSekitar(P,W,L);  //Belum
+        PrintWahanaSekitar(P,W,*L);  //Belum
         printf("\nMasukkan ID wahana yang ingin Anda upgrade:\n > ");
         fgets(input, sizeof(input), stdin);
         input[strlen(input)-2] = '\0';
@@ -185,7 +190,8 @@ void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarw
         if(ID>0 && IsWahanaNear(ID,P,*L))
         {
             // Jika ID ada dan di sebelah P
-            printf("Wahana ditemukan\n");
+            // Print pilihan upgrade jika ada
+            printf("\nPilihan upgrade:\n");
             
         }
         else
@@ -307,7 +313,7 @@ void UndoAksi(Stack *S, AllWahana *L)
         Pop(S,&X);
         if(X.kodeaksi==2)
         {
-            DelVLast(L,&Y);
+            DelVLast(L,&Y);  //Delete Wahana di sini
         }
         printf("\nAnda berhasil melakukan Undo.\n");
     }

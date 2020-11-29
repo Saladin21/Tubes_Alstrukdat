@@ -61,7 +61,31 @@ boolean IsWahanaAwal(char *s, daftarwahana W)
 void PrintWahanaSekitar(PLAYER P, daftarwahana W, AllWahana L)
 // Mencetak daftar wahana yang ada di kiri, atas, kanan, bawah Player P
 {
-    // ...
+    POINT atas = MakePOINT(P.POS.X,P.POS.Y-1);
+    POINT kiri = MakePOINT(P.POS.X-1,P.POS.Y);
+    POINT kanan = MakePOINT(P.POS.X+1,P.POS.Y);
+    POINT bawah = MakePOINT(P.POS.X,P.POS.Y+1);
+    boolean isatas, isbawah, iskiri, iskanan;
+    
+    address P2 = FirstWahana(L);
+    printf("  ID | Nama Wahana\n");
+    while(P2!=Nil)
+    {
+        isatas = ((*P2).info.lokasi.X == atas.X) && ((*P2).info.lokasi.Y == atas.Y);
+        isbawah = ((*P2).info.lokasi.X == bawah.X) && ((*P2).info.lokasi.Y == bawah.Y);
+        iskiri = ((*P2).info.lokasi.X == kiri.X) && ((*P2).info.lokasi.Y == kiri.Y);
+        iskanan = ((*P2).info.lokasi.X == kanan.X) && ((*P2).info.lokasi.Y == kanan.Y);
+        
+        if(isatas||isbawah||iskiri||iskanan)
+        {
+            printf(" - %d | ",(*P2).info.ID);
+            NamaWahana((*P2).info.IDawal,W);
+            printf("\n");
+        }
+        P2 = NextWahana(P2);
+        
+    }
+
 }
 
 boolean IsWahanaNear(int ID, PLAYER P, AllWahana L)
@@ -72,11 +96,17 @@ boolean IsWahanaNear(int ID, PLAYER P, AllWahana L)
     POINT kanan = MakePOINT(P.POS.X+1,P.POS.Y);
     POINT bawah = MakePOINT(P.POS.X,P.POS.Y+1);
     boolean temu = false;
+    boolean isatas, isbawah, iskiri, iskanan;
     
     address P2 = FirstWahana(L);
     while(P2!=Nil && !temu)
     {
-        if(ID==(*P2).info.ID)
+        isatas = ((*P2).info.lokasi.X == atas.X) && ((*P2).info.lokasi.Y == atas.Y);
+        isbawah = ((*P2).info.lokasi.X == bawah.X) && ((*P2).info.lokasi.Y == bawah.Y);
+        iskiri = ((*P2).info.lokasi.X == kiri.X) && ((*P2).info.lokasi.Y == kiri.Y);
+        iskanan = ((*P2).info.lokasi.X == kanan.X) && ((*P2).info.lokasi.Y == kanan.Y);
+        
+        if(ID==(*P2).info.ID && (isatas||isbawah||iskiri||iskanan))
         {
             temu = true;
         }
@@ -433,13 +463,10 @@ void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L, PLAYER *Playe
     Wahana w;
     MAP Mout;
     //ALGORITMA
-    ID = 1;
+    ID = NbElmtWahana(*L)+1;
     P = FirstWahana(*L);
 
     while (P != Nil){
-        if (InfoWahana(P).ID > ID){
-            ID = InfoWahana(P).ID +1 ;
-        }
         P = NextWahana(P);
     }
 

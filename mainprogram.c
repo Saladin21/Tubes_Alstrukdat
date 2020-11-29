@@ -94,7 +94,7 @@ int main(){
             if(IsSama(input,"build")){
                 build(&SAksi,Money(P),J,Buka,MAT,InfoWahana,&L,&P);
             } else if(IsSama(input, "upgrade")){
-                upgrade(&SAksi, Money(P), J, MAT, InfoWahana, P,&L);
+                upgrade(&SAksi, Money(P), J, Buka, MAT, InfoWahana, P,&L);
             } else if(IsSama(input, "buy")){
                 buy(&SAksi,Money(P),J,Buka,MAT,L);
             } else if(IsSama(input, "undo")){
