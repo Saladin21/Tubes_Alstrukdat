@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "antrian.h"
-
-
+#include "../ADTLain/build.h"
+daftarwahana InfoWahana;
 int main(){
     Antrian Q;
     MakeEmptyAntrian(&Q, 10); //Membuat antrian berukuran 10
