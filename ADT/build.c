@@ -1,6 +1,6 @@
 #include "build.h"
 #include <stdio.h>
-daftarwahana InfoWahana;
+#include "../globalvariable.h"
 /*****************/
 /* FUNGSI BUILD */
 /***************/

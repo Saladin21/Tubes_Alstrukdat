@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include "antrian.h"
 
-daftarwahana InfoWahana;
+#include "../globalvariable.h"
 
 int SearchLwahana(char IDawal[], Lwahana L){
     //Kamus LOKAL

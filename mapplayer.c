@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "mapplayer.h"
-#include "ADT/mapmatriks.h"
+//#include "ADT/mapmatriks.h"
 
 void CreatePlayer (PLAYER *P, MAP M, int initX, int initY) {
     // Assign Attribute Nama, dll

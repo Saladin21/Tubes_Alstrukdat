@@ -1,3 +1,7 @@
+#ifndef MAP1_H
+#define MAP1_H
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "ADT/mapmatriks.h"
@@ -41,4 +45,6 @@ void pindahPOSMAP (PLAYER *P, MAP M, int newX, int newY);
 // ------------------------------ FUNGSI FMAP -------------------------------------
 void FMap(PLAYER *P, char C, MAP M1,MAP M2,MAP M3,MAP M4);
 // Menerima input arah w/a/s/d
+
+#endif
 

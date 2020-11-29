@@ -3,6 +3,7 @@
 #include "parser.h"
 #include "map.h"
 #include "mainphase/mainphase.h"
+#include "globalvariable.h"
 
 
 
@@ -31,8 +32,7 @@ while (true)    // LOOP PROGRAMMNYA
         Contoh();
     cls();
 */
-//GLOBAL VARIABLE
-daftarwahana InfoWahana; 
+
 
 
 int main(){
@@ -103,6 +103,8 @@ int main(){
                     PrintMap(CMap(P));
                     PrintStatus(J, Tutup, Money(P), A);
                     printf("Masukan Perintah:\n");
+                    InputKata(&input);
+
                     if (IsSama(input, "serve")){
                         
                         if (CGedung(P) == 'A'){

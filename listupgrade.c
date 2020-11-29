@@ -1,7 +1,7 @@
 #include "listupgrade.h"
 #include "ADT/build.h"
 
-daftarwahana InfoWahana;
+#include "globalvariable.h"
 
 boolean IsEmptyUpgrade (ListUpgrade L)
 /* Mengirim true jika list kosong */
