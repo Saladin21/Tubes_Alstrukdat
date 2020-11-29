@@ -61,7 +61,8 @@ int main(){
         srand(time(0)); //Set random seed
 
         Buka = MakeJAM(9,0);
-        Tutup = MakeJAM(21, 00);
+        J = MakeJAM(21,0);
+        Tutup = MakeJAM(21,0);
 
         LoadAllMap(&M1,&M2,&M3,&M4);
         CreatePlayer(&P,M1,3,3); // assign player di x,y = (3,3), ini bebas nanti ganti
@@ -82,7 +83,8 @@ int main(){
             Prepare(&A,&TabProses,&L);
             printf("Preparation phase day %d\n", day);
             PrintMap(CMap(P));
-            printf("Masukan Perintah:\n > ");
+            PrintStatPlayer(SAksi,J,Buka,Money(P),MAT);
+            printf("\nMasukan Perintah:\n > ");
             InputKata(&input);
 
             if(IsSama(input,"build")){
@@ -90,7 +92,7 @@ int main(){
             } else if(IsSama(input, "upgrade")){
                 //upgrade()
             } else if(IsSama(input, "buy")){
-                buy(&SAksi,Money(P),J,MAT);
+                buy(&SAksi,Money(P),J,Buka,MAT);
             } else if(IsSama(input, "w") || IsSama(input, "a") || IsSama(input,"s") || IsSama(input,"d")){
                 char C = input.TabKata[0];
                 FMap(&P, C, M1, M2, M3, M4);

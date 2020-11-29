@@ -284,4 +284,8 @@ void PrintInfo (Wahana W);
 
 int NbElmtWahana (AllWahana L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
+
+
+
+
 #endif
