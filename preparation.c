@@ -191,7 +191,8 @@ void upgrade(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, materia
         if(ID>0 && IsWahanaNear(ID,P,*L))
         {
             // Jika ID ada dan di sebelah P
-            printf("Wahana ditemukan\n");
+            // Print pilihan upgrade jika ada
+            printf("\nPilihan upgrade:\n");
             
         }
         else
@@ -313,7 +314,7 @@ void UndoAksi(Stack *S, AllWahana *L)
         Pop(S,&X);
         if(X.kodeaksi==2)
         {
-            DelVLast(L,&Y);
+            DelVLast(L,&Y);  //Delete Wahana di sini
         }
         printf("\nAnda berhasil melakukan Undo.\n");
     }

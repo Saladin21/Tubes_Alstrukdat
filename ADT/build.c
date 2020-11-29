@@ -68,6 +68,7 @@ void PrintWahanaSekitar(PLAYER P, daftarwahana W, AllWahana L)
     boolean isatas, isbawah, iskiri, iskanan;
     
     address P2 = FirstWahana(L);
+    printf("  ID | Nama Wahana\n");
     while(P2!=Nil)
     {
         isatas = ((*P2).info.lokasi.X == atas.X) && ((*P2).info.lokasi.Y == atas.Y);
@@ -77,7 +78,9 @@ void PrintWahanaSekitar(PLAYER P, daftarwahana W, AllWahana L)
         
         if(isatas||isbawah||iskiri||iskanan)
         {
-            printf(" - %d\n",(*P2).info.ID);
+            printf(" - %d | ",(*P2).info.ID);
+            NamaWahana((*P2).info.IDawal,W);
+            printf("\n");
         }
         P2 = NextWahana(P2);
         
