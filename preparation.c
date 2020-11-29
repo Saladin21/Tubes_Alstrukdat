@@ -224,6 +224,22 @@ int CountReqMoney(Stack S, material M)
     return money;
 }
 
+int CountMaterialX(Stack S, material M, int i)
+// Menghitung total material idx i yang dimiliki sekarang, termasuk stack
+{
+    int mat = 0;
+    infotype X;
+    while(!IsEmptyStack(S))
+    {
+        Pop(&S,&X);
+        if(X.kodeaksi==1 && X.kodebarang==i)
+        {
+            mat += X.jumlah;
+        }
+    }
+    return mat;
+}
+
 void PrintStatPlayer(Stack S,JAM inittime,JAM optime,int initmoney, material MAT)
 // Mencetak info seperti gold, waktu, dll.
 {
@@ -234,11 +250,21 @@ void PrintStatPlayer(Stack S,JAM inittime,JAM optime,int initmoney, material MAT
     printf("\nTotal aksi yang akan dilakukan: %d",CountAksi(S));
     printf("\nTotal waktu yang dibutuhkan   : %d jam %d menit",CountReqTime(S)/60,CountReqTime(S)%60);
     printf("\nTotal uang yang dibutuhkan    : %d gold",CountReqMoney(S,MAT));
+    printf("\nTotal material yang dimiliki  : ");
+    for(int i=0;i<NMaterial;i++)
+    {
+        printf("%d ",CountMaterialX(S,MAT,i));
+        printf("%s ",JenisM(MAT,i));
+    }
+        
 }
 
 void UndoAksi(Stack *S)
 // Melakukan Undo sebuah aksi
 {
+    infotype X;
+    Pop(S,&X);
+    printf("\nAnda berhasil melakukan Undo.\n");
 }
 
 /*

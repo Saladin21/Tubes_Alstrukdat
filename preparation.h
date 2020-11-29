@@ -17,6 +17,8 @@ int CountAksi(Stack S);
 // Mengembalikan total aksi stack S
 int CountReqMoney(Stack S, material M);
 // Mengembalikan total req money waktu aksi stack S
+int CountMaterialX(Stack S, material M, int i);
+// Menghitung total material idx i yang dimiliki sekarang, termasuk stack
 
 void PrintStatPlayer(Stack S,JAM inittime,JAM optime,int initmoney, material MAT);
 // Mencetak info seperti gold, waktu, dll.
