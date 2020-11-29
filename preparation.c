@@ -2,7 +2,6 @@
 #include "ADT/build.h"
 #include "ADT/stackt.h"
 #include "ADT/jam.h"
-#include "wahana.h"
 #include <string.h>
 
 void buy(Stack *aksi, int initialmoney, JAM initialtime, material M)
@@ -139,7 +138,7 @@ void build(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwah
         printf("\nWahana tersebut tidak tersedia.\n");
     }
 }
-
+/*
 void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwahana W, PLAYER P, AllWahana *L) // plus lokasi player, Allwahna
 {
     char input[4];
@@ -169,7 +168,7 @@ void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarw
         printf("\nTidak ada wahana di sekitar Anda.\n");
     }
     
-}
+}*/
 /*
 // Untuk pengetesan
 int main()
