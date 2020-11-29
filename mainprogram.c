@@ -133,6 +133,10 @@ int main(){
                     FMap(&P, C, M1, M2, M3, M4);
                     AdvTime(&J, 1, &TabProses, &A, &L);
                     }
+                    else if(IsSama(input, "prepare")){
+                        Prepare(&A, &TabProses, &L);
+                        J = Tutup;
+                    }
 
                     
 

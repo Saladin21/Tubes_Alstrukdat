@@ -14,51 +14,56 @@ void Serve (Antrian *A, AllWahana *L, JAM *T, int *money, TabProses *Tab)
     address a1;
     int i, a;
     //ALGORITMA
-    X = InfoHead(*A);
+    if (!IsEmptyAntrian(*A)){
+        X = InfoHead(*A);
 
-    if (X.kesabaran <= 0){
-        printf("Pengunjung sudah pergi karena kesabarannya habis.\n");
-        Dequeue(A, &X);
-    }
-    else{
-
-        for (i=0;i<X.info.Nb;i++){
-            printf("%d. ", i);
-            NamaWahana(X.info.TabID[i], InfoWahana);
-            printf("\n");
-        }
-        scanf("Pilih wahana: %d", &a);
-        
-        
-        a1 = SearchWahanaKosong(*L, X.info.TabID[a]);
-
-        if (a1 != NULL){
-            InfoWahana(a1).NbPengunjung ++; //Update jumlah pengunjung dalam wahana
-            InfoWahana(a1).dayride ++;
-            InfoWahana(a1).liferide ++;
-
-            *money = *money + HargaTiket(InfoWahana(a1).IDawal, InfoWahana); //tambah uang
-
-            Dequeue(A, &X); //Mengeluarkan dari antrian
-            
-            DelLwahana(&X.info, a); //Menghapus wahana dari list pengunjung
-
-            //masuk ke proses
-            X.current = InfoWahana(a1).ID;
-            P = MakeProses(X, DurasiNaik(InfoWahana(a1).IDawal, InfoWahana));
-
-            insert(Tab, P);
-            printf("Pengunjung berhasil dilayani\n");
-
-            //Memajukan waktu 5 menit
-            AdvTime(T, 5, Tab, A, L);
-
-            
-
+        if (X.kesabaran <= 0){
+            printf("Pengunjung sudah pergi karena kesabarannya habis.\n");
+            Dequeue(A, &X);
         }
         else{
-            printf("Wahana penuh.\n");
+
+            for (i=0;i<X.info.Nb;i++){
+                printf("%d. ", i);
+                NamaWahana(X.info.TabID[i], InfoWahana);
+                printf("\n");
+            }
+            scanf("Pilih wahana: %d", &a);
+            
+            
+            a1 = SearchWahanaKosong(*L, X.info.TabID[a]);
+
+            if (a1 != NULL){
+                InfoWahana(a1).NbPengunjung ++; //Update jumlah pengunjung dalam wahana
+                InfoWahana(a1).dayride ++;
+                InfoWahana(a1).liferide ++;
+
+                *money = *money + HargaTiket(InfoWahana(a1).IDawal, InfoWahana); //tambah uang
+
+                Dequeue(A, &X); //Mengeluarkan dari antrian
+                
+                DelLwahana(&X.info, a); //Menghapus wahana dari list pengunjung
+
+                //masuk ke proses
+                X.current = InfoWahana(a1).ID;
+                P = MakeProses(X, DurasiNaik(InfoWahana(a1).IDawal, InfoWahana));
+
+                insert(Tab, P);
+                printf("Pengunjung berhasil dilayani\n");
+
+                //Memajukan waktu 5 menit
+                AdvTime(T, 5, Tab, A, L);
+
+                
+
+            }
+            else{
+                printf("Wahana penuh.\n");
+            }
         }
+    }
+    else{
+        printf("Antrian kosong\n");
     }
 }
 

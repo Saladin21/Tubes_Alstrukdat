@@ -54,7 +54,7 @@ typedef struct {
 #define ElmtAntrian(Q,i)   (Q).T[(i)]
 
 /* ********* Prototype ********* */
-boolean IsAntrianEmpty (Antrian Q);
+boolean IsEmptyAntrian (Antrian Q);
 /* Mengirim true jika Q kosong: lihat definisi di atas */
 boolean IsFullAntrian (Antrian Q);
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
