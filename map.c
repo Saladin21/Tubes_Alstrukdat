@@ -124,7 +124,7 @@ void UbahMapAddWahana(PLAYER *P,MAP *Mout, POINT point_wahana) {
     XYtoIJ(Absis(point_wahana),Ordinat(point_wahana),&i,&j,NBrsEff(CMap(*P)));
     Elmt(CMap(*P),i,j) = 'W';
     Elmt(RealMap(*P),i,j) = 'W';
-
+    CGedung(*P) = 'W';
     // copy Realmap ke Mout
     CopyMAP(RealMap(*P),Mout);
 }
