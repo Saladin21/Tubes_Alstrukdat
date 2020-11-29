@@ -460,7 +460,34 @@ void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L, PLAYER *Playe
         Mout = M4;
     }
 
-    UbahMapAddWahana(Player, &Mout, lokasi);
+    UbahMapAddWahana(Player, &Mout, lokasi, true);
+}
+
+void RemoveLastWahana(AllWahana *L, PLAYER *P)
+//Menghapus Wahana terakhir dari Allwahana dan menghapus dari map
+{
+    //KAMUS LOKAL
+    Wahana W;
+    MAP Mout;
+    //Algoritma
+
+    DelVLast(L, &W);
+
+    if (W.map==1){
+        Mout =M1;
+    }
+    else if (W.map==2){
+        Mout = M2;
+    }
+    else if (W.map==3){
+        Mout = M3;
+    }
+    else if (W.map==4){
+        Mout = M4;
+    }
+
+    UbahMapAddWahana(P, &Mout, W.lokasi, false);
+
 }
 
 /* PROTOTYPE */

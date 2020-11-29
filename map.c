@@ -118,14 +118,21 @@ void PrintMap(MAP M) {
     TulisMAP(M); Legenda();
 }
 
-void UbahMapAddWahana(PLAYER *P,MAP *Mout, POINT point_wahana) {
+void UbahMapAddWahana(PLAYER *P,MAP *Mout, POINT point_wahana, boolean add) {
     // Mout = M1/2/3/4
     // ubah CMap dan RealMap jadi ada W baru nya
     int i,j;
     XYtoIJ(Absis(point_wahana),Ordinat(point_wahana),&i,&j,NBrsEff(CMap(*P)));
-    Elmt(CMap(*P),i,j) = 'W';
-    Elmt(RealMap(*P),i,j) = 'W';
-    CGedung(*P) = 'W';
+    if (add){
+        Elmt(CMap(*P),i,j) = 'W';
+        Elmt(RealMap(*P),i,j) = 'W';
+        CGedung(*P) = 'W';
+    }
+    else{
+        Elmt(CMap(*P),i,j) = '-';
+        Elmt(RealMap(*P),i,j) = '-';
+        CGedung(*P) = '-';
+    }
     // copy Realmap ke Mout
     CopyMAP(RealMap(*P),Mout);
 }
