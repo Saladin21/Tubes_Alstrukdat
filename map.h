@@ -26,6 +26,9 @@ void Legenda();
 void PrintMap(MAP M);
 //Tulis Map dan Legenda
 
+void UbahMapAddWahana(PLAYER *P,MAP *Mout, POINT point_wahana);
+// merubah map1/2/3/4
+
 void UbahMap(PLAYER *P, boolean isP);
 // Mengubah Cmap saat bergerak
 
