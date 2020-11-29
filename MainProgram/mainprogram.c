@@ -217,6 +217,8 @@ int main(){
                         Prepare(&A, &TabProses, &L);
                         day++;
                         J = Tutup;
+                    } else if(IsSama(input, "save")){
+                        SaveGame(SAksi, P, J, M1, M2, M3, M4, L, MAT, day);
                     }
 
                 }
