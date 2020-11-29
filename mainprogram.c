@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include <time.h>
 #include "parser.h"
-#include "mapplayer.h"
 #include "map.h"
 #include "mainphase/mainphase.h"
-
 
 
 
@@ -41,7 +39,9 @@ int main(){
     Kata input;
 
     printf("Welcome to Willy wangky's fun factory!!\n");
-    printf("New Game/Load Game/Exit?\n");
+    printf(" - New Game  [ Query: new.  ]\n");
+    printf(" - Load Game [ Query: load. ]\n");
+    printf(" - Exit      [ Query: exit. ]\n > ");
     InputKata(&input);
     
     if(IsSama(input, "new") && !IsSama(input, "exit")){
