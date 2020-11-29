@@ -78,8 +78,8 @@ int main(){
 
         printf("Memulai permainan baru......\n");
         
-        Stack SAksi;
-        CreateEmptyStack(&SAksi);
+        Stack SAksi, STarget;
+        CreateEmptyStack(&SAksi); CreateEmptyStack(&STarget);
         material MAT = LoadMaterial("data/material.txt");
         InfoWahana = LoadWahana("data/wahana.txt");
 
@@ -102,8 +102,23 @@ int main(){
             } else if(IsSama(input, "w") || IsSama(input, "a") || IsSama(input,"s") || IsSama(input,"d")){
                 char C = input.TabKata[0];
                 FMap(&P, C, M1, M2, M3, M4);
-            } else if(IsSama(input, "main")){
+            } else if(IsSama(input, "main")||IsSama(input, "execute")){
                 //Masukan Program loop untuk main phase
+                if(IsSama(input, "execute"))
+                {
+                    // Proses Stack
+                    // Push ke target
+                    infotype X;
+                    while(!IsEmptyStack(SAksi))
+                    {
+                        Pop(&SAksi,&X);
+                        Push(&STarget,X);
+                    }
+                    
+                    // Lakukan aksi di target
+                    ProsesStack(&STarget,&P,&MAT);
+                }
+
                 J = Buka;
                 while (JLT(J, Tutup)){
                     printf("Main phase day %d\n", day);

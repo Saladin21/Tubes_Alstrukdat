@@ -458,6 +458,27 @@ void UndoAksi(Stack *S, AllWahana *L, PLAYER *P)
     }
 }
 
+void ProsesStack(Stack *S, PLAYER *P, material *M)
+// Melaksanakan semua aksi di stack
+{
+    infotype X;
+    while(!IsEmptyStack(*S))
+    {
+        Pop(S,&X);
+        if(X.kodeaksi==1)
+        {
+            // Jika buy
+            Money(*P) -= HargaM(*M,X.kodebarang)*X.jumlah;
+            (*M).T[X.kodebarang].jumlah += X.jumlah;
+        }
+        else if(X.kodeaksi==2||X.kodeaksi==3)
+        {
+            // Jika build atau upgrade
+            // ...
+        }
+    }
+}
+
 /*
 // Untuk pengetesan
 int main()
