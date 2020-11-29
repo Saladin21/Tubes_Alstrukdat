@@ -79,16 +79,16 @@ int main(){
         CreatePlayer(&P,M1,3,3); // assign player di x,y = (3,3), ini bebas nanti ganti
         Money(P) = 5000; //Sesuaiin aja uang awalnya berapa
         
-
+        printf("Masukkan username: ");
+        char input2[50];
+        fgets(input2, sizeof(input2), stdin);
+        input2[strlen(input2)-2] = '\0';
         // scanf("Masukkan jumlah uang : ",&Money(P));
         UbahMap(&P,true);
         cls();
 
         printf("Memulai permainan baru......\n");
-        printf("Masukkan username: ");
-        char input2[50];
-        fgets(input2, sizeof(input2), stdin);
-        input2[strlen(input2)-2] = '\0';
+        
         
         Stack SAksi, STarget;
         CreateEmptyStack(&SAksi); CreateEmptyStack(&STarget);
