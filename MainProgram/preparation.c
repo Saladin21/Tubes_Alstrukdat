@@ -214,8 +214,80 @@ void upgrade(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, materia
                 printf(" >> ");
     
                 // Terima input
-               fgets(input, sizeof(input), stdin);
-               input[strlen(input)-2] = '\0';
+                fgets(input, sizeof(input), stdin);
+                input[strlen(input)-2] = '\0';
+                char nama[50];
+                int k = 0;
+                temu = false;
+                while(k<NWahana && !temu)
+                {
+                    if(IsStringSame((*PW).info.IDawal,W.T[k].IDawal))
+                    {
+                        temu = true;
+                    }
+                    else
+                    {
+                        k++;
+                    }
+                }
+                
+                strcpy(nama,W.T[k].namawahana);
+                
+                if(IsWahanaUpgrade(input,nama,W))
+                {
+                    // Nama wahana tersedia
+                    // Cek jika gold cukup
+                    if(currmoney>=HargaBuild(input,W))
+                    {
+                        // Cek jika material cukup
+                        int i =0;
+                        while(matcukup && i<NMaterial)
+                        {
+                            if(currmat[i]<MaterialW(W,IdxWahana(input,W),i))
+                            {
+                                matcukup = false;
+                            }
+                            i++;
+                        }
+                        if (matcukup)
+                        {
+                            // Cek jika waktu cukup
+                            if(timeremaining>=DurasiBuild(input,W))
+                            {
+                                // Bangun wahana
+                                X.kodeaksi = 3;
+                                X.reqtime = DurasiBuild(input,W);
+                                X.jumlah = 0;
+                                X.kodebarang = (*PW).info.ID;
+                                strcpy(X.ID,input);
+                                // Ganti wahana
+                                strcpy((*PW).info.IDawal,input);
+                
+                                Push(aksi,X);
+                                printf("\nAnda berhasil meng-upgrade wahana menjadi ");
+                                NamaWahana(input,W);
+                                printf(".\n");
+                            }
+                            else
+                            {
+                                printf("\nWaktu tidak cukup untuk melakukan aksi tersebut.\n");
+                            }
+                    
+                        }
+                        else
+                        {
+                            printf("\nMaaf, material Anda tidak cukup.\n");
+                        }                
+                    }
+                    else
+                    {
+                        printf("\nMaaf, uang Anda tidak cukup.\n");
+                    }
+                }
+                else
+                {
+                    printf("\nUpgrade tersebut tidak tersedia.\n");
+                }
             }
             else
             {

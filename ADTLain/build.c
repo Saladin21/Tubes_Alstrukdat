@@ -50,58 +50,6 @@ boolean IsWahanaAwal(char *s, daftarwahana W)
     return temu;
 }
 
-boolean IsAdaUpgrade(char *s, daftarwahana W)
-// Menghasilkan true jika wahana s punya upgrade
-{
-    boolean temu = false;
-    int i = 0;
-    int index = IdxWahana(s,W);
-    char nama[50];
-    strcpy(nama,NamaW(W,index));
-    
-    while(!temu && i<NWahana)
-    {
-        if(IsStringSame(nama,AsalW(W,i)))
-        {
-            temu = true;
-        }
-        else
-        {
-            i++;
-        }
-    }
-    return temu;
-}
-
-void PrintDaftarUpgrade(char *s, daftarwahana W, material M)
-// Mencetak pilihan upgrade wahana salah
-{
-    // Algoritma
-    int index = IdxWahana(s,W);
-    char nama[50];
-    strcpy(nama,NamaW(W,index));
-    
-    printf("Berikut adalah daftar upgrade wahana ini.\n");
-    printf("  Kode | Nama Wahana | Biaya | Waktu Build\n");
-    for(int i=0;i<NWahana;i++)
-    {
-        if(IsStringSame(AsalW(W,i),nama))
-        {
-            printf(" - %s | ",IDw(W,i));
-            NamaWahana(IDw(W,i),W);
-            printf(" | %d gold ",MoneyreqW(W,i));
-            
-            // Material requirements
-            for(int j=0;j<NMaterial;j++)
-            {
-                printf("| %d %s ",W.T[i].matreq[j],JenisM(M,j));
-            }
-            
-            // Build time
-            printf("| %d menit | %s",DurasiBW(W,i),DeskripsiW(W,i));
-        }
-    }
-}
 
 /*******************/
 /* FUNGSI UPGRADE */
@@ -165,6 +113,79 @@ boolean IsWahanaNear(int ID, PLAYER P, AllWahana L)
     }
     
     
+    return temu;
+}
+
+boolean IsAdaUpgrade(char *s, daftarwahana W)
+// Menghasilkan true jika wahana s punya upgrade
+{
+    boolean temu = false;
+    int i = 0;
+    int index = IdxWahana(s,W);
+    char nama[50];
+    strcpy(nama,NamaW(W,index));
+    
+    while(!temu && i<NWahana)
+    {
+        if(IsStringSame(nama,AsalW(W,i)))
+        {
+            temu = true;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    return temu;
+}
+
+void PrintDaftarUpgrade(char *s, daftarwahana W, material M)
+// Mencetak pilihan upgrade wahana salah
+{
+    // Algoritma
+    int index = IdxWahana(s,W);
+    char nama[50];
+    strcpy(nama,NamaW(W,index));
+    
+    printf("Berikut adalah daftar upgrade wahana ini.\n");
+    printf("  Kode | Nama Wahana | Biaya | Waktu Build\n");
+    for(int i=0;i<NWahana;i++)
+    {
+        if(IsStringSame(AsalW(W,i),nama))
+        {
+            printf(" - %s | ",IDw(W,i));
+            NamaWahana(IDw(W,i),W);
+            printf(" | %d gold ",MoneyreqW(W,i));
+            
+            // Material requirements
+            for(int j=0;j<NMaterial;j++)
+            {
+                printf("| %d %s ",W.T[i].matreq[j],JenisM(M,j));
+            }
+            
+            // Build time
+            printf("| %d menit | %s",DurasiBW(W,i),DeskripsiW(W,i));
+        }
+    }
+}
+
+boolean IsWahanaUpgrade(char *input,char *asal,daftarwahana W)
+// Menghasilkan true jika input salah satu upgrade-an wahana asal
+{
+    boolean temu = false;
+    int i = 0;
+    
+    while(!temu && i<NWahana)
+    {
+        if(IsStringSame(input,IDw(W,i)) && IsStringSame(asal,AsalW(W,i)))
+        {
+            temu = true;
+        }
+        else
+        {
+            i++;
+        }
+    }
     return temu;
 }
 

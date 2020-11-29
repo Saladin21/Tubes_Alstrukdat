@@ -100,12 +100,6 @@ void PrintDaftarBuild(daftarwahana W, material M);
 boolean IsWahanaAwal(char *s, daftarwahana W);
 // Mengembalikan true jika a adalah nama wahana yang bukan hasil upgrade
 
-boolean IsAdaUpgrade(char *s, daftarwahana W);
-// Menghasilkan true jika wahana s punya upgrade
-
-void PrintDaftarUpgrade(char *s, daftarwahana W, material M);
-// Mencetak pilihan upgrade wahana salah
-
 
 /*******************/
 /* FUNGSI UPGRADE */
@@ -116,7 +110,14 @@ void PrintWahanaSekitar(PLAYER P,daftarwahana W, AllWahana L);
 boolean IsWahanaNear(int ID, PLAYER P, AllWahana L);
 // Mengembalikan true jika wahana ID ada di sebelah P
 
+boolean IsAdaUpgrade(char *s, daftarwahana W);
+// Menghasilkan true jika wahana s punya upgrade
 
+void PrintDaftarUpgrade(char *s, daftarwahana W, material M);
+// Mencetak pilihan upgrade wahana salah
+
+boolean IsWahanaUpgrade(char *input,char *asal,daftarwahana W);
+// Menghasilkan true jika input salah satu upgrade-an wahana asal
 
 /********************/
 /* FUNGSI MATERIAL */
