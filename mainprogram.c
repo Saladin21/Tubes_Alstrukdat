@@ -66,6 +66,8 @@ int main(){
         LoadAllMap(&M1,&M2,&M3,&M4);
         CreatePlayer(&P,M1,3,3); // assign player di x,y = (3,3), ini bebas nanti ganti
         Money(P) = 5000; //Sesuaiin aja uang awalnya berapa
+        scanf("Masukkan nama : %s",&Name(P));
+        scanf("Masukkan jumlah uang : ",&Money(P));
         UbahMap(&P,true);
         cls();
 

@@ -8,7 +8,7 @@
 #include "ADT/mappoint.h"
 
 typedef struct {
-	// Kata NAME;
+	char Name[100];
 	MAP CMap; // current map
 	MAP RealMap; // Ga diubah, untuk EQ(RealMap,M1)
 	POINT POS;
@@ -16,6 +16,7 @@ typedef struct {
 	int money;
 } PLAYER;
 
+#define Name(P) (P).Name
 #define CMap(P) (P).CMap
 #define RealMap(P) (P).RealMap
 #define Posisi(P) (P).POS
