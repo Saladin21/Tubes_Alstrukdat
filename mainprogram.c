@@ -82,6 +82,11 @@ int main(){
         material MAT = LoadMaterial("data/material.txt");
         InfoWahana = LoadWahana("data/wahana.txt");
 
+        PrintMap(M1);
+        PrintMap(M2);
+        PrintMap(M2);
+        PrintMap(M4);
+
         while(!exit){
             Prepare(&A,&TabProses,&L);
             printf("Preparation phase day %d\n", day);
