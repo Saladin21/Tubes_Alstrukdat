@@ -151,8 +151,8 @@ void Prepare(Antrian *A, TabProses *Tab, AllWahana *L)
     //KAMUS LOKAl
     address P;
     //ALGORITMA
-    Head(*A) = NULL;
-    Tail(*A) = NULL;
+    Head(*A) = NilAntrian;
+    Tail(*A) = NilAntrian;
     Tab->NbElmt = 0;
     P = FirstWahana(*L);
     while(P != NULL){

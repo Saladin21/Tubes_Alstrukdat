@@ -174,7 +174,7 @@ boolean EQ (MAP M1, MAP M2)
 	indeks i, j;
 	/*ALGORITMA*/
 	equal = true;
-	if ((GetFirstIdxBrs(M1) != GetFirstIdxBrs(M2)) || (GetLastIdxKol(M1) != GetLastIdxKol(M2)) || (NBElmt(M1) != NBElmt(M2))){
+	if ((GetFirstIdxBrs(M1) != GetFirstIdxBrs(M2)) || (GetLastIdxKol(M1) != GetLastIdxKol(M2)) || (NbElmtMatriks(M1) != NbElmtMatriks(M2))){
 		equal = false;
 	}
 	else{
@@ -195,4 +195,9 @@ boolean EQ (MAP M1, MAP M2)
 		}
 	}
 	return equal;
+}
+
+boolean NbElmtMatriks (MAP M){
+	return NBrsEff(M) * NKolEff(M);
+
 }

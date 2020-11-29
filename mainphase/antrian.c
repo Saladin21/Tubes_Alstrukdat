@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include "antrian.h"
-#include "../ADT/arraypos.h"
 
 daftarwahana InfoWahana;
 
@@ -10,7 +9,7 @@ int SearchLwahana(char IDawal[], Lwahana L){
     int i;
     //ALGORITMA
     for(i=0;i<L.Nb;i++){
-        if (IsStringSame(IDawal, L.Nb)){
+        if (IsStringSame(IDawal, L.TabID[i])){
             return i;
         }
     }
