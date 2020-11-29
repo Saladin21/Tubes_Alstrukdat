@@ -57,6 +57,7 @@ typedef struct
 
 #define JenisM(M,n) (M).T[n].jenis
 #define HargaM(M,n) (M).T[n].harga
+#define JumlahM(M,n) (M).T[n].jumlah
 
 
 // WAHANA.h

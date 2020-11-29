@@ -363,7 +363,7 @@ int CountReqMoney(Stack S, material M, AllWahana L)
 int CountMaterialX(Stack S, material M, int i)
 // Menghitung total material idx i yang dimiliki sekarang, termasuk stack
 {
-    int mat = 0;
+    int mat = M.T[i].jumlah;
     infotype X;
     while(!IsEmptyStack(S))
     {
@@ -469,13 +469,13 @@ void ProsesStack(Stack *S, PLAYER *P, material *M)
         {
             // Jika buy
             Money(*P) -= HargaM(*M,X.kodebarang)*X.jumlah;
-            (*M).T[X.kodebarang].jumlah += X.jumlah;
+            JumlahM(*M,X.kodebarang) += X.jumlah;
         }
         else if(X.kodeaksi==2||X.kodeaksi==3)
         {
             // Jika build atau upgrade
             Money(*P) -= HargaBuild(X.ID,InfoWahana);
-            (*M).T[X.kodebarang].jumlah -= CostMat(X.ID,InfoWahana,X.kodebarang);
+            JumlahM(*M,X.kodebarang) -= CostMat(X.ID,InfoWahana,X.kodebarang);
         }
     }
 }

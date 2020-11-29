@@ -88,10 +88,15 @@ int main(){
         Stack SAksi, STarget;
         CreateEmptyStack(&SAksi); CreateEmptyStack(&STarget);
         material MAT = LoadMaterial("data/material.txt");
+        for(int z=0;z<NMaterial;z++)
+        {
+            MAT.T[z].jumlah = 0;
+        }
         InfoWahana = LoadWahana("data/wahana.txt");
 
         while(!exit){
             Prepare(&A,&TabProses,&L);
+
             printf("Preparation phase day %d\n", day);
             PrintMap(CMap(P));
             PrintStatPlayer(SAksi,J,Buka,Money(P),MAT,L);
