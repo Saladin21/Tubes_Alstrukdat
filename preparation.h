@@ -9,7 +9,7 @@ void buy(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, material M,
 
 void build(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, material M, daftarwahana W, AllWahana *L, PLAYER *Player);
 
-void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwahana W, PLAYER P, AllWahana *L);
+void upgrade(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, material M, daftarwahana W, PLAYER P, AllWahana *L);
 
 /************************/
 /* FUNGSI PROSES STACK */
