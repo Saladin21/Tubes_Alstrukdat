@@ -42,8 +42,8 @@ void SaveMAP(MAP M, char NamaFile[]){
 	fp = fopen(NamaFile, "w");
 	int i = 0; int j = 0;
 
-	for (i=0; i<NBrsEff(M); i++){
-		for(j=0; j<NKolEff(M); j++){
+	for (i=0; i<NBrsEff(M)+1; i++){
+		for(j=0; j<NKolEff(M)+1; j++){
 			fprintf(fp, "%c", Elmt(M,i,j));
 		}
 		fprintf(fp, "\n");
