@@ -47,7 +47,7 @@ void CreateEmptyStack (Stack *S);
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
 boolean IsEmptyStack (Stack S);
 /* Mengirim true jika Stack kosong: lihat definisi di atas */
-boolean IsFull (Stack S);
+boolean IsFullStack (Stack S);
 /* Mengirim true jika tabel penampung NilStackai elemen stack penuh */
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
