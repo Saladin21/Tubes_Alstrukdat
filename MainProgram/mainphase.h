@@ -1,11 +1,11 @@
 #ifndef MAINPHASE_H
 #define MAINPHASE_H
 
-#include "../ADT/boolean.h"
-#include "../ADT/jam.h"
-#include "antrian.h"
-#include "proses.h"
-#include "../ADT/build.h"
+#include "../ADTLain/boolean.h"
+#include "../Jam/jam.h"
+#include "../Queue/antrian.h"
+#include "../ADTLain/proses.h"
+#include "../ADTLain/build.h"
 #include<time.h>
 
 

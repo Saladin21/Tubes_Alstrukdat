@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "ADT/build.h"
-#include "ADT/stackt.h"
-#include "ADT/jam.h"
+#include "../ADTLain/build.h"
+#include "../Stack/stackt.h"
+#include "../Jam/jam.h"
 #include <string.h>
 #include "map.h"
 

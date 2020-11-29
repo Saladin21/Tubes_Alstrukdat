@@ -6,9 +6,9 @@
 #ifndef Antrian_H
 #define Antrian_H
 
-#include "../ADT/boolean.h"
+#include "../ADTLain/boolean.h"
 //#include "../ADT/arraypos.h"
-#include "../ADT/build.h"
+#include "../ADTLain/build.h"
 
 
 #define NilAntrian -1

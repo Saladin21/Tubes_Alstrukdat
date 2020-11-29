@@ -6,9 +6,9 @@
 #define NMaterial 2  // Jumlah material yang ada dalam game
 #define NWahana 9 // Jumlah wahana yang ada dalam game
 #include "boolean.h"
-#include "../mapplayer.h"
+#include "../MainProgram/mapplayer.h"
 #include <string.h>
-#include "../listupgrade.h"
+#include "../List/listupgrade.h"
 
 
 typedef struct

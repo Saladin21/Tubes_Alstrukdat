@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include "antrian.h"
 
-#include "../globalvariable.h"
+#include "../MainProgram/globalvariable.h"
 
 int SearchLwahana(char IDawal[], Lwahana L){
     //Kamus LOKAL

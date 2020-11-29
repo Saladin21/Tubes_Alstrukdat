@@ -1,7 +1,7 @@
 #include "listupgrade.h"
-#include "ADT/build.h"
+#include "../ADTLain/build.h"
 
-#include "globalvariable.h"
+#include "../MainProgram/globalvariable.h"
 
 boolean IsEmptyUpgrade (ListUpgrade L)
 /* Mengirim true jika list kosong */

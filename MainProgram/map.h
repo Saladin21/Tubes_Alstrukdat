@@ -4,9 +4,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "ADT/mapmatriks.h"
+#include "../Matriks/mapmatriks.h"
 #include "mapplayer.h"
-#include "ADT/mappoint.h"
+#include "../Point/mappoint.h"
 #define MAX_FILE_NAME 100
 
 void cls(void);

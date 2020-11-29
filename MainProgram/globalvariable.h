@@ -1,7 +1,7 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
-#include "ADT/build.h"
+#include "../ADTLain/build.h"
 
 extern daftarwahana InfoWahana;
 extern MAP M1;

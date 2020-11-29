@@ -1,7 +1,8 @@
 #include "build.h"
-#include "../map.h"
+#include "../MainProgram/map.h"
 #include <stdio.h>
-#include "../globalvariable.h"
+#include "../MainProgram/globalvariable.h"
+
 /*****************/
 /* FUNGSI BUILD */
 /***************/

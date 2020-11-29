@@ -1,7 +1,7 @@
 #ifndef PROSES_H
 #define PROSES_H
 
-#include "antrian.h"
+#include "../Queue/antrian.h"
 #include <stdlib.h>
 #include<stdio.h>
 

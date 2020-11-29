@@ -1,7 +1,7 @@
 #include "mainphase.h"
-#include "../parser.h"
+#include "../MesinKarakter_MesinKata/parser.h"
 
-#include "../globalvariable.h"
+#include "globalvariable.h"
 
 void Serve (Antrian *A, AllWahana *L, JAM *T, int *money, TabProses *Tab)
 //I.S. Pemain berada di sebelah antrian

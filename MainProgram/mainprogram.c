@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <time.h>
-#include "parser.h"
+#include "../MesinKarakter_MesinKata/parser.h"
 #include "map.h"
-#include "mainphase/mainphase.h"
+#include "mainphase.h"
 #include "globalvariable.h"
 
 
 #include "preparation.h"
-#include "loadfileexternal.h"
+#include "../ADTLain/loadfileexternal.h"
 /*
 TULIS URUTAN FUNGSI DI PROGRAM UTAMA KAYA APA,
 Dikasih komen ya biar paham
