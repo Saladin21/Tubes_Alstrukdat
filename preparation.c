@@ -165,10 +165,10 @@ void build(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, material 
 }
 
 
-/*
-void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwahana W, PLAYER P, AllWahana *L) // plus lokasi player, Allwahna
+
+void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwahana W, PLAYER P, AllWahana *L)
 {
-    char input[4];
+    char input[10];
     int ID;
     infotype X;
     int currmoney = initialmoney-500; // Belum, ceritanya ambil dari initialmoney-Stack -> buat fungsi?
@@ -178,11 +178,15 @@ void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarw
     if(isWahana(P))
     {
         printf("\nDaftar wahana:\n");
-        PrintWahanaSekitar(P,W,L);  //Belum
+        // PrintWahanaSekitar(P,W,L);  //Belum
         printf("\nMasukkan ID wahana yang ingin Anda upgrade:\n > ");
-        if(scanf("%d",&ID)==1 && IsWahanaNear(ID,P,*L))
+        fgets(input, sizeof(input), stdin);
+        input[strlen(input)-2] = '\0';
+        ID = atoi(input);
+        if(ID>0 && IsWahanaNear(ID,P,*L))
         {
             // Jika ID ada dan di sebelah P
+            printf("Wahana ditemukan\n");
             
         }
         else
@@ -195,7 +199,7 @@ void upgrade(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarw
         printf("\nTidak ada wahana di sekitar Anda.\n");
     }
     
-}*/
+}
 
 /************************/
 /* FUNGSI PROSES STACK */
