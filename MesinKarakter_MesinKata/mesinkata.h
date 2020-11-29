@@ -4,7 +4,7 @@
 #ifndef __MESINKATA_H__
 #define __MESINKATA_H__
 
-#include "boolean.h"
+#include "../ADTLain/boolean.h"
 #include "mesinkar.h"
 
 #define NMax 50

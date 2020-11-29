@@ -7,7 +7,7 @@
 #define _BINTREE_H_
 
 /* Modul lain yang digunakan : */
-#include "boolean.h"
+#include "../ADTLain/boolean.h"
 
 #define NilTree NULL
 

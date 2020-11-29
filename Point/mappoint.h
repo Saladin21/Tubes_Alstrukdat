@@ -5,7 +5,7 @@
 #ifndef POINT_H
 #define POINT_H
 
-#include "boolean.h"
+#include "../ADTLain/boolean.h"
 
 typedef struct {
 	int X; /* absis   */

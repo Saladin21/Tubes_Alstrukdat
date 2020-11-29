@@ -103,7 +103,7 @@ boolean IsWahanaAwal(char *s, daftarwahana W);
 boolean IsAdaUpgrade(char *s, daftarwahana W);
 // Menghasilkan true jika wahana s punya upgrade
 
-void PrintDaftarUpgrade(char *s, daftarwahana W)
+void PrintDaftarUpgrade(char *s, daftarwahana W);
 // Mencetak pilihan upgrade wahana salah
 
 

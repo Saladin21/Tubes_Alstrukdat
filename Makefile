@@ -1,2 +1,2 @@
-main : mainprogram.c listupgrade.c loadfileexternal.c map.c mapplayer.c parser.c preparation.c mainphase/antrian.c mainphase/mainphase.c mainphase/proses.c  ADT/build.c ADT/jam.c ADT/mapmatriks.c ADT/mappoint.c ADT/stackt.c
-	gcc mainprogram.c listupgrade.c loadfileexternal.c map.c parser.c preparation.c mainphase/antrian.c mainphase/mainphase.c mainphase/proses.c ADT/build.c ADT/jam.c ADT/stackt.c -o main -lm
+main : MainProgram/mainprogram.c List/listupgrade.c ADTLain/loadfileexternal.c MainProgram/map.c MesinKarakter_MesinKata/parser.c MainProgram/preparation.c Queue/antrian.c MainProgram/mainphase.c ADTLain/proses.c ADTLain/build.c Jam/jam.c Stack/stackt.c
+	gcc MainProgram/mainprogram.c List/listupgrade.c ADTLain/loadfileexternal.c MainProgram/map.c MesinKarakter_MesinKata/parser.c MainProgram/preparation.c Queue/antrian.c MainProgram/mainphase.c ADTLain/proses.c ADTLain/build.c Jam/jam.c Stack/stackt.c -o main -lm

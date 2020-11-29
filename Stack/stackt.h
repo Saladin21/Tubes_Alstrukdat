@@ -5,7 +5,7 @@
 #ifndef stackt_H
 #define stackt_H
 
-#include "boolean.h"
+#include "../ADTLain/boolean.h"
 
 #define NilStack -1
 #define MaxElStack 50
