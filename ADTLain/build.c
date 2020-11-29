@@ -531,7 +531,7 @@ void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L, PLAYER *Playe
     int ID;
     address P;
     Wahana w;
-    MAP Mout;
+    MAP *Mout;
     //ALGORITMA
     ID = NbElmtWahana(*L)+1;
     P = FirstWahana(*L);
@@ -545,19 +545,19 @@ void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L, PLAYER *Playe
     InsVLast(L, w);
 
     if (map==1){
-        Mout =M1;
+        Mout = &M1;
     }
     else if (map==2){
-        Mout = M2;
+        Mout = &M2;
     }
     else if (map==3){
-        Mout = M3;
+        Mout = &M3;
     }
     else if (map==4){
-        Mout = M4;
+        Mout = &M4;
     }
 
-    UbahMapAddWahana(Player, &Mout, lokasi, true);
+    UbahMapAddWahana(Player, Mout, lokasi, true);
 }
 
 void RemoveLastWahana(AllWahana *L, PLAYER *P)

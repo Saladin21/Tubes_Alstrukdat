@@ -72,18 +72,23 @@ int main(){
         srand(time(0)); //Set random seed
 
         Buka = MakeJAM(9,0);
-        J = MakeJAM(21,0);
+        J = MakeJAM(12,0);
         Tutup = MakeJAM(21,0);
 
         LoadAllMap(&M1,&M2,&M3,&M4);
         CreatePlayer(&P,M1,3,3); // assign player di x,y = (3,3), ini bebas nanti ganti
         Money(P) = 5000; //Sesuaiin aja uang awalnya berapa
-        //scanf("Masukkan nama : %s",&Name(P));
-        //scanf("Masukkan jumlah uang : ",&Money(P));
+        
+
+        // scanf("Masukkan jumlah uang : ",&Money(P));
         UbahMap(&P,true);
         cls();
 
         printf("Memulai permainan baru......\n");
+        printf("Masukkan username: ");
+        char input2[50];
+        fgets(input2, sizeof(input2), stdin);
+        input2[strlen(input2)-2] = '\0';
         
         Stack SAksi, STarget;
         CreateEmptyStack(&SAksi); CreateEmptyStack(&STarget);
@@ -144,6 +149,7 @@ int main(){
                 while (JLT(J, Tutup)){
                     printf("\nMain phase day %d\n", day);
                     PrintMap(CMap(P));
+                    
                     PrintStatus(J, Tutup, Money(P), A);
                     printf("Masukan Perintah:\n > ");
                     InputKata(&input);
