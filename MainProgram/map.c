@@ -102,10 +102,10 @@ void LoadMapFromFile(MAP *M, int Kode, char filename[MAX_FILE_NAME]) {
     Kode(*M) = Kode; // ngasih kode map
 }
 void LoadAllMap (MAP *M1,MAP *M2,MAP *M3,MAP *M4) {
-    LoadMapFromFile(M1,1,"map1.txt");
-    LoadMapFromFile(M2,2,"map2.txt");
-    LoadMapFromFile(M3,3,"map3.txt");
-    LoadMapFromFile(M4,4,"map4.txt");
+    LoadMapFromFile(M1,1,"MainProgram/map1.txt");
+    LoadMapFromFile(M2,2,"MainProgram/map2.txt");
+    LoadMapFromFile(M3,3,"MainProgram/map3.txt");
+    LoadMapFromFile(M4,4,"MainProgram/map4.txt");
 }
 // ------------------------------------------- MAP --------------------------------------
 void Legenda() {
