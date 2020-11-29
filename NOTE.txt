@@ -1,4 +1,4 @@
-gcc mainprogram.c listupgrade.c loadfileexternal.c map.c parser.c preparation.c mainphase/antrian.c mainphase/mainphase.c mainphase/proses.c ADT/build.c ADT/jam.c ADT/stackt.c -o main -lm
+gcc mainprogram.c listupgrade.c loadfileexternal.c map.c parser.c preparation.c mainphase/antrian.c mainphase/mainphase.c mainphase/proses.c ADT/build.c ADT/jam.c ADT/stackt.c -o main -lm && ./main
 
 Tulis penjelasan program buatan kalian sedetail mungkin
 AHAN - Map:
