@@ -1,14 +1,15 @@
 #include "preparation.h"
-
-void buy(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, material M)
+MAP M1,M2,M3,M4;
+daftarwahana InfoWahana;
+void buy(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, material M, AllWahana L)
 {
     // Dijalankan setelah command "buy"
     char input[20]; char input2[20];
     int jumlah;
     int totalharga;
-    int currmoney = initialmoney-CountReqMoney(*aksi,M);
+    int currmoney = initialmoney-CountReqMoney(*aksi,M,L);
     int timeremaining = Durasi(initialtime,optime)-CountReqTime(*aksi);
-    int timebeli = 30;                // Waktu beli bahan apapun dan berapapun adalah 30 menit.
+    int timebeli = 30;     // Waktu beli bahan apapun dan berapapun adalah 30 menit.
     infotype X;
     
     printf("\nMaterial apa yang ingin Anda beli?\n");
@@ -66,15 +67,39 @@ void buy(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, material M)
     }
 }
 
-void build(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwahana W)
+void build(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, material M, daftarwahana W, AllWahana *L, PLAYER *Player)
 {
     char input[10];
     infotype X;
     int i = 0;
     boolean matcukup = true;
-    int currmoney = initialmoney-500; // Belum, ceritanya ambil dari initialmoney-Stack -> buat fungsi?
-    int timeremaining = 240;           // Belum, sama kaya yang atas
-    int currmat[NMaterial]; currmat[0] = 100; currmat[1] = 100; // Belum, sama kaya atas
+    int currmoney = initialmoney-CountReqMoney(*aksi,M,*L);
+    int timeremaining = Durasi(initialtime,optime)-CountReqTime(*aksi);
+    int currmat[NMaterial];
+    for(int j=0;j<NMaterial;j++)
+    {
+        currmat[j] = CountMaterialX(*aksi,M,j);
+    }
+    
+    // Cari map player
+    int map;
+    if(EQ(CMap(*Player),M1))
+    {
+        map = 1;
+    }
+    else if(EQ(CMap(*Player),M2))
+    {
+        map = 2;
+    }
+    else if(EQ(CMap(*Player),M3))
+    {
+        map = 3;
+    }
+    else
+    {
+        map = 4;
+    }
+        
     
     PrintDaftarBuild(W,M);
     printf("\nMasukkan kode wahana yang ingin Anda build:\n");
@@ -82,7 +107,7 @@ void build(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwah
     
     // Terima input
     fgets(input, sizeof(input), stdin);
-    input[strlen(input)-1] = '\0';
+    input[strlen(input)-2] = '\0';
     
     if(IsWahanaAwal(input,W))
     {
@@ -107,9 +132,10 @@ void build(Stack *aksi, int initialmoney, JAM initialtime, material M, daftarwah
                     // Bangun wahana
                     X.kodeaksi = 2;
                     X.reqtime = DurasiBuild(input,W);
-                    //X.kodebarang = GenerateIDUnik;   // Ini bikin kode unik baru buat wahana
-                                                       // Addwahana
                     X.jumlah = 0;
+                    strcpy(X.ID,input);
+                    AddWahana(input,Posisi(*Player),map,L,Player);
+                    X.kodebarang = NbElmtWahana(*L);
                 
                     Push(aksi,X);
                     printf("\nAnda berhasil membangun ");
@@ -200,10 +226,11 @@ int CountAksi(Stack S)
     return aksi;
 }
 
-int CountReqMoney(Stack S, material M)
+int CountReqMoney(Stack S, material M, AllWahana L)
 // Mengembalikan total req money waktu aksi stack S
 {
     int money = 0;
+    int kode;
     infotype X;
     while(!IsEmptyStack(S))
     {
@@ -215,6 +242,7 @@ int CountReqMoney(Stack S, material M)
         else if(X.kodeaksi==2)
         {
             // Jika build:
+            money += HargaBuild(X.ID,InfoWahana);
         }
         else
         {
@@ -223,6 +251,8 @@ int CountReqMoney(Stack S, material M)
     }
     return money;
 }
+
+
 
 int CountMaterialX(Stack S, material M, int i)
 // Menghitung total material idx i yang dimiliki sekarang, termasuk stack
@@ -236,11 +266,16 @@ int CountMaterialX(Stack S, material M, int i)
         {
             mat += X.jumlah;
         }
+        else if(X.kodeaksi==2)
+        {
+            // Jika build:
+            mat -= CostMat(X.ID,InfoWahana,i);
+        }
     }
     return mat;
 }
 
-void PrintStatPlayer(Stack S,JAM inittime,JAM optime,int initmoney, material MAT)
+void PrintStatPlayer(Stack S,JAM inittime,JAM optime,int initmoney, material MAT, AllWahana L)
 // Mencetak info seperti gold, waktu, dll.
 {
     printf("Gold          : %d\n",initmoney);
@@ -249,7 +284,7 @@ void PrintStatPlayer(Stack S,JAM inittime,JAM optime,int initmoney, material MAT
     printf("\nTime Remaining: %ld jam %ld menit", Durasi(inittime,optime)/60,Durasi(inittime,optime)%60);
     printf("\nTotal aksi yang akan dilakukan: %d",CountAksi(S));
     printf("\nTotal waktu yang dibutuhkan   : %d jam %d menit",CountReqTime(S)/60,CountReqTime(S)%60);
-    printf("\nTotal uang yang dibutuhkan    : %d gold",CountReqMoney(S,MAT));
+    printf("\nTotal uang yang dibutuhkan    : %d gold",CountReqMoney(S,MAT,L));
     printf("\nTotal material yang dimiliki  : ");
     for(int i=0;i<NMaterial;i++)
     {
@@ -259,12 +294,24 @@ void PrintStatPlayer(Stack S,JAM inittime,JAM optime,int initmoney, material MAT
         
 }
 
-void UndoAksi(Stack *S)
+void UndoAksi(Stack *S, AllWahana *L)
 // Melakukan Undo sebuah aksi
 {
     infotype X;
-    Pop(S,&X);
-    printf("\nAnda berhasil melakukan Undo.\n");
+    Wahana Y;
+    if(!IsEmptyStack(*S))
+    {
+        Pop(S,&X);
+        if(X.kodeaksi==2)
+        {
+            DelVLast(L,&Y);
+        }
+        printf("\nAnda berhasil melakukan Undo.\n");
+    }
+    else
+    {
+        printf("\nTidak ada aksi untuk di-undo.\n");
+    }
 }
 
 /*

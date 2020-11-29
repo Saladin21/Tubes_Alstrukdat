@@ -154,6 +154,9 @@ int HargaTiket(char IDAwal[], daftarwahana W);
 int HargaBuild(char IDAwal[], daftarwahana W);
 // Mengembalikan harga build wahana dengan ID IDAwal
 
+int CostMat(char IDAwal[], daftarwahana W, int j);
+// Mengembalikan cost material j wahana dengan ID IDAwal
+
 int IdxWahana(char IDAwal[], daftarwahana W);
 // Mengembalikan index wahana dengan ID IDAwal
 

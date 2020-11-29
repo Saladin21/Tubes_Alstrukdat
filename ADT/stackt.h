@@ -16,6 +16,7 @@ typedef struct{
     int kodebarang;    // Kode untuk material atau ID akhir wahana
     int jumlah;        // Jumlah (untuk material)
     int reqtime;       // Waktu yang dibutuhkan untuk aksi dalam menit
+    char ID[4];        // Kode wahana
 } infotype;
 typedef int addressStack;   /* indeks tabel */
 

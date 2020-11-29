@@ -309,6 +309,29 @@ int HargaBuild(char IDAwal[], daftarwahana W)
     return MoneyreqW(W,i);
 }
 
+int CostMat(char IDAwal[], daftarwahana W, int j)
+// Mengembalikan cost material j wahana dengan ID IDAwal
+{
+    // Kamus Lokal
+    boolean found = false;
+    int i = 0;
+    
+    // Algoritma
+    while(!found)
+    {
+        if(IsStringSame(IDAwal,IDw(W,i)))
+        {
+            found = true;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    
+    return MaterialW(W,i,j);
+}
+
 int IdxWahana(char IDAwal[], daftarwahana W)
 // Mengembalikan index wahana dengan ID IDAwal
 {

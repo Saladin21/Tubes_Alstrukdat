@@ -56,9 +56,9 @@ void LoadMapFromFile(MAP *M, int Kode, char filename[MAX_FILE_NAME]) {
     char c;
     int jmlEl = 0; int brs = 1;
     for (c = getc(fp); c != EOF; c = getc(fp)) {
-        if (c != '\n')
+        if (c != '\n' && c != '\r')
             jmlEl++;
-        if (c == '\n')
+        if (c == '\n' || c != '\r')
             brs++;
     }
     fclose(fp);
@@ -71,7 +71,7 @@ void LoadMapFromFile(MAP *M, int Kode, char filename[MAX_FILE_NAME]) {
 
     int i = 0;
     while ((c1 = fgetc(fp1))!=EOF) {
-        if (c1 != '\n') {
+        if (c1 != '\n' && c != '\r') {
             temp[i] = c1;
             i++;
         }
@@ -124,7 +124,7 @@ void UbahMapAddWahana(PLAYER *P,MAP *Mout, POINT point_wahana) {
     XYtoIJ(Absis(point_wahana),Ordinat(point_wahana),&i,&j,NBrsEff(CMap(*P)));
     Elmt(CMap(*P),i,j) = 'W';
     Elmt(RealMap(*P),i,j) = 'W';
-
+    CGedung(*P) = 'W';
     // copy Realmap ke Mout
     CopyMAP(RealMap(*P),Mout);
 }
