@@ -2,7 +2,6 @@
 #define listupgrade_H
 
 #include "ADT/boolean.h"
-#include "ADT/build.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -12,9 +11,14 @@ typedef struct tElmtlistUpgrade {
 	char IDawal[4];
 	addrupgrade next;
 } ElmtListUpgrade;
+
 typedef struct {
 	addrupgrade First;
 } ListUpgrade;
+
+
+
+
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
@@ -32,7 +36,7 @@ addrupgrade Alokupgrade (char X[]);
 /* Jika alokasi berhasil, maka address tidak nil, dan misalnya */
 /* menghasilkan P, maka Info(P)=X, Next(P)=Nil */
 /* Jika alokasi gagal, mengirimkan Nil */
-void Dealokupgrade (addrupgrade *P);
+void Dealokupgrade (addrupgrade P);
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian address P */

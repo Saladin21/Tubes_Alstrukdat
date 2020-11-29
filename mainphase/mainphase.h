@@ -35,7 +35,7 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L);
 //Memajukan jam sebanyak durasi detik, memproses pengunjung yang berada dalam proses,
 //mengembalikan pengunjung yang sudah selesai di proses ke antrian
 
-int random(int lower, int upper);
+int randomGenerator(int lower, int upper);
 //Menghasilkan integer random X, lower <= X <= upper
 
 void PrintStatus(JAM J, JAM Tutup, int money, Antrian A);

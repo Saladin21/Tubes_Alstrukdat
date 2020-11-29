@@ -57,7 +57,7 @@ int main(){
         TabProses TabProses;
         MakeTabProses(&TabProses);
         AllWahana L;
-        CreateEmpty(&L);
+        CreateEmptyWahana(&L);
 
         srand(time(0)); //Set random seed
 

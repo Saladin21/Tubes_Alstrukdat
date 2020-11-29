@@ -39,7 +39,7 @@ boolean IsEmptyAntrian (Antrian Q)
     /*KAMUS LOKAL*/
 
     /*ALGORITMA*/
-    return Head(Q) == Nil && Tail(Q)==Nil;
+    return Head(Q) == NilAntrian && Tail(Q)==NilAntrian;
 }
 boolean IsFullAntrian (Antrian Q)
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
@@ -67,7 +67,7 @@ int NBElmtAntrian (Antrian Q)
             i++;
         }
     }
-    if (Tail(Q) != Nil){
+    if (Tail(Q) != NilAntrian){
         count++;
     }
     return count;
@@ -97,8 +97,8 @@ void MakeEmptyAntrian (Antrian * Q, int Max)
     /*ALGORITMA*/
     (*Q).T = (pengunjung*) malloc ((Max) * sizeof(pengunjung));
     if ((*Q).T != NULL){
-        Head(*Q) = Nil;
-        Tail(*Q) = Nil;
+        Head(*Q) = NilAntrian;
+        Tail(*Q) = NilAntrian;
         MaxEl(*Q) = Max;
     }else{
         MaxEl(*Q) = 0;
@@ -134,7 +134,7 @@ void Enqueue (Antrian * Q, pengunjung X)
     if(IsEmptyAntrian(*Q)){
         Head(*Q) = 0;
         Tail(*Q) = 0;
-        Elmt(*Q,0) = X;
+        ElmtAntrian(*Q,0) = X;
     }
     else{
         i = (Tail(*Q) + 1);
@@ -142,22 +142,22 @@ void Enqueue (Antrian * Q, pengunjung X)
             i = i % MaxEl(*Q);
         }
         Tail(*Q) = i;
-        Elmt(*Q, i) = X;
+        ElmtAntrian(*Q, i) = X;
 
         j = Tail(*Q);
         k = (j-1 + MaxEl(*Q)) % MaxEl(*Q);
-        if (Prio(Elmt(*Q, j))<Prio(Elmt(*Q, k))){
+        if (Prio(ElmtAntrian(*Q, j))<Prio(ElmtAntrian(*Q, k))){
             tukar = true;
         }
 
         while (j != Head(*Q) && tukar){
-            if (Prio(Elmt(*Q, k))<=Prio(Elmt(*Q, j))){
+            if (Prio(ElmtAntrian(*Q, k))<=Prio(ElmtAntrian(*Q, j))){
                 tukar = false;
             }
             else{
-                temp = Elmt(*Q, j);
-                Elmt(*Q, j) = Elmt(*Q, k);
-                Elmt(*Q, k) = temp;
+                temp = ElmtAntrian(*Q, j);
+                ElmtAntrian(*Q, j) = ElmtAntrian(*Q, k);
+                ElmtAntrian(*Q, k) = temp;
 
                 j = (j-1 + MaxEl(*Q)) % MaxEl(*Q);
                 k = (j-1 + MaxEl(*Q)) % MaxEl(*Q);
@@ -170,7 +170,7 @@ void Enqueue (Antrian * Q, pengunjung X)
 void Dequeue (Antrian * Q, pengunjung * X)
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
-/* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
+/* F.S. X = NilAntrianai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
         Q mungkin kosong */
 {
     /*KAMUS LOKAL*/
@@ -178,8 +178,8 @@ void Dequeue (Antrian * Q, pengunjung * X)
     /*ALGORITMA*/
     *X = InfoHead(*Q);
     if (NBElmtAntrian(*Q)==1){
-        Head(*Q) = Nil;
-        Tail(*Q) = Nil;
+        Head(*Q) = NilAntrian;
+        Tail(*Q) = NilAntrian;
     }
     else{
         i = (Head(*Q) + 1);
@@ -216,14 +216,14 @@ void PrintAntrian (Antrian Q)
             if(i==Tail(Q)){
                 tail = true;
             }
-            Lwahana = Elmt(Q,i).info;
+            Lwahana = ElmtAntrian(Q,i).info;
             for (j=0;j<Lwahana.Nb;j++){
                 NamaWahana(Lwahana.TabID[i], InfoWahana);
                 printf(", ");
             }
 
-            printf("Prioritas: %d, ", Prio(Elmt(Q,i)));
-            printf("Kesabaran: %d\n", Elmt(Q,i).kesabaran);
+            printf("Prioritas: %d, ", Prio(ElmtAntrian(Q,i)));
+            printf("Kesabaran: %d\n", ElmtAntrian(Q,i).kesabaran);
             i++;
         }
     }

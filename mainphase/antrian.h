@@ -7,11 +7,11 @@
 #define Antrian_H
 
 #include "../ADT/boolean.h"
-//#include "../ADT/arraypos.h"
+
 #include "../ADT/build.h"
 
 
-#define Nil -1
+#define NilAntrian -1
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 typedef struct {
     char TabID[3][4];
@@ -26,7 +26,7 @@ void DelLwahana(Lwahana *L, int index);
 
 /* Definisi elemen dan address */
 typedef struct {
-    int prio;  /* [1..100], prioritas dengan nilai 1..100 (1 adalah prioritas tertinggi) */
+    int prio;  /* [1..100], prioritas dengan NilAntrianai 1..100 (1 adalah prioritas tertinggi) */
     Lwahana info;  //Tabel berisi ID wahana yang ingin dinaiki
     int kesabaran;
     int current; //berisi ID wahana yang sedang dinaiki, atau -1 jika berada dalam antrian
@@ -40,7 +40,7 @@ typedef struct {
     int TAIL;  /* alamat penambahan */
     int MaxEl;     /* Max elemen queue */
 } Antrian;
-/* Definisi Antrian kosong: HEAD=Nil; TAIL=Nil. */
+/* Definisi Antrian kosong: HEAD=NilAntrian; TAIL=NilAntrian. */
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika e adalah pengunjung dan Q adalah Antrian, maka akses elemen : */
@@ -51,7 +51,7 @@ typedef struct {
 #define InfoHead(Q) (Q).T[(Q).HEAD]
 #define InfoTail(Q) (Q).T[(Q).TAIL]
 #define MaxEl(Q)    (Q).MaxEl
-#define Elmt(Q,i)   (Q).T[(i)]
+#define ElmtAntrian(Q,i)   (Q).T[(i)]
 
 /* ********* Prototype ********* */
 boolean IsAntrianEmpty (Antrian Q);
@@ -87,7 +87,7 @@ void Enqueue (Antrian * Q, pengunjung X);
 void Dequeue (Antrian * Q, pengunjung * X);
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
-/* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
+/* F.S. X = NilAntrianai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
         Q mungkin kosong */
 
 /* Operasi Tambahan */

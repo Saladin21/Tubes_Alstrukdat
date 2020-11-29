@@ -1,4 +1,5 @@
 #include "wahana.h"
+#include "ADT/build.h"
 
 daftarwahana InfoWahana;
 
@@ -35,7 +36,7 @@ boolean IsWahanaFull (Wahana W)
     //KAMUS LOKAL
 
     //ALGORITMA
-    return W.NbPengunjung == Kapasitas(W.IDawal);
+    return W.NbPengunjung == KapasitasWahana(W.IDawal, InfoWahana);
 }
 
 void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L)
@@ -57,7 +58,7 @@ void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L)
     ID = 1;
     P = FirstWahana(*L);
 
-    while (P != Nil){
+    while (P != NilWahana){
         if (InfoWahana(P).ID > ID){
             ID = InfoWahana(P).ID +1 ;
         }
@@ -71,41 +72,41 @@ void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L)
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
-boolean IsEmpty (AllWahana L)
+boolean IsEmptyWahana (AllWahana L)
 /* Mengirim true jika  kosong */
 {
     //KAMUS LOKAL
 
     //ALGORITMA
-    return FirstWahana(L) == Nil;
+    return FirstWahana(L) == NilWahana;
 }
 
 /****************** PEMBUATAN LIST KOSONG ******************/
-void CreateEmpty (AllWahana *L)
+void CreateEmptyWahana (AllWahana *L)
 /* I.S. sembarang             */
 /* F.S. Terbentuk AllWahana kosong */
 {
     //KAMUS LOKAL
 
     //ALGORITMA
-    FirstWahana(*L) = Nil;
+    FirstWahana(*L) = NilWahana;
 }
 
 /****************** Manajemen Memori ******************/
 address AlokWahana (Wahana X)
 /* Mengirimkan address hasil alokasi sebuah elemen */
-/* Jika alokasi berhasil, maka address tidak nil, dan misalnya */
-/* menghasilkan P, maka info(P)=X, Next(P)=Nil */
-/* Jika alokasi gagal, mengirimkan Nil */
+/* Jika alokasi berhasil, maka address tidak NilWahana, dan misalnya */
+/* menghasilkan P, maka info(P)=X, NextWahana(P)=NilWahana */
+/* Jika alokasi gagal, mengirimkan NilWahana */
 {
     /*KAMUS LOKAL*/
     address P;
     /*ALGORITMA*/
     P = (address) malloc(sizeof(ElmtList));
 
-    if (P != Nil){
+    if (P != NilWahana){
         InfoWahana(P) = X;
-        NextWahana(P) = Nil;
+        NextWahana(P) = NilWahana;
     }
 
     return P;
@@ -127,7 +128,7 @@ void DealokWahana (address P)
 address SearchWahana (AllWahana L, int ID)
 /* Mencari apakah ada elemen list dengan ID */
 /* Jika ada, mengirimkan address elemen tersebut. */
-/* Jika tidak ada, mengirimkan Nil */
+/* Jika tidak ada, mengirimkan NilWahana */
 {
     /*KAMUS LOKAL*/
     address P;
@@ -135,19 +136,19 @@ address SearchWahana (AllWahana L, int ID)
     /*ALGORITMA*/
     P = FirstWahana(L);
     found = false;
-    while(P != Nil && !found){
+    while(P != NilWahana && !found){
         if (InfoWahana(P).ID==ID){
             found = true;
         }
         else{
-            P = Next(P);
+            P = NextWahana(P);
         }
     }
     if (found){
         return P;
     }
     else{
-        return Nil;
+        return NilWahana;
     }
     
 }
@@ -158,11 +159,11 @@ boolean FSearchWahana (AllWahana L, int ID)
     //KAMUS LOKAL
 
     //ALGORITMA
-    return SearchWahana(L, ID) != Nil;
+    return SearchWahana(L, ID) != NilWahana;
 }
 address SearchWahanaKosong (AllWahana L, char IDAwal[])
 //Mengembalikan address wahana dengan IDAwal yang pertama tidak penuh
-//Jika tidak ada mengembalikan nil
+//Jika tidak ada mengembalikan NilWahana
 {
     /*KAMUS LOKAL*/
     address P;
@@ -170,32 +171,32 @@ address SearchWahanaKosong (AllWahana L, char IDAwal[])
     /*ALGORITMA*/
     P = FirstWahana(L);
     found = false;
-    while(P != Nil && !found){
+    while(P != NilWahana && !found){
         if (IsStringSame(InfoWahana(P).IDawal, IDAwal)){
             if(!IsWahanaFull(InfoWahana(P)) && InfoWahana(P).status == 1 ){
                 found = true;
             }
         }
         else{
-            P = Next(P);
+            P = NextWahana(P);
         }
     }
     if (found){
         return P;
     }
     else{
-        return Nil;
+        return NilWahana;
     }
     
 }
 
 
-/****************** PRIMITIF BERDASARKAN NILAI ******************/
+/****************** PRIMITIF BERDASARKAN NilWahanaAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
 void InsVFirst (AllWahana *L, Wahana X)
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
-/* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
+/* menambahkan elemen pertama dengan NilWahanaai X jika alokasi berhasil */
 {
     //KAMUS LOKAL
 
@@ -206,7 +207,7 @@ void InsVLast (AllWahana *L, Wahana X)
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
-/* bernilai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
+/* berNilWahanaai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 {
     //KAMUS LOKAL
 
@@ -217,20 +218,20 @@ void InsVLast (AllWahana *L, Wahana X)
 /*** PENGHAPUSAN ELEMEN ***/
 void DelVFirst (AllWahana *L, Wahana *X)
 /* I.S. List L tidak kosong  */
-/* F.S. Elemen pertama list dihapus: nilai info disimpan pada X */
-/*      dan alamat elemen pertama di-dealokasi */
+/* F.S. Elemen pertama list dihapus: NilWahanaai info disimpan pada X */
+/*      dan alamat elemen pertama di-DealokWahana */
 {
     /*KAMUS LOKAL*/
     address P;
     /*ALGORITMA*/
     DelFirst(L, &P);
     *X = InfoWahana(P);
-    Dealokasi(P);
+    DealokWahana(P);
     
 }
 void DelVLast (AllWahana *L, Wahana *X)
 /* I.S. list tidak kosong */
-/* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
+/* F.S. Elemen terakhir list dihapus: NilWahanaai info disimpan pada X */
 /*      dan alamat elemen terakhir di-dealokasi */
 {
     /*KAMUS LOKAL*/
@@ -238,7 +239,7 @@ void DelVLast (AllWahana *L, Wahana *X)
     /*ALGORITMA*/
     DelLast(L, &P);
     *X = InfoWahana(P);
-    Dealokasi(P);
+    DealokWahana(P);
     
 }
 
@@ -273,13 +274,13 @@ void InsertLast (AllWahana *L, address P)
     /*KAMUS LOKAL*/
     address P1;
     /*ALGORITMA*/
-    if (FirstWahana(*L)==Nil){
+    if (FirstWahana(*L)==NilWahana){
         FirstWahana(*L) = P;
     }
         else{
         P1 = FirstWahana(*L);
 
-        while (NextWahana(P1) != Nil){
+        while (NextWahana(P1) != NilWahana){
             P1 = NextWahana(P1);
         }
 
@@ -300,7 +301,7 @@ void DelFirst (AllWahana *L, address *P)
     //ALGORITMA
     *P = FirstWahana(*L);
     FirstWahana(*L) = NextWahana(*P);
-    NextWahana(*P)= Nil;
+    NextWahana(*P)= NilWahana;
 }
 void DelP (AllWahana *L, int ID)
 /* I.S. Sembarang */
@@ -312,17 +313,17 @@ void DelP (AllWahana *L, int ID)
      /*KAMUS LOKAL*/
     address P, prec;
     /*ALGORITMA*/
-    prec = Nil;
+    prec = NilWahana;
     P = FirstWahana(*L);
 
-    if (P != Nil){
-        while (InfoWahana(P).ID != ID && NextWahana(P) != Nil){
+    if (P != NilWahana){
+        while (InfoWahana(P).ID != ID && NextWahana(P) != NilWahana){
             prec = P;
             P = NextWahana(P);
         }
 
         if ( InfoWahana(P).ID == ID){
-            if (prec == Nil){
+            if (prec == NilWahana){
                 FirstWahana(*L) = NextWahana(P);
             }
             else{
@@ -344,27 +345,27 @@ void DelLast (AllWahana *L, address *P)
     /*KAMUS LOKAL*/
     address p1, prec;
     /*ALGORITMA*/
-    prec = Nil;
+    prec = NilWahana;
     p1 = FirstWahana(*L);
     
-    while (NextWahana(p1) != Nil){
+    while (NextWahana(p1) != NilWahana){
         prec = p1;
         p1 = NextWahana(p1);
     }
 
     *P = p1;
 
-    if (prec != Nil){    
-        NextWahana(prec) = Nil;
+    if (prec != NilWahana){    
+        NextWahana(prec) = NilWahana;
     }
     else{
-        FirstWahana(*L) = Nil;
+        FirstWahana(*L) = NilWahana;
     }
     
 }
 void DelAfter (AllWahana *L, address *Pdel, address Prec)
 /* I.S. List tidak kosong. Prec adalah anggota list  */
-/* F.S. Menghapus Next(Prec): */
+/* F.S. Menghapus NextWahana(Prec): */
 /*      Pdel adalah alamat elemen list yang dihapus  */
 {
     //KAMUS LOKAL
@@ -372,14 +373,14 @@ void DelAfter (AllWahana *L, address *Pdel, address Prec)
     //ALGORITMA
     *Pdel = NextWahana(Prec);
     NextWahana(Prec) = NextWahana(*Pdel);
-    NextWahana(*Pdel) = Nil;
+    NextWahana(*Pdel) = NilWahana;
 }
 
 /****************** PROSES SEMUA ELEMEN LIST ******************/
 void PrintAllWahana (AllWahana L)
 /* I.S. List mungkin kosong */
 /* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
-/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
+/* Contoh : jika ada tiga elemen berNilWahanaai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika list kosong : menulis [] */
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
 {
@@ -388,8 +389,8 @@ void PrintAllWahana (AllWahana L)
     /*ALGORITMA*/
     
     P = FirstWahana(L);
-    if (P != Nil){
-        while(P != Nil){
+    if (P != NilWahana){
+        while(P != NilWahana){
             printf("%d ", InfoWahana(P).ID);
             NamaWahana(InfoWahana(P).IDawal, InfoWahana);
             printf("\n");
@@ -432,7 +433,7 @@ int NbElmtWahana (AllWahana L)
     count = 0;
     P = FirstWahana(L);
 
-    while(P != Nil){
+    while(P != NilWahana){
         count++;
         P = NextWahana(P);
     }

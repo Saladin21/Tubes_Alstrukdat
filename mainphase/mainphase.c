@@ -32,7 +32,7 @@ void Serve (Antrian *A, AllWahana *L, JAM *T, int *money, TabProses *Tab)
         
         a1 = SearchWahanaKosong(*L, X.info.TabID[a]);
 
-        if (a1 != Nil){
+        if (a1 != NULL){
             InfoWahana(a1).NbPengunjung ++; //Update jumlah pengunjung dalam wahana
             InfoWahana(a1).dayride ++;
             InfoWahana(a1).liferide ++;
@@ -41,7 +41,7 @@ void Serve (Antrian *A, AllWahana *L, JAM *T, int *money, TabProses *Tab)
 
             Dequeue(A, &X); //Mengeluarkan dari antrian
             
-            DelLwahana(&X.info.TabID, a); //Menghapus wahana dari list pengunjung
+            DelLwahana(&X.info, a); //Menghapus wahana dari list pengunjung
 
             //masuk ke proses
             X.current = InfoWahana(a1).ID;
@@ -73,9 +73,9 @@ void repair (POINT Player, int map, JAM *J, TabProses *Tab, Antrian *A, AllWahan
     //ALGORITMA
     count =0;
     
-    P = First(*L);
+    P = FirstWahana(*L);
 
-    while(P != Nil){
+    while(P != NULL){
         w = InfoWahana(P);
         if(w.map == map && Panjang(Player, w.lokasi) == 1 && w.status==-1){
             w.status = 1;
@@ -151,11 +151,11 @@ void Prepare(Antrian *A, TabProses *Tab, AllWahana *L)
     //KAMUS LOKAl
     address P;
     //ALGORITMA
-    Head(*A) = Nil;
-    Tail(*A) = Nil;
+    Head(*A) = NULL;
+    Tail(*A) = NULL;
     Tab->NbElmt = 0;
     P = FirstWahana(*L);
-    while(P != Nil){
+    while(P != NULL){
         InfoWahana(P).NbPengunjung = 0;
         P = NextWahana(P);
     }
@@ -193,15 +193,15 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)
     }
 
     if(NbElmtWahana(*L) > 0){
-        //random generate pengunjung
+        //randomGenerator generate pengunjung
         if(!IsAntrianFull(*A)){
-            a = random(0, 100);
+            a = randomGenerator(0, 100);
 
             if (a>50){
 
                 
                 for (i=0;i<3;i++){
-                    b = random(0, NbElmtWahana(*L));
+                    b = randomGenerator(0, NbElmtWahana(*L));
                     a2 = SearchWahana(*L, b);
                     if (i==0){
                         wahanaP.TabID[0][0] = InfoWahana(a2).IDawal[0];
@@ -225,16 +225,16 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)
 
                 }
 
-                c = random(1,5);
+                c = randomGenerator(1,5);
                 P2 = MakePengunjung(c, wahanaP, 5, -1);
 
                 Enqueue(A, P2);
 
         }
-        //random wahana rusak
-        b = random(1,10);
+        //randomGenerator wahana rusak
+        b = randomGenerator(1,10);
         if (b >8){
-            b = random(0, NbElmtWahana(*L));
+            b = randomGenerator(0, NbElmtWahana(*L));
             a2 = SearchWahana(*L, b);
 
             if (InfoWahana(a2).status != -1){
@@ -250,7 +250,7 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)
     ReduceKesabaran(A, 1);
 }
 
-int random(int lower, int upper){ 
+int randomGenerator(int lower, int upper){ 
     return rand() % (upper-lower+1) + lower;;
 }
 

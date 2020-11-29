@@ -10,6 +10,7 @@
 #include "../mapplayer.h"
 #include <string.h>
 
+
 typedef struct
 {
     char jenis[20];     // Nama material, contoh: kayu, besi, dll.

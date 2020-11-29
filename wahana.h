@@ -1,11 +1,10 @@
 #ifndef WAHANA_H
 #define WAHANA_H
-#include "ADT/mappoint.h"
-#include "ADT/boolean.h"
-#include "ADT/build.h"
 #include "listupgrade.h"
+#include "ADT/mappoint.h"
 
-#define Nil NULL
+
+#define NilWahana NULL
 
 //Struct untuk wahana yang sudah dibangun
 typedef struct{
@@ -33,9 +32,9 @@ typedef struct {
 } AllWahana;
 
 /* Definisi list : */
-/* List kosong : First(L) = Nil */
+/* List kosong : First(L) = NilWahana */
 /* Setiap elemen dengan address P dapat diacu Info(P), Next(P) */
-/* Elemen terakhir list : jika addressnya Last, maka Next(Last)=Nil */
+/* Elemen terakhir list : jika addressnya Last, maka Next(Last)=NilWahana */
 
 
 #define InfoWahana(P) (P)->info
@@ -45,10 +44,10 @@ typedef struct {
 
 
 
-Wahana MakeWahana (char IDawal[], int ID, POINT lokasi);
+Wahana MakeWahana (char IDawal[], int ID, POINT lokasi, int map);
 //Menghasilkan suatu wahana
 
-void AddWahana(char IDAwal[], POINT lokasi, AllWahana *L);
+void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L);
 //Membuat wahana baru dengan tipe IDAwal pada lokasi,
 //Langsung dimasukkan ke dalam AllWahana
 /*
@@ -64,20 +63,20 @@ boolean IsWahanaFull (Wahana W);
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
-boolean IsEmpty (AllWahana L);
+boolean IsEmptyWahana (AllWahana L);
 /* Mengirim true jika  kosong */
 
 /****************** PEMBUATAN LIST KOSONG ******************/
-void CreateEmpty (AllWahana *L);
+void CreateEmptyWahana (AllWahana *L);
 /* I.S. sembarang             */
 /* F.S. Terbentuk AllWahana kosong */
 
 /****************** Manajemen Memori ******************/
 address AlokWahana (Wahana X);
 /* Mengirimkan address hasil alokasi sebuah elemen */
-/* Jika alokasi berhasil, maka address tidak nil, dan misalnya */
-/* menghasilkan P, maka info(P)=X, Next(P)=Nil */
-/* Jika alokasi gagal, mengirimkan Nil */
+/* Jika alokasi berhasil, maka address tidak NilWahana, dan misalnya */
+/* menghasilkan P, maka info(P)=X, Next(P)=NilWahana */
+/* Jika alokasi gagal, mengirimkan NilWahana */
 void DealokWahana (address P);
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
@@ -87,40 +86,40 @@ void DealokWahana (address P);
 address SearchWahana (AllWahana L, int ID);
 /* Mencari apakah ada elemen list dengan ID */
 /* Jika ada, mengirimkan address elemen tersebut. */
-/* Jika tidak ada, mengirimkan Nil */
+/* Jika tidak ada, mengirimkan NilWahana */
 boolean FSearchWahana (AllWahana L, int ID);
 /* Mencari apakah ada elemen list dengan ID */
 /* Mengirimkan true jika ada, false jika tidak ada */
 address SearchWahanaKosong (AllWahana L, char IDAwal[]);
 //Mengembalikan address wahana dengan IDAwal yang pertama tidak penuh
-//Jika tidak ada mengembalikan nil
+//Jika tidak ada mengembalikan NilWahana
 
 
-/****************** PRIMITIF BERDASARKAN NILAI ******************/
+/****************** PRIMITIF BERDASARKAN NilWahanaAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
 void InsVFirst (AllWahana *L, Wahana X);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
-/* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
+/* menambahkan elemen pertama dengan NilWahanaai X jika alokasi berhasil */
 void InsVLast (AllWahana *L, Wahana X);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
-/* bernilai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
+/* berNilWahanaai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 
 /*** PENGHAPUSAN ELEMEN ***/
 void DelVFirst (AllWahana *L, Wahana *X);
 /* I.S. List L tidak kosong  */
-/* F.S. Elemen pertama list dihapus: nilai info disimpan pada X */
+/* F.S. Elemen pertama list dihapus: NilWahanaai info disimpan pada X */
 /*      dan alamat elemen pertama di-dealokasi */
 void DelVLast (AllWahana *L, Wahana *X);
 /* I.S. list tidak kosong */
-/* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
+/* F.S. Elemen terakhir list dihapus: NilWahanaai info disimpan pada X */
 /*      dan alamat elemen terakhir di-dealokasi */
 
 /****************** PRIMITIF BERDASARKAN ALAMAT ******************/
 /*** PENAMBAHAN ELEMEN BERDASARKAN ALAMAT ***/
-void InsertFirst (AllWahana *L, Wahana P);
+void InsertFirst (AllWahana *L, address P);
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. Menambahkan elemen ber-address P sebagai elemen pertama */
 void InsertAfter (AllWahana *L, address P, address Prec);
@@ -137,7 +136,7 @@ void DelFirst (AllWahana *L, address *P);
 /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* First element yg baru adalah suksesor elemen pertama yang lama */
-void DelP (AllWahana *L, Wahana X);
+void DelP (AllWahana *L, int ID);
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddress P, dengan info(P)=X  */
 /* Maka P dihapus dari list dan di-dealokasi */
