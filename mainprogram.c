@@ -7,6 +7,8 @@
 
 
 
+#include "preparation.h"
+#include "loadfileexternal.h"
 /*
 TULIS URUTAN FUNGSI DI PROGRAM UTAMA KAYA APA,
 Dikasih komen ya biar paham
@@ -44,7 +46,7 @@ int main(){
     printf(" - Exit      [ Query: exit. ]\n > ");
     InputKata(&input);
     
-    if(IsSama(input, "new") && !IsSama(input, "exit")){
+    if(IsSama(input, "new")){
         
         boolean exit = false;
         MAP M1,M2,M3,M4;
@@ -62,30 +64,38 @@ int main(){
         srand(time(0)); //Set random seed
 
         Buka = MakeJAM(9,0);
-        Tutup = MakeJAM(21, 00);
+        J = MakeJAM(21,0);
+        Tutup = MakeJAM(21,0);
 
         LoadAllMap(&M1,&M2,&M3,&M4);
         CreatePlayer(&P,M1,3,3); // assign player di x,y = (3,3), ini bebas nanti ganti
         Money(P) = 5000; //Sesuaiin aja uang awalnya berapa
+        scanf("Masukkan nama : %s",&Name(P));
+        scanf("Masukkan jumlah uang : ",&Money(P));
         UbahMap(&P,true);
         cls();
 
         printf("Memulai permainan baru......\n");
         
+        Stack SAksi;
+        CreateEmptyStack(&SAksi);
+        material MAT = LoadMaterial("data/material.txt");
+        InfoWahana = LoadWahana("data/wahana.txt");
 
         while(!exit){
             Prepare(&A,&TabProses,&L);
             printf("Preparation phase day %d\n", day);
             PrintMap(CMap(P));
-            printf("Masukan Perintah:\n");
+            PrintStatPlayer(SAksi,J,Buka,Money(P),MAT);
+            printf("\nMasukan Perintah:\n > ");
             InputKata(&input);
 
             if(IsSama(input,"build")){
-                //Build()
+                build(&SAksi,Money(P),J,MAT,InfoWahana);
             } else if(IsSama(input, "upgrade")){
                 //upgrade()
             } else if(IsSama(input, "buy")){
-                //buy()
+                buy(&SAksi,Money(P),J,Buka,MAT);
             } else if(IsSama(input, "w") || IsSama(input, "a") || IsSama(input,"s") || IsSama(input,"d")){
                 char C = input.TabKata[0];
                 FMap(&P, C, M1, M2, M3, M4);
@@ -137,8 +147,19 @@ int main(){
         cls();
 
     }
-
-    printf("Thanks for playing!!\n");
+    else if (IsSama(input, "load"))
+    {
+        printf("\nMasukkan nama file save-an:\n > ");
+        InputKata(&input);
+    }
+    else if (IsSama(input, "exit"))
+    {
+        printf("\nThanks for playing!\n");
+    }
+    else
+    {
+        printf("\nInput Anda tidak valid.\n");
+    }
 
     return 0;
 }
