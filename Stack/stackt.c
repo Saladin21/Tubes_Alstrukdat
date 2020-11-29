@@ -23,7 +23,7 @@ boolean IsEmptyStack (Stack S)
     /*ALGORITMA*/
     return Top(S) == NilStack;
 }
-boolean IsFull (Stack S)
+boolean IsFullStack (Stack S)
 /* Mengirim true jika tabel penampung NilStackai elemen stack penuh */
 {
     /*KAMUS LOKAL*/
