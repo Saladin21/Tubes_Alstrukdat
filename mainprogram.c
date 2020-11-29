@@ -6,7 +6,6 @@
 #include "globalvariable.h"
 
 
-
 #include "preparation.h"
 #include "loadfileexternal.h"
 /*
@@ -34,9 +33,9 @@ while (true)    // LOOP PROGRAMMNYA
         Contoh();
     cls();
 */
+
+
 MAP M1,M2,M3,M4;
-
-
 int main(){
     Kata input;
 
@@ -86,18 +85,18 @@ int main(){
             Prepare(&A,&TabProses,&L);
             printf("Preparation phase day %d\n", day);
             PrintMap(CMap(P));
-            PrintStatPlayer(SAksi,J,Buka,Money(P),MAT);
+            PrintStatPlayer(SAksi,J,Buka,Money(P),MAT,L);
             printf("\nMasukan Perintah:\n > ");
             InputKata(&input);
 
             if(IsSama(input,"build")){
-                build(&SAksi,Money(P),J,MAT,InfoWahana);
+                build(&SAksi,Money(P),J,Buka,MAT,InfoWahana,&L,&P);
             } else if(IsSama(input, "upgrade")){
                 //upgrade()
             } else if(IsSama(input, "buy")){
-                buy(&SAksi,Money(P),J,Buka,MAT);
+                buy(&SAksi,Money(P),J,Buka,MAT,L);
             } else if(IsSama(input, "undo")){
-                UndoAksi(&SAksi);
+                UndoAksi(&SAksi,&L);
             } else if(IsSama(input, "w") || IsSama(input, "a") || IsSama(input,"s") || IsSama(input,"d")){
                 char C = input.TabKata[0];
                 FMap(&P, C, M1, M2, M3, M4);
