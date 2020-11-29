@@ -529,35 +529,25 @@ void AddWahana(char IDAwal[], POINT lokasi, int map, AllWahana *L, PLAYER *Playe
 {
     //KAMUS LOKAL
     int ID;
-    address P;
+    //address P;
     Wahana w;
-    MAP Mout;
+    
     //ALGORITMA
     ID = NbElmtWahana(*L)+1;
-    P = FirstWahana(*L);
+    //P = FirstWahana(*L);
 
+    /*
     while (P != Nil){
         P = NextWahana(P);
-    }
+    }*/
 
     w = MakeWahana(IDAwal, ID, lokasi, map);
 
     InsVLast(L, w);
 
-    if (map==1){
-        Mout =M1;
-    }
-    else if (map==2){
-        Mout = M2;
-    }
-    else if (map==3){
-        Mout = M3;
-    }
-    else if (map==4){
-        Mout = M4;
-    }
+    UbahMapAddWahana(Player, map, lokasi, true);
 
-    UbahMapAddWahana(Player, &Mout, lokasi, true);
+    
 }
 
 void RemoveLastWahana(AllWahana *L, PLAYER *P)
@@ -565,25 +555,14 @@ void RemoveLastWahana(AllWahana *L, PLAYER *P)
 {
     //KAMUS LOKAL
     Wahana W;
-    MAP Mout;
+    
     //Algoritma
 
     DelVLast(L, &W);
 
-    if (W.map==1){
-        Mout =M1;
-    }
-    else if (W.map==2){
-        Mout = M2;
-    }
-    else if (W.map==3){
-        Mout = M3;
-    }
-    else if (W.map==4){
-        Mout = M4;
-    }
+    UbahMapAddWahana(P, W.map, W.lokasi, false);
 
-    UbahMapAddWahana(P, &Mout, W.lokasi, false);
+    
 
 }
 
@@ -690,6 +669,7 @@ address SearchWahanaKosong (AllWahana L, char IDAwal[])
     found = false;
     while(P != NULL && !found){
         if (IsStringSame(InfoWahana(P).IDawal, IDAwal)){
+            //printf("nb : %d | status: %d\n",InfoWahana(P).NbPengunjung, InfoWahana(P).status);
             if(!IsWahanaFull(InfoWahana(P)) && (InfoWahana(P).status == 1) ){
                 found = true;
             }

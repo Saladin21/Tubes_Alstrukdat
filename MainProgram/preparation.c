@@ -82,15 +82,15 @@ void build(Stack *aksi, int initialmoney, JAM initialtime, JAM optime, material 
     
     // Cari map player
     int map;
-    if(EQ(CMap(*Player),M1))
+    if(EQ(RealMap(*Player),M1))
     {
         map = 1;
     }
-    else if(EQ(CMap(*Player),M2))
+    else if(EQ(RealMap(*Player),M2))
     {
         map = 2;
     }
-    else if(EQ(CMap(*Player),M3))
+    else if(EQ(RealMap(*Player),M3))
     {
         map = 3;
     }

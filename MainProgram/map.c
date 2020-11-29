@@ -6,6 +6,7 @@
 #include "mapplayer.h"
 #include "../Point/mappoint.h"
 #include "../Point/mappoint.c"
+#include "globalvariable.h"
 #define MAX_FILE_NAME 100
 
 /*
@@ -118,7 +119,7 @@ void PrintMap(MAP M) {
     TulisMAP(M); Legenda();
 }
 
-void UbahMapAddWahana(PLAYER *P,MAP *Mout, POINT point_wahana, boolean add) {
+void UbahMapAddWahana(PLAYER *P,int map, POINT point_wahana, boolean add) {
     // Mout = M1/2/3/4
     // ubah CMap dan RealMap jadi ada W baru nya
     int i,j;
@@ -134,7 +135,25 @@ void UbahMapAddWahana(PLAYER *P,MAP *Mout, POINT point_wahana, boolean add) {
         CGedung(*P) = '-';
     }
     // copy Realmap ke Mout
-    CopyMAP(RealMap(*P),Mout);
+    if (map==1){
+        CopyMAP(RealMap(*P), &M1);
+        //Elmt(M1, i, j) = 'W';
+        
+    }
+    else if(map==2){
+        CopyMAP(RealMap(*P), &M2);
+        //Elmt(M2, i, j) = 'W';
+        
+    }
+    else if(map==3){
+        CopyMAP(RealMap(*P), &M3);
+        //Elmt(M2, i, j) = 'W';
+        
+    }
+    else if(map==4){
+        CopyMAP(RealMap(*P), &M4);
+        //Elmt(M2, i, j) = 'W';
+    }
 }
 
 void UbahMap (PLAYER *P, boolean isP) {
@@ -196,7 +215,7 @@ void pindahPOSMAP (PLAYER *P, MAP M, int newX, int newY) {
 }
 
 // ------------------------------ FUNGSI FMAP -------------------------------------
-void FMap(PLAYER *P, char C, MAP M1,MAP M2,MAP M3,MAP M4) {
+void FMap(PLAYER *P, char C) {
     // Minta input arah W/A/S/D
     int x,y;
     WASD(C, &x, &y);

@@ -101,7 +101,7 @@ int main(){
                 UndoAksi(&SAksi,&L,&P);
             } else if(IsSama(input, "w") || IsSama(input, "a") || IsSama(input,"s") || IsSama(input,"d")){
                 char C = input.TabKata[0];
-                FMap(&P, C, M1, M2, M3, M4);
+                FMap(&P, C);
             } else if(IsSama(input, "main")||IsSama(input, "execute")){
                 //Masukan Program loop untuk main phase
                 if(IsSama(input, "execute"))
@@ -142,7 +142,7 @@ int main(){
                     }
                     else if(IsSama(input, "w") || IsSama(input, "a") || IsSama(input,"s") || IsSama(input,"d")){
                         char C = input.TabKata[0];
-                        FMap(&P, C, M1, M2, M3, M4);
+                        FMap(&P, C);
                         AdvTime(&J, 1, &TabProses, &A, &L);
                     }
                     else if(IsSama(input, "office")){

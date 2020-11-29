@@ -59,7 +59,7 @@ void Serve (Antrian *A, AllWahana *L, JAM *T, int *money, TabProses *Tab)
 
                     }
                     else{
-                        printf("Wahana penuh.\n");
+                        printf("Wahana penuh atau rusak.\n");
                     }
 
             }
@@ -89,9 +89,10 @@ void repair (POINT Player, int map, JAM *J, TabProses *Tab, Antrian *A, AllWahan
     while(P != NULL){
         w = InfoWahana(P);
         if(w.map == map && Panjang(Player, w.lokasi) == 1 && w.status==-1){
-            w.status = 1;
+            InfoWahana(P).status = 1;
             NamaWahana(w.IDawal, InfoWahana);
             printf(" berhasil diperbaiki\n");
+            //printf("status: %d", InfoWahana(P).status);
             count++;
         }
         P = NextWahana(P);
@@ -201,7 +202,9 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)
             
             if (P1.info.Nb >0 && !IsEmptyAntrian(*A)){
                 P1.current = -1;
-                P1.prio--;
+                if (P1.prio >1){
+                    P1.prio--;
+                }
                 Enqueue(A, P1);
             }
 
@@ -214,13 +217,14 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)
             a = randomGenerator(0, 100);
 
             if (a>50){
-
+                
                 wahanaP.Nb = 0;
                 for (i=0;i<3;i++){
                     b = randomGenerator(1, NbElmtWahana(*L));
                     
                     a2 = SearchWahana(*L, b);
-                    NamaWahana(InfoWahana(a2).IDawal, InfoWahana);
+                    
+                    //NamaWahana(InfoWahana(a2).IDawal, InfoWahana);
                     if (i==0){
                         wahanaP.TabID[0][0] = InfoWahana(a2).IDawal[0];
                         wahanaP.TabID[0][1] = InfoWahana(a2).IDawal[1]; 
@@ -245,7 +249,7 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)
                 
 
                 c = randomGenerator(1,5);
-                P2 = MakePengunjung(c, wahanaP, 101, -1);
+                P2 = MakePengunjung(c, wahanaP, 51, -1);
 
                 Enqueue(A, P2);
                 
@@ -253,14 +257,18 @@ void AdvTime (JAM *J, int durasi, TabProses *Tab, Antrian *A, AllWahana *L)
         }
         //randomGenerator wahana rusak
         b = randomGenerator(1,10);
-        if (b >8){
-            b = randomGenerator(0, NbElmtWahana(*L));
+        if (b >9){
+            b = randomGenerator(1, NbElmtWahana(*L));
             a2 = SearchWahana(*L, b);
 
             if (InfoWahana(a2).status != -1){
                 InfoWahana(a2).status = -1;
                 printf("Wahana berikut rusak : ");
                 NamaWahana(InfoWahana(a2).IDawal, InfoWahana);
+                printf(" map: %d", InfoWahana(a2).map);
+                TulisPOINT(InfoWahana(a2).lokasi);
+                printf("\n");
+                
                 printf("\n");
             }
         }

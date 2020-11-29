@@ -26,7 +26,7 @@ void Legenda();
 void PrintMap(MAP M);
 //Tulis Map dan Legenda
 
-void UbahMapAddWahana(PLAYER *P,MAP *Mout, POINT point_wahana, boolean add);
+void UbahMapAddWahana(PLAYER *P,int map, POINT point_wahana, boolean add);
 // merubah map1/2/3/4
 
 void UbahMap(PLAYER *P, boolean isP);
@@ -46,7 +46,7 @@ void pindahPOSMAP (PLAYER *P, MAP M, int newX, int newY);
 
 
 // ------------------------------ FUNGSI FMAP -------------------------------------
-void FMap(PLAYER *P, char C, MAP M1,MAP M2,MAP M3,MAP M4);
+void FMap(PLAYER *P, char C);
 // Menerima input arah w/a/s/d
 
 #endif

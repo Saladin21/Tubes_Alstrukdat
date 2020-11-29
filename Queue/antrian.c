@@ -248,7 +248,9 @@ void ReduceKesabaran(Antrian *Q, int X)
             if(i==Tail(*Q)){
                 tail = true;
             }
-            Q->T[i].kesabaran = Q->T[i].kesabaran -X;
+            if (Q->T[i].kesabaran>0){
+                Q->T[i].kesabaran = Q->T[i].kesabaran -X;
+            }
             i++;
         }
     }
