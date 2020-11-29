@@ -62,3 +62,19 @@ void Pop (Stack * S, infotype* X)
         Top(*S) = NilStack;
     }
 }
+
+/**************** Mereverse Stack *******************/
+Stack Reverse(Stack S){
+/* Mengembalikan stack yang merupakan reverse dari Stack S */
+    Stack Sout;
+    infotype X;
+
+    CreateEmptyStack(&Sout);
+
+    while(!(IsEmptyStack(S))){
+        Pop(&S, &X);
+        Push(&Sout, X);
+    }
+
+    return Sout;
+}

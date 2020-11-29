@@ -106,7 +106,7 @@ int main(){
             printf("Preparation phase day %d\n", day);
             PrintMap(CMap(P));
             PrintStatPlayer(SAksi,J,Buka,Money(P),MAT,L);
-            printf("\nMasukan Perintah:\n > ");STra
+            printf("\nMasukan Perintah:\n > ");
             InputKata(&input);
 
             if(IsSama(input,"build")){
@@ -216,7 +216,6 @@ int main(){
                     }
                     else if(IsSama(input, "prepare")){
                         Prepare(&A, &TabProses, &L);
-                        day++;
                         J = Tutup;
                     } 
 

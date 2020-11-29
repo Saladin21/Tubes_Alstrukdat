@@ -75,7 +75,7 @@ void SavePlayer(PLAYER P, char NamaFile[], char FileCMap[], char FileRMap[]){
 /* F.S PLAYER P pada game tersimpan pada suatu file eksternal */
 	FILE *fp;
 	fp = fopen(NamaFile, "w");
-	fprintf(fp, "%s;%d;%d;%c;%d;%d\n", NAME(P), PosisiX(P), PosisiY(P), CGedung(P), Money(P),Kode(CMap(P)));
+	fprintf(fp, "%s;%d;%d;%c;%d;%d\n", Name(P), PosisiX(P), PosisiY(P), CGedung(P), Money(P),Kode(CMap(P)));
 	fclose(fp);
 
 	SaveMAP(CMap(P), FileCMap);

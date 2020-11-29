@@ -62,4 +62,6 @@ void Pop (Stack * S, infotype* X);
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah NilStackai elemen TOP yang lama, TOP berkurang 1 */
 
+Stack Reverse(Stack S);
+
 #endif
