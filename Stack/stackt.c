@@ -23,7 +23,7 @@ boolean IsEmptyStack (Stack S)
     /*ALGORITMA*/
     return Top(S) == NilStack;
 }
-boolean IsFull (Stack S)
+boolean IsFullStack (Stack S)
 /* Mengirim true jika tabel penampung NilStackai elemen stack penuh */
 {
     /*KAMUS LOKAL*/
@@ -61,4 +61,20 @@ void Pop (Stack * S, infotype* X)
     else{
         Top(*S) = NilStack;
     }
+}
+
+/**************** Mereverse Stack *******************/
+Stack Reverse(Stack S){
+/* Mengembalikan stack yang merupakan reverse dari Stack S */
+    Stack Sout;
+    infotype X;
+
+    CreateEmptyStack(&Sout);
+
+    while(!(IsEmptyStack(S))){
+        Pop(&S, &X);
+        Push(&Sout, X);
+    }
+
+    return Sout;
 }
