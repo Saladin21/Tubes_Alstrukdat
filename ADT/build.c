@@ -67,7 +67,27 @@ void PrintWahanaSekitar(PLAYER P, daftarwahana W, AllWahana L)
 boolean IsWahanaNear(int ID, PLAYER P, AllWahana L)
 // Mengembalikan true jika wahana ID ada di sebelah P
 {
-    //
+    POINT atas = MakePOINT(P.POS.X,P.POS.Y-1);
+    POINT kiri = MakePOINT(P.POS.X-1,P.POS.Y);
+    POINT kanan = MakePOINT(P.POS.X+1,P.POS.Y);
+    POINT bawah = MakePOINT(P.POS.X,P.POS.Y+1);
+    boolean temu = false;
+    
+    address P2 = FirstWahana(L);
+    while(P2!=Nil && !temu)
+    {
+        if(ID==(*P2).info.ID)
+        {
+            temu = true;
+        }
+        else
+        {
+            P2 = NextWahana(P2);
+        }
+    }
+    
+    
+    return temu;
 }
 
 /********************/

@@ -1,3 +1,5 @@
+gcc mainprogram.c listupgrade.c loadfileexternal.c map.c parser.c preparation.c mainphase/antrian.c mainphase/mainphase.c mainphase/proses.c ADT/build.c ADT/jam.c ADT/stackt.c -o main -lm
+
 Tulis penjelasan program buatan kalian sedetail mungkin
 AHAN - Map:
     Map itu matriks, indeks i,j. Pemain itu POINT, indeks x,y. Karena index matriks dan point beda (point kaya kartesius),

@@ -58,11 +58,12 @@ void LoadMapFromFile(MAP *M, int Kode, char filename[MAX_FILE_NAME]) {
     for (c = getc(fp); c != EOF; c = getc(fp)) {
         if (c != '\n' && c != '\r')
             jmlEl++;
-        if (c == '\n' || c != '\r')
+        if (c == '\n')
             brs++;
     }
     fclose(fp);
     int kol = jmlEl/brs;
+    printf("%d %d %d\n",jmlEl,brs,kol );
 
     // isi array temp
     FILE *fp1 = fopen(filename,"r");
@@ -71,7 +72,7 @@ void LoadMapFromFile(MAP *M, int Kode, char filename[MAX_FILE_NAME]) {
 
     int i = 0;
     while ((c1 = fgetc(fp1))!=EOF) {
-        if (c1 != '\n' && c != '\r') {
+        if (c1 != '\n' && c1 != '\r') {
             temp[i] = c1;
             i++;
         }
